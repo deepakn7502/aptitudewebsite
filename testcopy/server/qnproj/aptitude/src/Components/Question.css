@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Orbitron:wght@500&display=swap");
+
+.question {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.question .user-container {
+  height: 100%;
+  width: 15%;
+  overflow: hidden;
+  flex: 1;
+  flex-wrap: wrap;
+  border-right: 1px solid black;
+}
+
+.user-container p {
+  height: fit-content;
+  font-size: 100%;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.question .qstn-container {
+  height: 95%;
+  width: 85%;
+}
+
+.qstn-container .qstn-info {
+  width: 100%;
+  height: 10%;
+  display: flex;
+}
+
+.qstn-info .section {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section h1 {
+  background-color: black;
+  width: max-content;
+  color: white;
+  font-size: 32px;
+  padding: 5px 8px;
+}
+
+.qstn-info .timer {
+  width: 30%;
+  height: 100%;
+  position: fixed;
+  right: 4%;
+}
+
+.timer h1 {
+  position: absolute;
+  padding: 5px 10px;
+  font-size: 30px;
+  right: 3%;
+  font-family: "Orbitron", sans-serif;
+}
+
+.qstn-container .display-question {
+  background-color: #fff;
+  width: 100%;
+  height: 85%;
+  overflow: auto;
+}
+
+.qstn-container .nxt-section {
+  display: flex;
+  height: 10%;
+  width: 100%;
+}
+
+.nxt-section .MuiButton-root {
+  height: fit-content;
+  width: fit-content;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 20px;
+}
+
+.display-question .qstn-buttons {
+  width: 100%;
+  height: 50px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 100px;
+  padding-left: 70px;
+}
+
+.qstn-buttons a {
+  padding: 5px;
+  margin: 5px 25px;
+  border: 1px solid blue;
+  color: blue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.qstn-buttons .prev-qstn {
+  position: relative;
+  left: 15%;
+  border: none;
+}
+
+.qstn-buttons .next-qstn {
+  position: absolute;
+  right: 0;
+  border: none;
+}
+
+.active-page a {
+  background-color: blue;
+  color: #fff;
+}
+
+.nxt-section {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}

@@ -1,0 +1,126 @@
+.main{
+  background: #43C6AC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+;
+}
+.cont
+{
+  background-color: hsl(0, 89%, 40%);
+  height: 50px;
+  width: 100%;
+  display: flex;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont h1{
+  color: red;
+}
+.grid  
+{
+  height: 100%;
+  width: 25%;
+  background-color: rgb(10, 72, 243);
+  position: absolute;
+  left: 0;
+
+}
+
+.i1{
+  height:auto;
+  width:100%;
+  
+  text-align: left;
+  background-color: rgb(243, 243, 243);
+  border: 3px solid black;
+}
+.head{
+  color: whitesmoke;
+  font-family: "Times New Roman", Times, serif;
+}
+.main .MuiButton-root{
+  border:3px solid black;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 30px;;
+}
+.nq .MuiButton-root {
+  border:3px solid black;
+  position: fixed;
+  right: 0;
+  bottom: 7%;
+  margin: 30px;;
+}
+.pq .MuiButton-root {
+  /* border:3px solid black; */
+  width: fit-content;
+   
+  left : 0%;
+  bottom:7%;
+  margin-left: 25%;
+}
+.question {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+ .question .user-container {
+  height: 100%;
+  width: 15%;
+  overflow: hidden;
+  /* background-color: purple; */
+}
+ .question .qstn-container {
+  height: 100%;
+  width: 85%;
+  /* background-color: teal; */
+} 
+
+ .qstn-container .qstn-info {
+  width: 100%;
+  height: 100px;
+  /* background-color: blueviolet; */
+  display: flex;
+} 
+
+.qstn-info .section {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section h1 {
+  /* background-color: black; */
+  width: max-content;
+  color: white;
+  font-size: 32px;
+  padding: 5px 8px;
+}
+
+.qstn-info .timer {
+  width: 30%;
+  height: 100%;
+  color: white;
+}
+
+.timer h1 {
+  position: absolute;
+  background-color: midnightblue;
+  padding: 5px 10px;
+  font-size: 35px;
+  right: 3%;
+}
+
+.qstn-container .display-question {
+  background-color: white;
+  width: 100%;
+  height: 450px;
+}

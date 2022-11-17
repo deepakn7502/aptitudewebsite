@@ -1,0 +1,58 @@
+.question-section {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-section .question {
+  width: 100%;
+  height: 30%;
+}
+.question p {
+  width: auto;
+  height: auto;
+  margin: 15px 10%;
+  font-size: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.question-section .options {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.options .option {
+  border: 2px solid black;
+  margin-top: 5px;
+  width: 80%;
+  border-radius: 20px;
+  padding-left: 10px;
+  max-width: 500px;
+}
+
+.question-section .qstn-buttons {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 80px;
+}
+
+.qstn-buttons .prev-qstn {
+  position: fixed;
+  margin: 0 20px;
+}
+
+.qstn-buttons .next-qstn {
+  position: fixed;
+  margin: 0 20px;
+  right: 0;
+}

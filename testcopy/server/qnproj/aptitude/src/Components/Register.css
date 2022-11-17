@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+
+.register {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Inter", sans-serif;
+  background-color: #85FFBD;
+  background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+
+}
+
+.register .register-container {
+  height: 620px;
+  width: 90%;
+  max-width: 410px;
+  background-color: white;
+  position: fixed;
+  border-radius: 35px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border-color: rgb(192, 102, 70);
+}
+.register-container h2 {
+  margin-top: 5px;
+  color: rgb(4, 4, 111);
+  margin-bottom: 5px;
+}
+.img {
+  margin-top: 7px;
+  margin-bottom: 0px;
+}
+.register-container .reg {
+  margin-top: 3px;
+  color: rgb(227, 70, 70);
+}
+.inputs {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.inputs .inputfield {
+  width: 100%;
+  height: auto;
+}
+.inputs .inputfield .MuiTextField-root {
+  width: 90%;
+}
+
+.inputs::-webkit-scrollbar {
+  width: 7px;
+}
+
+.inputs::-webkit-scrollbar-track {
+  background-color: #ddd;
+}
+
+.inputs::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 20px;
+}
+.button {
+  margin-bottom: 12px;
+}

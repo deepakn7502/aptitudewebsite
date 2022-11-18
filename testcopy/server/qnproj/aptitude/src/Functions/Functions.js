@@ -23,5 +23,3 @@ export function Timer() {
   });
   return { minutes, seconds };
 }
-
-

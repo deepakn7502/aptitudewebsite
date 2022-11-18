@@ -1,75 +1,79 @@
-import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./Sections.css";
+import Button from "@mui/material/Button";
 import axios from "axios";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Question from "./Question";
 
+function Sections() {
+  const api = axios.create({
+    baseURL: `http://localhost:8000/`,
+  });
 
+  const [questions, setQstns] = useState([]);
+  const tid = localStorage.getItem("testid");
 
-function Sections({api}) {
-  const [answers1, setAnswers1] = useState([]);
-  const [answers2, setAnswers2] = useState([]);
-  const [answers3, setAnswers3] = useState([]);
-  const [user, setUser] = useState();
+  const [section1, setSection1] = useState([]);
+  const [section2, setSection2] = useState([]);
+  const [section3, setSection3] = useState([]);
+
+  const openSection = () => {};
 
   useEffect(() => {
-    setAnswers1(JSON.parse(window.sessionStorage.getItem("section1")));
-    setAnswers2(JSON.parse(window.sessionStorage.getItem("section2")));
-    setAnswers3(JSON.parse(window.sessionStorage.getItem("section3")));
-    setUser(JSON.parse(window.localStorage.getItem("student")));
+    let submit = () => {
+      let res = api.get("qn/" + tid + "/").then((res) => {
+        setQstns(res.data);
+      });
+    };
+    submit();
   }, []);
 
-  const setSection = (value) => {
-    window.sessionStorage.setItem("section", value);
-    window.location.pathname = "/questions";
-  };
-
-  let validate = () => {
-    let res = api
-      .post("validate/", {
-        username: user.username,
-        ans1: answers1,
-        ans2: answers2,
-        ans3: answers3,
-      })
-      .then((res) => {
-        window.sessionStorage.setItem("marks", JSON.stringify(res.data));
-        window.location.pathname = "/summary";
-      });
-  };
+  useEffect(() => {
+    const one = questions.slice(0, 15);
+    const two = questions.slice(15, 30);
+    const three = questions.slice(30, questions.length);
+    setSection1(one);
+    setSection2(two);
+    setSection3(three);
+  }, [questions]);
 
   return (
     <div className="summary">
       <div className="heading">
         <h1>SECTIONS</h1>
       </div>
-      <div className="row">
-        <div className="card">
+      <div class="row">
+        <div className="cone">
           <div className="conehead">
+            <h2>SECTION-I</h2>
+            <h2>APTITUDE</h2>
+            <h2>SECTION-I</h2>
             <h2>APTITUDE</h2>
           </div>
-          <div className="column one">
-            <div className="session"></div>
+          <div class="column one">
+            <div class="session"></div>
 
-            <div className="content">
+            <div class="content">
               <div className="con"></div>
             </div>
           </div>
           <button
             onClick={() => {
-              setSection("section1");
+              window.location.pathname = "/questions";
             }}
           >
             START
           </button>
         </div>
 
-        <div className="card">
+        <div className="ctwo">
           <div className="conehead">
+            <h2>SECTION-II</h2>
+            <h2>TECHNICAL</h2>
+
             <h2>TECHNICAL</h2>
           </div>
-          <div className="column two">
-            <div className="session"></div>
+          <div class="column two">
+            <div class="session"></div>
 
             <div className="content">
               <div className="con">
@@ -79,19 +83,23 @@ function Sections({api}) {
           </div>
           <button
             onClick={() => {
-              setSection("section2");
+              window.location.pathname = "/questions";
             }}
           >
             START
           </button>
         </div>
 
-        <div className="card">
+        <div className="cthree">
           <div className="conehead">
+            <h2>SECTION-III</h2>
+
+            <h2>VERBAL</h2>
+            <h2>SECTION-III</h2>
             <h2>VERBAL</h2>
           </div>
-          <div className="column three">
-            <div className="session"></div>
+          <div class="column three">
+            <div class="session"></div>
 
             <div className="content">
               <div className="con"></div>
@@ -99,23 +107,12 @@ function Sections({api}) {
           </div>
           <button
             onClick={() => {
-              setSection("section3");
+              window.location.pathname = "/questions";
             }}
           >
             START
           </button>
         </div>
-      </div>
-      <div className="end-test">
-        <Button
-          variant="contained"
-          onClick={() => {
-            validate();
-          }}
-          endIcon={<ArrowForwardIosIcon />}
-        >
-          END TEST
-        </Button>
       </div>
     </div>
   );

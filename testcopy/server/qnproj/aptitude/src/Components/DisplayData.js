@@ -11,7 +11,7 @@ function DisplayData({api}) {
 
   useEffect(() => {
     let disp = async (e) => {
-      let res = await api.get("result/").then((res) => {
+      let res = await api.get("rst/").then((res) => {
         setData(res.data);
         console.log(res.data);
       });

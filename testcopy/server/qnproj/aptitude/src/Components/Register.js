@@ -100,7 +100,7 @@ function Register({api}) {
 
   let register = async (e) => {
     let res = await api
-      .post("register/", {
+      .post("reg/", {
         username: regno,
         rollno: rno,
         name: name,

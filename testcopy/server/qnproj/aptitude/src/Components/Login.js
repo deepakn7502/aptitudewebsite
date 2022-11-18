@@ -25,7 +25,7 @@ function Login({api}) {
 
   let log = async (e) => {
     try {
-      const res = await api.post("login/", { username: regno, password: pass });
+      const res = await api.post("log/", { username: regno, password: pass });
       setUser(res.data);
       const student = JSON.stringify(res.data);
       console.log(student);

@@ -13,7 +13,7 @@ function QuestionDisplay({api}) {
 
   useEffect(() => {
     let submit = () => {
-      let res = api.get("question/" + tid + "/").then((res) => {
+      let res = api.get("qn/" + tid + "/").then((res) => {
         setQstns(res.data);
       });
     };

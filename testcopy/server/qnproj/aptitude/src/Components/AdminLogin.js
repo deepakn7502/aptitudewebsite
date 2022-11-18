@@ -17,7 +17,7 @@ function AdminLogin({api}) {
   const [user, setUser] = useState();
   
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("staff");
+    const loggedInUser = localStorage.getItem("stafflg");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       setname(foundUser);

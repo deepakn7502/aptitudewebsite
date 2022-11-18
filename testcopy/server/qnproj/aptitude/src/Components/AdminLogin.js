@@ -7,12 +7,10 @@ import Button from "@mui/material/Button";
 import { InputAdornment } from "@mui/material";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
 
 
-function AdminLogin() {
+
+function AdminLogin({api}) {
   
   const [username, setname] = useState("");
   const [password, setpass] = useState("");
@@ -35,7 +33,7 @@ function AdminLogin() {
 
   let log = async (e) => {
     try {
-      const res = await api.post("stafflg/", { username: username, password: password});
+      const res = await api.post("stafflogin/", { username: username, password: password});
       setUser(res.data);
       console.log(user)
       localStorage.setItem("staff", res.data);

@@ -3,9 +3,7 @@ import axios from "axios";
 import "./Register.css";
 import { Button, MenuItem, TextField } from "@mui/material";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
+
 
 const sections = [
   {
@@ -90,7 +88,7 @@ const sec = [
   },
 ];
 
-function Register() {
+function Register({api}) {
   const [departments, setDepartment] = useState("");
   const [section, setSection] = useState("");
   const [year, setYear] = useState("");
@@ -102,7 +100,7 @@ function Register() {
 
   let register = async (e) => {
     let res = await api
-      .post("reg/", {
+      .post("register/", {
         username: regno,
         rollno: rno,
         name: name,

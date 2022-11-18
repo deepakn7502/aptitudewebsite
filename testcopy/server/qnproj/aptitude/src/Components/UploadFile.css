@@ -1,11 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+* {
+  color: black;
+}
+.up {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../Images/bluebg.jpg");
 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.head {
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+.head h1 {
+  color: white;
+}
 .UploadFile {
-  height: 400px;
-  width: 90%;
-  max-width: 410px;
+  height: 600px;
+  width: 400px;
   font-family: "Inter", sans-serif;
   display: flex;
+  justify-content: space-around;
+  background-color: rgb(255, 255, 255, 0.6);
   flex-direction: column;
   align-items: center;
   position: fixed;
@@ -14,5 +34,61 @@
   transform: translate(-50%, -50%);
   border-radius: 25px;
   border-style: solid;
-  border-color: rgb(192, 102, 70);
+  border-color: aqua;
+}
+.def {
+  background-color: rgb(129, 153, 168);
+}
+.UploadFile .p {
+  margin-top: 20px;
+  margin-left: 40px;
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.UploadFile .pp {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+  align-items: center;
+  width: 100%;
+  margin-left: 40px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-bottom: 30px;
+}
+.ppp {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+  align-items: center;
+  width: 100%;
+  font-weight: 600;
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.btn {
+  font-weight: 700;
+  color: black;
+}
+
+.btt .MuiButton-root {
+  margin-top: 20px;
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+
+.btn .MuiIconButton-root {
+  width: 20px;
+  margin-left: 15px;
+}
+
+.divider {
+  margin-top: 15px;
 }

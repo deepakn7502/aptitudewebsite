@@ -39,7 +39,7 @@ function App() {
 
   let logout = () => {
     const user = localStorage.getItem("student");
-    let res = api.put("login/", { user: user }).then(() => {
+    let res = api.put("log/", { user: user }).then(() => {
       localStorage.clear();
       window.location.pathname = "/";
     });

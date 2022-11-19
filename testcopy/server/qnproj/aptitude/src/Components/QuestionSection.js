@@ -39,7 +39,7 @@ function QuestionSection({ question }) {
       <div className="question">
         <p>{question.qnno}</p>
         <img
-          src={require(`../qnimages/media/${question.qn}`)}
+          src={require(`..build/static/media/${question.qn}`)}
           height="auto"
           width="300px"
         />

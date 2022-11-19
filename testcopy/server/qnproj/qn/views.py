@@ -11,11 +11,12 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from rest_framework import serializers
+from django.db import connection
 from pathlib import Path
 import os
 
 # Create your views here.
-
+cursor=connection.cursor()
 class register(viewsets.ModelViewSet):
    queryset = stud.objects.all()
    serializer_class = registerserializers
@@ -80,17 +81,17 @@ class qn(viewsets.ModelViewSet):
       dict={}
       dict["img"]=image
       return dict
-    
 
     def post(self,request,*args,**kwargs):
       no=0
-
+      tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
       for i in img:
         no+=1
         image=self.ip(i)
-        question.objects.create(testid=request.data["testid"],qnno=no,qn=image["img"],ans=ans[no-1])
+        question.objects.create(testid=tid,qnno=no,qn=image["img"],ans=ans[no-1])
       return  Response(request.data["testid"])
 
 
@@ -99,11 +100,22 @@ class qndisp(APIView):
       return  Response(question.objects.filter(testid=tid).values())    
 
 
-class res(viewsets.ModelViewSet):
+class res(APIView):
+   def post(self,request):
+      pass
 
-   queryset = result.objects.all()
-   serializer_class = resultserializers
- 
+class resdisp(APIView):
+    def get(self,request,tid):
+      cursor.execute("SELECT * FROM {} WHERE dept='CSE'".format(tid))
+      res=cursor.fetchall()
+      result=[]
+      headers=["username","section1","section2","section3","department"]
+      for i in res:
+         result+=[{headers[j]:i[j] for j in range(len(i))}]
+      return  Response(result)
+
+
+
 class validate(APIView):
    def post(self,request):
       data=request.data["data"]

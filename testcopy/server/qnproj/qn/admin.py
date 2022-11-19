@@ -6,7 +6,7 @@ from .models import *
 
 admin.site.register(stud)
 admin.site.register(question)
-admin.site.register(result)
+
 
 class customadmin(UserAdmin):
     model= customuser

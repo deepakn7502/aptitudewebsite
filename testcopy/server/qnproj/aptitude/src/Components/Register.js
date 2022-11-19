@@ -4,7 +4,7 @@ import "./Register.css";
 import { Button, MenuItem, TextField } from "@mui/material";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000/`,
+  baseURL: `http://192.168.1.15:8000/`,
 });
 
 const sections = [

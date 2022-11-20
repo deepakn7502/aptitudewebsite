@@ -8,7 +8,7 @@ import UploadIcon from './img/upload.png';
 
 export const MultiUploader = (props) => {
     let {id,label,uploadUrl}=props
-    const { id, label} = props;
+    // const { id, label} = props;
     const {Progress,setProgress}=useState(0);
     const {isUploading,setUploading } = useState(false);
     const {uploadedImages,setuploadedImages} = useState([]);

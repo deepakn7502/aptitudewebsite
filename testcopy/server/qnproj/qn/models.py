@@ -27,14 +27,6 @@ class question(models.Model):
     
 
 
-class result(models.Model):
-     username = models.TextField(null=True,blank=True)
-     sec1=models.IntegerField(null=True)
-     sec2=models.IntegerField(null=True)
-     sec3=models.IntegerField(null=True)
-     marks=models.IntegerField(null=True)
-     login=models.CharField(max_length=50,null=True)
-     logout=models.CharField(max_length=50,null=True)
 
 
 

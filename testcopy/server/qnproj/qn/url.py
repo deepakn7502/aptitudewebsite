@@ -9,13 +9,10 @@ img_up = qn.as_view({
 })
 
 reg = register.as_view({
+    'get':'list',
     'post': 'create'
 })
 
-result = res.as_view({
-    'get': 'list',
-    'post': 'create'
-})
 
 urlpatterns = [
     path(r"reg/",reg,name='reg'),
@@ -23,7 +20,8 @@ urlpatterns = [
     path(r"log/",login.as_view()),
     path(r"qn/<str:tid>/",qndisp.as_view()),
     path(r"qn/",img_up,name='img_up'),
-    path(r"rst/",result,name='result'),
+     path(r"rst/",res.as_view()),
+    path(r"rst/<str:tid>/",resdisp.as_view()),
     path(r"validate/",validate.as_view()),
 
 ]

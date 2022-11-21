@@ -35,11 +35,13 @@ function QuestionSection({ question }) {
 
   
   return (
+   
     <div className="question-section">
       <div className="question">
         <p>{question.qnno}</p>
+        
         <img
-          src={require(`../qnimages/media/${question.qn}`)}
+          src={require(`${question.qn}`)}
           height="auto"
           width="300px"
         />

@@ -9,7 +9,7 @@ import axios from "axios";
 // import { Divider} from "antd";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000/`,
+  baseURL: `http://192.168.1.15:8000/`,
 });
 
 function Login() {

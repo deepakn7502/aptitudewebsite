@@ -10,7 +10,7 @@ import _ from "lodash";
 import "./UploadFile.css";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000/`,
+  baseURL: `http://192.168.1.15:8000/`,
 });
 
 function UploadFile() {

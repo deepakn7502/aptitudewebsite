@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import React from "react";
 import "./StudentDashboard.css";
 
@@ -13,6 +13,8 @@ function StudentDashboard({ logout }) {
       StudentDashboard
       <Button onClick={(e) => direct()}>direct</Button>
       <Button onClick={logout}>Log out</Button>
+      <br />
+      <br />
     </div>
   );
 }

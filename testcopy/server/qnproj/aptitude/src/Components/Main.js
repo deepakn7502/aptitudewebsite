@@ -4,7 +4,7 @@ import "./Main.css";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `http://192.168.1.15:8000/`,
+  baseURL: `http://192.168.1.2:8000/`,
 });
 
 function Main() {
@@ -14,7 +14,7 @@ function Main() {
       <div className="cont">
         <div className="cont1">
           <h1>PANIMALAR ENGINEERING COLLEGE</h1>
-          <img class="img" src="aptitude\build\logo.jpg" alt=" "></img>
+          <img class="img" src={require("../logo.jpg")} alt=" "></img>
           <p>
             <span>An Autonomous Institution</span>
             <br />

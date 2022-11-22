@@ -1,5 +1,6 @@
 from django.db import models 
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
@@ -22,10 +23,9 @@ def upload_path(instance,filename):
 class question(models.Model):
     testid= models.CharField(max_length=20,null=True)
     qnno=models.CharField(max_length=10,null=True)
-    qn=models.ImageField(blank=True,null=True,upload_to=upload_path)
+    qn=models.ImageField(_("Image"),upload_to=upload_path,null=True)
     ans=models.CharField(max_length=2,null=True)
     
-
 
 
 

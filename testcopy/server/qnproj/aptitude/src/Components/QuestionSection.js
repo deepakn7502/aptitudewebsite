@@ -32,16 +32,15 @@ function QuestionSection({ question }) {
 
 
 
-
   
   return (
    
     <div className="question-section">
-      <div className="question">
+      <div className="question" key={question.qnno}>
         <p>{question.qnno}</p>
         
         <img
-          src={require(`${question.qn}`)}
+          src={question.qn}
           height="auto"
           width="300px"
         />

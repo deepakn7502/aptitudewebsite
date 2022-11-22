@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser 
 from .models import *
 from .serializers import *
 from rest_framework import serializers
@@ -65,34 +66,38 @@ class stafflogin(APIView):
      
    def post(self,request):
       data=request.data
-      user = str(authenticate(request,username=data['username'],password=data['password']))
+      user = authenticate(request,username=data['username'],password=data['password'])
+      
       if user is not None:
-         return  Response(user)
+         print("user:",user)
+         return  Response(str(user))
       else:
-         raise serializers.ValidationError("Incorrect Credentials")
-        
+         raise  serializers.ValidationError("Incorrect Credentials")
       
     
 
 class qn(viewsets.ModelViewSet):
     queryset=question.objects.all()
     serializer_class=questionserializers
+    parser_classes= [MultiPartParser,FormParser]
+
     def ip(self,image):
       dict={}
       dict["img"]=image
       return dict
+  
 
     def post(self,request,*args,**kwargs):
       no=0
       tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
-      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
+      #cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
       for i in img:
         no+=1
         image=self.ip(i)
         question.objects.create(testid=tid,qnno=no,qn=image["img"],ans=ans[no-1])
-      return  Response(request.data["testid"])
+        return  Response(request.data["testid"])
 
 
 class qndisp(APIView):
@@ -100,9 +105,7 @@ class qndisp(APIView):
       return  Response(question.objects.filter(testid=tid).values())    
 
 
-class res(APIView):
-   def post(self,request):
-      pass
+
 
 class resdisp(APIView):
     def get(self,request,tid):

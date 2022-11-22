@@ -6,7 +6,7 @@ import Question from "./Question";
 
 function Sections() {
   const api = axios.create({
-    baseURL: `http://192.168.1.15:8000/`,
+    baseURL: `http://192.168.1.2:8000/`,
   });
 
   const [questions, setQstns] = useState([]);

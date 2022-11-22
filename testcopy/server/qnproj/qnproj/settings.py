@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'qn',
 ]
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     )
+# }
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
@@ -148,7 +148,7 @@ STATICFILES_DIRS = [
 
 #src=Path(__file__).resolve().parent.parent.parent.parent
 
-MEDIA_ROOT = os.path.join('aptitude/build/qnimages','media')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL= 'qn.customuser'

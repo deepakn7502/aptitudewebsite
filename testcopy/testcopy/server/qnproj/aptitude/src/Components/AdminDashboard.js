@@ -2,20 +2,20 @@ import { Button, SwipeableDrawer } from "@mui/material";
 import React, { useState } from "react";
 import "./AdminDashboard.css";
 import MenuIcon from "@mui/icons-material/Menu";
-
-function AdminDashboard({ logout,api }) {
-  const [open, setOpen] = useState(false);
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 import axios from "axios";
+
 
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
 
-function AdminDashboard({ logout }) {
 
+function AdminDashboard({logout}) {
 
+  const [open, setOpen] = useState(false);
+  
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
   const fileExtension = ".xlsx";

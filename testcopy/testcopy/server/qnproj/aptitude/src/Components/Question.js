@@ -7,11 +7,7 @@ import { Button } from "@mui/material";
 import ReactPagination from "react-paginate";
 
 const api = axios.create({
-<<<<<<< HEAD:testcopy/server/qnproj/aptitude/src/Components/Question.js
   baseURL: `http://192.168.1.2:8000/`,
-=======
-  baseURL: `http://localhost:8000/`,
->>>>>>> e8fc769e2764e0bf17b6dda1a6f395c7dda75050:testcopy/testcopy/server/qnproj/aptitude/src/Components/Question.js
 });
 
 function Question() {
@@ -28,13 +24,12 @@ function Question() {
   useEffect(() => {
     let submit = () => {
       console.log(tid)
-<<<<<<< HEAD:testcopy/server/qnproj/aptitude/src/Components/Question.js
+
       let res = api.get("qn/PEC2211/").then((res) => {
         console.log("Hello")
-=======
-      let res = api.get("qn/" + tid + "/").then((res) => {
->>>>>>> e8fc769e2764e0bf17b6dda1a6f395c7dda75050:testcopy/testcopy/server/qnproj/aptitude/src/Components/Question.js
-        setQstns(res.data);
+
+      // let res = api.get("qn/" + tid + "/").then((res) => {
+      //   setQstns(res.data);
       });
     };
 

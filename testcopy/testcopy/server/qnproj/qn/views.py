@@ -66,6 +66,7 @@ class stafflogin(APIView):
       return Response(customuser.objects.all().values())
      
    def post(self,request):
+      
       data=request.data
       user = authenticate(request,username=data['username'],password=data['password'])
       

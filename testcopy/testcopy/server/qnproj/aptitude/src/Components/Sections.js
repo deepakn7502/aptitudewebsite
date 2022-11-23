@@ -5,14 +5,11 @@ import axios from "axios";
 import Question from "./Question";
 
 function Sections() {
-  const api = axios.create({
-<<<<<<< HEAD:testcopy/server/qnproj/aptitude/src/Components/Sections.js
-    baseURL: `http://192.168.1.2:8000/`,
-=======
-    baseURL: `http://localhost:8000/`,
->>>>>>> e8fc769e2764e0bf17b6dda1a6f395c7dda75050:testcopy/testcopy/server/qnproj/aptitude/src/Components/Sections.js
-  });
 
+  const api = axios.create({
+    baseURL: `http://192.168.1.2:8000/`,
+  });
+  
   const [questions, setQstns] = useState([]);
   const tid = localStorage.getItem("testid");
 

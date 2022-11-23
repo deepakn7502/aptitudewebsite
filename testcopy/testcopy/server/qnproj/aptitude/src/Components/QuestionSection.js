@@ -38,11 +38,7 @@ function QuestionSection({ question }) {
       <div className="question" key={question.qnno}>
         <p>{question.qnno}</p>
         <img
-<<<<<<< HEAD:testcopy/server/qnproj/aptitude/src/Components/QuestionSection.js
           src={question.qn}
-=======
-          src={require(`../qnimages/media/${question.qn}`)}
->>>>>>> e8fc769e2764e0bf17b6dda1a6f395c7dda75050:testcopy/testcopy/server/qnproj/aptitude/src/Components/QuestionSection.js
           height="auto"
           width="300px"
         />

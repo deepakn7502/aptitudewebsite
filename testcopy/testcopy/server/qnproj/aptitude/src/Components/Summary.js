@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Summary.css";
 import Divider from "@mui/material/Divider";
 import { Tab } from "@mui/material";
 // import Button from "@mui/material/Button";
 
-function Summary() {
+function Summary({api}) {
+  const [results, setResults] = useState();
+
+  useEffect(() => {
+    setResults(JSON.parse(window.sessionStorage.getItem("marks")));
+  }, []);
   return (
     <div className="summary">
       <div className="heading">
@@ -13,7 +18,7 @@ function Summary() {
       <div class="rowone">
         <div class="columnone">
           <div class="sessiono">
-            <div className="circle one">11</div>
+            <div className="circle one">{results?.mark1}</div>
           </div>
 
           <Divider className="divider1">SESSION-I</Divider>
@@ -35,7 +40,7 @@ function Summary() {
 
         <div class="columnone">
           <div class="sessiono">
-            <div className="circle two">12</div>
+            <div className="circle two">{results?.mark2}</div>
           </div>
           <Divider className="divider2">SESSION-II</Divider>
 
@@ -56,7 +61,7 @@ function Summary() {
 
         <div class="columnone">
           <div class="sessiono">
-            <div className="circle three">14</div>
+            <div className="circle three">{results?.mark3}</div>
           </div>
           <Divider className="divider3">SESSION-III</Divider>
 

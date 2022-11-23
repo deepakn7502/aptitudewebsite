@@ -1,0 +1,56 @@
+.main1{
+    background-image: url("../Images/blue\ bg.jpg");
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.main1 .MuiSvgIcon-root{
+    color: white;
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.main1 .MuiDrawer-root{
+    background-color: aqua;
+}
+
+.drawer{
+    width: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.drawer .MuiButton-root{
+    margin-top: 40px;
+}
+
+.main .bt1{
+    margin-top: 12px;
+    left: 82%;
+    color: antiquewhite;
+    position: fixed;
+}
+
+.main .bt2{
+    top: 10%;
+    left: 65%;
+    color: antiquewhite;
+
+}
+.main .bt3{
+    top: 20%;
+    left: 48%;
+    color: antiquewhite;
+}
+.main .bt4{
+    top: 30%;
+    left: 31%;
+    color: antiquewhite;
+}

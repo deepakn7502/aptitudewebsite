@@ -7,12 +7,16 @@ import Button from "@mui/material/Button";
 import { InputAdornment } from "@mui/material";
 import axios from "axios";
 
+<<<<<<< HEAD
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
+=======
+>>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
 
-function AdminLogin() {
+
+function AdminLogin({api}) {
   
   const [username, setname] = useState("");
   const [password, setpass] = useState("");

@@ -8,15 +8,18 @@ import { Divider, InputAdornment } from "@mui/material";
 import axios from "axios";
 // import { Divider} from "antd";
 
+<<<<<<< HEAD
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
+=======
+>>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
-function Login() {
+
+function Login({api}) {
   const [regno, setreg] = useState("");
   const [pass, setpass] = useState("");
   const [user, setUser] = useState();
-  const [tid, Settid] = useState("");
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("student");
@@ -30,8 +33,9 @@ function Login() {
     try {
       const res = await api.post("log/", { username: regno, password: pass });
       setUser(res.data);
-      localStorage.setItem("student", res.data);
-      localStorage.setItem("testid", tid);
+      const student = JSON.stringify(res.data);
+      console.log(student);
+      localStorage.setItem("student", student);
       window.location.pathname = "/";
     } catch (error) {
       //window.location.pathname = "/login";
@@ -39,13 +43,7 @@ function Login() {
       console.log("else");
     }
   };
-  let disp = (e) => {
-    var d = new Date(e.target.value);
-    const day = d.getDate();
-    var mon = d.getMonth();
-    mon++;
-    Settid("CSE" + day + mon + "0");
-  };
+
   return (
     <div className="login">
       <div className="login-container">
@@ -105,7 +103,7 @@ function Login() {
             }}
           >
             Register
-          </Button>{" "}
+          </Button>
         </div>
       </div>
     </div>

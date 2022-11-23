@@ -6,13 +6,18 @@ import QuestionSection from "./QuestionSection";
 import { Button } from "@mui/material";
 import ReactPagination from "react-paginate";
 
+<<<<<<< HEAD
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
+=======
+>>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
-function Question() {
+
+function Question({ answers, questions, section, tid,api }) {
   const timer = Timer();
 
+<<<<<<< HEAD
   //question get api call
 
   const [questions, setQstns] = useState([]);
@@ -36,6 +41,8 @@ function Question() {
     submit();
   }, []);
 
+=======
+>>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
   let validate = (ans) => {
     let res = api.post("validate/", ans).then(() => {
       alert(res.data);
@@ -47,9 +54,9 @@ function Question() {
   const qstnVisited = pageNmbr * qstnPerPage;
 
   const dispalyQuestion = questions
-    .slice(qstnVisited, qstnVisited + qstnPerPage)
+    ?.slice(qstnVisited, qstnVisited + qstnPerPage)
     .map((data) => {
-      return <QuestionSection question={data} />;
+      return <QuestionSection answers={answers} question={data} />;
     });
 
   const changePage = ({ selected }) => {
@@ -57,19 +64,49 @@ function Question() {
   };
 
   const pagecount = Math.ceil(questions.length / qstnPerPage);
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(JSON.parse(window.localStorage.getItem("student")));
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", detectKeyDown, true);
+  }, []);
+
+  const detectKeyDown = (e) => {
+    console.log(e.key);
+  };
+
   return (
     <div className="question">
       <div className="user-container">
-        <p>ROLL NO:</p>
-        <p>YEAR:</p>
-        <p>Section:</p>
-        <p>TEST ID:</p>
-        <p>NO Of Questions:</p>
+        <div className="info">
+          <b>ROLL NO:</b>
+          <h4>{user?.rollno}</h4>
+        </div>
+        <div className="info">
+          <b>YEAR:</b>
+          <h4>{user?.year}</h4>
+        </div>
+        <div className="info">
+          <b>Section:</b>
+          <h4>{user?.sec}</h4>
+        </div>
+        <div className="info">
+          <b>TEST ID:</b>
+          <h4>{tid}</h4>
+        </div>
+        <div className="info">
+          <b>NO Of Questions:</b>
+          <h4>15</h4>
+        </div>
       </div>
       <div className="qstn-container">
         <div className="qstn-info">
           <div className="section">
-            <h1>Section Name</h1>
+            <h1>{section}</h1>
           </div>
           <div className="timer">
             <h1>
@@ -104,10 +141,12 @@ function Question() {
             variant="contained"
             color="secondary"
             onClick={() => {
-              window.location.pathname = "summary";
+              const answer = JSON.stringify(answers);
+              sessionStorage.setItem(`${section}`, answer);
+              window.location.pathname = "/sections";
             }}
           >
-            Next section
+            Next Section
           </Button>
         </div>
       </div>

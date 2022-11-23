@@ -3,9 +3,13 @@ import axios from "axios";
 import "./Register.css";
 import { Button, MenuItem, TextField } from "@mui/material";
 
+<<<<<<< HEAD
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
+=======
+
+>>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
 
 const sections = [
@@ -91,7 +95,7 @@ const sec = [
   },
 ];
 
-function Register() {
+function Register({api}) {
   const [departments, setDepartment] = useState("");
   const [section, setSection] = useState("");
   const [year, setYear] = useState("");

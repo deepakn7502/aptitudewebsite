@@ -6,11 +6,12 @@ import Lock from "@mui/icons-material/Https";
 import Button from "@mui/material/Button";
 import { Divider, InputAdornment } from "@mui/material";
 import axios from "axios";
-// import { Divider} from "antd";
 
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
 
-
-function Login({api}) {
+function Login() {
   const [regno, setreg] = useState("");
   const [pass, setpass] = useState("");
   const [user, setUser] = useState();
@@ -22,8 +23,9 @@ function Login({api}) {
       setUser(foundUser);
     }
   }, []);
+  console.log(api);
 
-  let log = async (e) => {
+  const log = async (e) => {
     try {
       const res = await api.post("log/", { username: regno, password: pass });
       setUser(res.data);
@@ -34,7 +36,6 @@ function Login({api}) {
     } catch (error) {
       //window.location.pathname = "/login";
       alert(error);
-      console.log("else");
     }
   };
 

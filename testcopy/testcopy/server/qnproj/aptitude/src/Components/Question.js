@@ -7,8 +7,11 @@ import { Button } from "@mui/material";
 import ReactPagination from "react-paginate";
 
 
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
 
-function Question({ answers, questions, section, tid,api }) {
+function Question({ answers, questions, section, tid }) {
   const timer = Timer();
 
   let validate = (ans) => {

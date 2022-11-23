@@ -11,9 +11,11 @@ import "./UploadFile.css";
 import Icon from "@mui/icons-material/DriveFolderUploadSharp";
 import Arrow from "@mui/icons-material/ArrowDropDown";
 
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
 
-
-function UploadFile({api}) {
+function UploadFile() {
   const [username, setId] = useState("");
   const [password, setRegno] = useState("");
   const [tid, setid] = useState("CSE04011");

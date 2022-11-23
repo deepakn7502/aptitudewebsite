@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import "./AdminDashboard.css";
 import MenuIcon from "@mui/icons-material/Menu";
 
-function AdminDashboard({ logout,api }) {
+
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
+
+function AdminDashboard({ logout }) {
   const [open, setOpen] = useState(false);
 
   return (

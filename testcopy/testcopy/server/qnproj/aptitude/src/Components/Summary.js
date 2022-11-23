@@ -4,7 +4,12 @@ import Divider from "@mui/material/Divider";
 import { Tab } from "@mui/material";
 // import Button from "@mui/material/Button";
 
-function Summary({api}) {
+
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
+
+function Summary() {
   const [results, setResults] = useState();
 
   useEffect(() => {

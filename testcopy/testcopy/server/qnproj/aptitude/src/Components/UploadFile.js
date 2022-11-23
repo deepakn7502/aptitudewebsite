@@ -11,34 +11,42 @@ import "./UploadFile.css";
 import Icon from "@mui/icons-material/DriveFolderUploadSharp";
 import Arrow from "@mui/icons-material/ArrowDropDown";
 
-<<<<<<< HEAD
+
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
-=======
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
 
-function UploadFile({api}) {
+
+function UploadFile() {
   const [username, setId] = useState("");
   const [password, setRegno] = useState("");
   const [tid, setid] = useState("CSE04011");
+  const [imgs, setimgs] = useState();
+  const [ans, setans] = useState();
   const [session, setsession] = React.useState("");
+  const reader = new FileReader();
 
   const handleChange = (event) => {
     setsession(event.target.value);
   };
-  const [imgs, setimgs] = useState([]);
-
+  reader.onload = () => {
+    setans(reader.result);
+    
+  };
   //file upload api call
   let upload = async () => {
     const uploaddata = new FormData();
+    
 
     _.forEach(imgs, (file) => {
       uploaddata.append("qns", file);
     });
+   
+    uploaddata.append("ans",ans);
     uploaddata.append("testid", tid);
-    let res = await api.post("qn/", uploaddata).then((res) => {
+
+    let res = await api.post("question/", uploaddata).then((res) => {
       localStorage.setItem("testid", tid);
       alert(JSON.stringify(res.data));
     });
@@ -49,7 +57,7 @@ function UploadFile({api}) {
     const day = d.getDate();
     var mon = d.getMonth();
     mon++;
-    setid("CSE" + day + mon + "0");
+    setid("PEC" + day + mon);
   };
 
   return (
@@ -72,7 +80,6 @@ function UploadFile({api}) {
             Question Upload
             <input
               hidden
-              accept="image/*"
               multiple
               type="file"
               className="form-control"
@@ -87,11 +94,11 @@ function UploadFile({api}) {
             Answers Upload
             <input
               hidden
-              accept="image/*"
               multiple
               type="file"
               className="form-control"
-              onChange={(e) => setimgs(e.target.files)}
+              onChange={(e) => reader.readAsText(e.target.files[0])
+                }
               required
             />
           </Button>

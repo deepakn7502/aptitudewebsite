@@ -4,7 +4,7 @@ import "./Sections.css";
 import axios from "axios";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-<<<<<<< HEAD
+
 function Sections() {
 
   const api = axios.create({
@@ -13,9 +13,6 @@ function Sections() {
   
   const [questions, setQstns] = useState([]);
   const tid = localStorage.getItem("testid");
-=======
-
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
 function Sections({api}) {
   const [answers1, setAnswers1] = useState([]);
@@ -131,5 +128,5 @@ function Sections({api}) {
     </div>
   );
 }
-
+}
 export default Sections;

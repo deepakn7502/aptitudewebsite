@@ -26,11 +26,7 @@ function QuestionSection({ question, answers,api }) {
     }
   };
 
-<<<<<<< HEAD
 
-
-  
-=======
   useEffect(() => {
     if (sessionStorage.getItem("section") === "section1") {
       setIndex(question.qnno - 1);
@@ -40,19 +36,14 @@ function QuestionSection({ question, answers,api }) {
       setIndex(question.qnno - 31);
     }
   }, [question]);
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
+
   return (
     <div className="question-section">
       <div className="question" key={question.qnno}>
         <p>{question.qnno}</p>
         <img
-<<<<<<< HEAD
           src={question.qn}
           height="auto"
-=======
-          src={require(`../qnimages/media/${question.qn}`)}
-          height="100px"
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
           width="300px"
         />
       </div>

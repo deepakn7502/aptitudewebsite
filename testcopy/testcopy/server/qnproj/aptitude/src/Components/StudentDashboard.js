@@ -1,9 +1,6 @@
 import { Button, TextField } from "@mui/material";
-<<<<<<< HEAD
 import React from "react";
-=======
 import React, { useState } from "react";
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 import "./StudentDashboard.css";
 
 function StudentDashboard({ logout,api }) {

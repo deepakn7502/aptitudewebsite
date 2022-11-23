@@ -6,18 +6,17 @@ import QuestionSection from "./QuestionSection";
 import { Button } from "@mui/material";
 import ReactPagination from "react-paginate";
 
-<<<<<<< HEAD
+
 const api = axios.create({
   baseURL: `http://192.168.1.2:8000/`,
 });
-=======
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
 
 
-function Question({ answers, questions, section, tid,api }) {
+
+function Question({ answers, questions, section, tid }) {
   const timer = Timer();
 
-<<<<<<< HEAD
+
   //question get api call
 
   const [questions, setQstns] = useState([]);
@@ -30,8 +29,8 @@ function Question({ answers, questions, section, tid,api }) {
     let submit = () => {
       console.log(tid)
 
-      let res = api.get("qn/PEC2211/").then((res) => {
-        console.log("Hello")
+      let res = api.get("qn/",tid,"/").then((res) => {
+
 
       // let res = api.get("qn/" + tid + "/").then((res) => {
       //   setQstns(res.data);
@@ -41,8 +40,7 @@ function Question({ answers, questions, section, tid,api }) {
     submit();
   }, []);
 
-=======
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
+
   let validate = (ans) => {
     let res = api.post("validate/", ans).then(() => {
       alert(res.data);

@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import is_valid_path
 from rest_framework import status
 from django.contrib.auth import authenticate
-from rest_framework import viewsets
+from rest_framework import generics,viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser 
@@ -66,7 +66,7 @@ class stafflogin(APIView):
       return Response(customuser.objects.all().values())
      
    def post(self,request):
-      
+
       data=request.data
       user = authenticate(request,username=data['username'],password=data['password'])
       
@@ -98,7 +98,8 @@ class qn(viewsets.ModelViewSet):
       tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
-
+      
+         
       #cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
       for i in img:
         no+=1
@@ -114,9 +115,11 @@ class qn(viewsets.ModelViewSet):
 
 
 
-class qndisp(APIView):
-   def get(self,request,tid):
-      return  Response(question.objects.filter(testid=tid).values())    
+class qndisp(generics.ListAPIView):
+   queryset = question.objects.all()
+   serializer_class = questionserializers
+   def get_queryset(self):
+        return question.objects.filter(testid=self.kwargs['tid'])     
 
 
 

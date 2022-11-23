@@ -15,11 +15,9 @@ import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 
 const api = axios.create({
-<<<<<<< HEAD
+
   baseURL: `http://192.168.1.2:8000/`,
-=======
-  baseURL: `https://localhost:8000`,
->>>>>>> f42e648177787ef8b573432c5232c2838fc4c350
+
 });
 
 axios.defaults.xsrfCookieName = "csrftoken";

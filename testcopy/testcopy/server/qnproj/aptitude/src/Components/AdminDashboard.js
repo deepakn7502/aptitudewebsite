@@ -15,18 +15,18 @@ const api = axios.create({
 function AdminDashboard({logout}) {
 
   const [open, setOpen] = useState(false);
-  
+
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
   const fileExtension = ".xlsx";
 
   let exportToExcel = async () => {
-    let res = api.get("rst/PEC1911/").then((res) => {
+    let res = api.get("rst/PEC2211/").then((res) => {
     
     console.log(res.data);
     const ws = XLSX.utils.json_to_sheet(res.data);
    
-    const wb = { Sheets: { "PEC1911": ws }, SheetNames: ["PEC1911"] };
+    const wb = { Sheets: { "PEC2211": ws }, SheetNames: ["PEC2211"] };
    
     const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const data = new Blob([excelBuffer], { type: fileType });

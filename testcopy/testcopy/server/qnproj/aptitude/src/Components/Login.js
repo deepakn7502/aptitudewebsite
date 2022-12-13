@@ -10,12 +10,12 @@ import axios from "axios";
 
 
 const api = axios.create({
-  baseURL: `http://192.168.1.2:8000/`,
+  baseURL: `http://127.0.0.1 :8000/`,
 });
 
 
 
-function Login({api}) {
+function Login() {
   const [regno, setreg] = useState("");
   const [pass, setpass] = useState("");
   const [user, setUser] = useState();

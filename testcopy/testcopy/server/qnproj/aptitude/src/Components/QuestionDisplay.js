@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Question from "./Question";
 
+const api = axios.create({
+  baseURL: `http://127.0.0.1 :8000/`,
+});
 
 
-function QuestionDisplay({api}) {
+function QuestionDisplay() {
   const [questions, setQstns] = useState([]);
 
   const tid = sessionStorage.getItem("testid");

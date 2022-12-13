@@ -8,7 +8,7 @@ import ReactPagination from "react-paginate";
 
 
 const api = axios.create({
-  baseURL: `http://192.168.1.2:8000/`,
+  baseURL: `http://127.0.0.1 :8000/`,
 });
 
 
@@ -16,36 +16,6 @@ const api = axios.create({
 function Question({ answers, questions, section, tid }) {
   const timer = Timer();
 
-
-  //question get api call
-
-  const [questions, setQstns] = useState([]);
-  const [smp, setsmp] = useState([]);
-  const [qns, setQns] = useState({});
-  // const tid = "CSE8110";
-  const tid = localStorage.getItem("testid");
-
-  useEffect(() => {
-    let submit = () => {
-      console.log(tid)
-
-      let res = api.get("qn/",tid,"/").then((res) => {
-
-
-      // let res = api.get("qn/" + tid + "/").then((res) => {
-      //   setQstns(res.data);
-      });
-    };
-
-    submit();
-  }, []);
-
-
-  let validate = (ans) => {
-    let res = api.post("validate/", ans).then(() => {
-      alert(res.data);
-    });
-  };
 
   const [pageNmbr, setPageNmbr] = useState(0);
   const qstnPerPage = 1;

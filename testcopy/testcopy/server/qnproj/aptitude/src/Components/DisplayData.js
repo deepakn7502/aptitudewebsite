@@ -3,9 +3,11 @@ import "./DisplayData.css";
 import axios from "axios";
 import { Button } from "@mui/material";
 
+const api = axios.create({
+  baseURL: `http://127.0.0.1 :8000/`,
+});
 
-
-function DisplayData({api}) {
+function DisplayData() {
   const [data, setData] = useState();
 
   useEffect(() => {

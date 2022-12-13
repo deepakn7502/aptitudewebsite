@@ -13,7 +13,7 @@ import Arrow from "@mui/icons-material/ArrowDropDown";
 
 
 const api = axios.create({
-  baseURL: `http://192.168.1.2:8000/`,
+  baseURL: `http://127.0.0.1 :8000/`,
 });
 
 
@@ -46,7 +46,7 @@ function UploadFile() {
     uploaddata.append("ans",ans);
     uploaddata.append("testid", tid);
 
-    let res = await api.post("question/", uploaddata).then((res) => {
+    let res = await api.post("qn/", uploaddata).then((res) => {
       localStorage.setItem("testid", tid);
       alert(JSON.stringify(res.data));
     });

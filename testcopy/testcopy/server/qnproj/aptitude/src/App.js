@@ -16,7 +16,7 @@ import QuestionDisplay from "./Components/QuestionDisplay";
 
 const api = axios.create({
 
-  baseURL: `http://192.168.1.2:8000/`,
+  baseURL: `http://127.0.0.1 :8000/`,
 
 });
 
@@ -39,9 +39,8 @@ function App() {
 
   let logout = () => {
     const user = localStorage.getItem("student");
-    let res = api.put("login/", { user: user }).then(() => {
+    let res = api.put("log/", { user: user }).then(() => {
       window.localStorage.clear();
-      window.sessionStorage.clear();
       window.location.pathname = "/";
     });
   };
@@ -53,12 +52,12 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<StudentDashboard logout={logout} api={api} />}
+              element={<StudentDashboard logout={logout}  />}
             />
-            <Route path="/instructions" element={<Instructions />} api={api} />
-            <Route path="/sections" element={<Sections />} api={api} />
-            <Route path="/questions" element={<QuestionDisplay />} api={api} />
-            <Route path="/summary" element={<Summary />} api={api} />
+            <Route path="/instructions" element={<Instructions />}  />
+            <Route path="/sections" element={<Sections />}  />
+            <Route path="/questions" element={<QuestionDisplay />}  />
+            <Route path="/summary" element={<Summary />}  />
           </Routes>
         </Router>
       );
@@ -69,10 +68,10 @@ function App() {
             <Route
               path="/"
               element={<AdminDashboard logout={logout} />}
-              api={api}
+              
             />
-            <Route path="/upload" element={<UploadFile />} api={api} />
-            <Route path="/displaydata" element={<DisplayData />} api={api} />
+            <Route path="/upload" element={<UploadFile />}  />
+            <Route path="/displaydata" element={<DisplayData />}  />
           </Routes>
         </Router>
       );
@@ -81,10 +80,10 @@ function App() {
     return (
       <Router>
         <Routes>
-          <Route path="/" element={<Main />} api={api} />
-          <Route path="/login" element={<Login />} api={api} />
-          <Route path="/adminlogin" element={<AdminLogin />} api={api} />
-          <Route path="/register" element={<Register />} api={api} />
+          <Route path="/" element={<Main />}  />
+          <Route path="/login" element={<Login />}  />
+          <Route path="/adminlogin" element={<AdminLogin />}  />
+          <Route path="/register" element={<Register />}  />
         </Routes>
       </Router>
     );

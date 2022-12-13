@@ -4,10 +4,10 @@ import "./Main.css";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `http://192.168.1.2:8000/`,
+  baseURL: `http://127.0.0.1 :8000/`,
 });
 
-function Main({api}) {
+function Main() {
   return (
     <div className="main">
       <div className="cont">

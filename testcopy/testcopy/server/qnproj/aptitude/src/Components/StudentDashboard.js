@@ -1,9 +1,8 @@
 import { Button, TextField } from "@mui/material";
-import React from "react";
 import React, { useState } from "react";
 import "./StudentDashboard.css";
 
-function StudentDashboard({ logout,api }) {
+function StudentDashboard({ logout}) {
   const [tid, Settid] = useState("");
 
   let disp = (e) => {

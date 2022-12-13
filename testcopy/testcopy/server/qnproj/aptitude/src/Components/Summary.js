@@ -4,7 +4,7 @@ import Divider from "@mui/material/Divider";
 import { Tab } from "@mui/material";
 // import Button from "@mui/material/Button";
 
-function Summary({api}) {
+function Summary() {
   const [results, setResults] = useState();
 
   useEffect(() => {

@@ -16,10 +16,6 @@ class loginserializers(serializers.ModelSerializer):
         fields='__all__'
         #fields=['username','password']
 
-class resultserializers(serializers.ModelSerializer):
-    class Meta:
-        model=result
-        fields='__all__'
 
 
 class questionserializers(serializers.ModelSerializer):

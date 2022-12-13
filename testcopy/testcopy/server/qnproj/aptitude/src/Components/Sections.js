@@ -4,17 +4,15 @@ import "./Sections.css";
 import axios from "axios";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
+  const api = axios.create({
+    baseURL: `http://127.0.0.1 :8000/`,
+  });
 
 function Sections() {
 
-  const api = axios.create({
-    baseURL: `http://192.168.1.2:8000/`,
-  });
-  
-  const [questions, setQstns] = useState([]);
-  const tid = localStorage.getItem("testid");
+  // const [questions, setQstns] = useState([]);
 
-function Sections({api}) {
+  const tid = localStorage.getItem("testid");
   const [answers1, setAnswers1] = useState([]);
   const [answers2, setAnswers2] = useState([]);
   const [answers3, setAnswers3] = useState([]);
@@ -128,5 +126,5 @@ function Sections({api}) {
     </div>
   );
 }
-}
+
 export default Sections;

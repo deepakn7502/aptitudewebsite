@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import "./QuestionSection.css";
 
-function QuestionSection({ question, answers,api }) {
+function QuestionSection({ question, answers}) {
 
   var [index, setIndex] = useState(0);
 
@@ -43,8 +43,9 @@ function QuestionSection({ question, answers,api }) {
         <p>{question.qnno}</p>
         <img
           src={question.qn}
-          height="auto"
+          height="100px"
           width="300px"
+          
         />
       </div>
       <FormControl>

@@ -42,7 +42,7 @@ function QuestionSection({ question, answers}) {
       <div className="question" key={question.qnno}>
         <p>{question.qnno}</p>
         <img
-          src={question.qn}
+          src={`${question.qn}`}
           height="100px"
           width="300px"
           

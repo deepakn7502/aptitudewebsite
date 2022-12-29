@@ -86,7 +86,8 @@ class qn(viewsets.ModelViewSet):
 
     def ip(self,image):
       dict={}
-      dict["img"]=image
+      dict["img"]=base64.b64encode(image.read())
+      #dict["img"]=image
       return dict
 
     def post(self,request,*args,**kwargs):

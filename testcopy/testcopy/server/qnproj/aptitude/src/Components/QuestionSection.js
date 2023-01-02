@@ -7,9 +7,14 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./QuestionSection.css";
+import axios from "axios";
+import img from "../qnimages/media/PEC811/1.jpg";
 
-function QuestionSection({ question, answers,api }) {
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
 
+function QuestionSection({ question, answers }) {
   var [index, setIndex] = useState(0);
 
   const handleSelect = (e) => {
@@ -39,11 +44,7 @@ function QuestionSection({ question, answers,api }) {
     <div className="question-section">
       <div className="question">
         <p>{question.qnno}</p>
-        <img
-          src={require(`../qnimages/media/${question.qn}`)}
-          height="100px"
-          width="300px"
-        />
+        <img src={img} height="100px" width="300px" />
       </div>
       <FormControl>
         <RadioGroup

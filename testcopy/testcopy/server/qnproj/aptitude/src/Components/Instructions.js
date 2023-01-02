@@ -1,6 +1,7 @@
 import { Button, Checkbox } from "@mui/material";
 import React, { useState } from "react";
 import "./Instructions.css";
+import axios from "axios";
 
 
 const api = axios.create({
@@ -54,7 +55,7 @@ function Instructions() {
             setIsChecked(e.target.checked);
           }}
         />
-        <Button>I Agree to the Terms & Conditions</Button>
+        <Button>Agree</Button>
       </div>
       <div className="start">
         <Button

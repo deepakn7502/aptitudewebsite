@@ -1,8 +1,14 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import "./StudentDashboard.css";
+import axios from "axios";
 
-function StudentDashboard({ logout,api }) {
+
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
+
+function StudentDashboard({ logout }) {
   const [tid, Settid] = useState("");
 
   let disp = (e) => {

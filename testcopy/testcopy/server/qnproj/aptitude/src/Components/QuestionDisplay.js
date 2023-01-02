@@ -3,8 +3,11 @@ import axios from "axios";
 import Question from "./Question";
 
 
+const api = axios.create({
+  baseURL: `http://localhost:8000`,
+});
 
-function QuestionDisplay({api}) {
+function QuestionDisplay() {
   const [questions, setQstns] = useState([]);
 
   const tid = sessionStorage.getItem("testid");

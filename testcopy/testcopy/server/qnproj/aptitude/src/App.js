@@ -43,7 +43,6 @@ function App() {
       window.location.pathname = "/";
     });
   };
-  console.log(api);
   if (user) {
     if (user === "student") {
       return (

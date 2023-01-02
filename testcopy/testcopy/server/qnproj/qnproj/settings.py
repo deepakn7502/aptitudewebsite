@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-j58de6*8p97!wh_nyz5#nw7y^37=tw7ipjg!+qpoo4-y=uo#zt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     'http://192.168.1.8:8000',
+# ]
 
 # Application definition
 
@@ -40,17 +44,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'reset_migrations',
     'qn',
 ]
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.AllowAny',
+#     ]
+# }
+
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,7 +68,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'qnproj.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -131,7 +138,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
+
+
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -140,15 +149,18 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+STATIC_URL = '/dist/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [ 
-    os.path.join(BASE_DIR,"aptitude/build/static")
+    os.path.join(BASE_DIR,"aptitude/build")
 ]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #src=Path(__file__).resolve().parent.parent.parent.parent
 
-MEDIA_ROOT = os.path.join('aptitude/build/qnimages','media')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL= 'qn.customuser'

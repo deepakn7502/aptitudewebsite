@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./StudentDashboard.css";
 import axios from "axios";
 
-
 const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
@@ -41,6 +40,8 @@ function StudentDashboard({ logout }) {
         Start Test
       </Button>
       <Button onClick={logout}>Log out</Button>
+      <br />
+      <br />
     </div>
   );
 }

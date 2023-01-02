@@ -13,9 +13,9 @@ import img from "../qnimages/media/PEC811/1.jpg";
 const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
-
 function QuestionSection({ question, answers }) {
   var [index, setIndex] = useState(0);
+  const data = question.qn; 
 
   const handleSelect = (e) => {
     const selected = e.target.value;
@@ -40,11 +40,16 @@ function QuestionSection({ question, answers }) {
       setIndex(question.qnno - 31);
     }
   }, [question]);
+
   return (
     <div className="question-section">
-      <div className="question">
+      <div className="question" key={question.qnno}>
         <p>{question.qnno}</p>
-        <img src={img} height="100px" width="300px" />
+        <img
+          src={`data:image/jpeg;base64,${data}`}
+          height="100px"
+          width="300px"
+        />
       </div>
       <FormControl>
         <RadioGroup

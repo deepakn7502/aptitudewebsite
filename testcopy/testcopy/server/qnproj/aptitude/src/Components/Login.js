@@ -45,7 +45,7 @@ function Login() {
         <h2 class="pan">PANIMALAR ENGINEERING </h2>
         <h2 class="col">COLLEGE</h2>
 
-        <img class="img" src="logo.jpg" alt=" "></img>
+        <img class="img" src={require("../logo.jpg")} alt=" "></img>
 
         <h2 class="log">LOGIN</h2>
         <div class="inputfield">

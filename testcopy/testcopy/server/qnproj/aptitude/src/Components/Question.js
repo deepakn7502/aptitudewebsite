@@ -11,14 +11,10 @@ const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
 
+
 function Question({ answers, questions, section, tid }) {
   const timer = Timer();
 
-  let validate = (ans) => {
-    let res = api.post("validate/", ans).then(() => {
-      alert(res.data);
-    });
-  };
 
   const [pageNmbr, setPageNmbr] = useState(0);
   const qstnPerPage = 1;

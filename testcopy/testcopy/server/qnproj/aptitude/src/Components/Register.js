@@ -3,7 +3,6 @@ import axios from "axios";
 import "./Register.css";
 import { Button, MenuItem, TextField } from "@mui/material";
 
-
 const api = axios.create({
   baseURL: `http://localhost:8000`,
 });

@@ -4,12 +4,14 @@ import "./Sections.css";
 import axios from "axios";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-
 const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
 
 function Sections() {
+  // const [questions, setQstns] = useState([]);
+
+  const tid = localStorage.getItem("testid");
   const [answers1, setAnswers1] = useState([]);
   const [answers2, setAnswers2] = useState([]);
   const [answers3, setAnswers3] = useState([]);

@@ -18,14 +18,18 @@ const api = axios.create({
 function UploadFile() {
   const [username, setId] = useState("");
   const [password, setRegno] = useState("");
-  const [tid, setid] = useState("CSE04011");
+  const [tid, setid] = useState("PEC212");
+  const [imgs, setimgs] = useState();
+  const [ans, setans] = useState();
   const [session, setsession] = React.useState("");
+  const reader = new FileReader();
 
   const handleChange = (event) => {
     setsession(event.target.value);
   };
-  const [imgs, setimgs] = useState([]);
-
+  reader.onload = () => {
+    setans(reader.result);
+  };
   //file upload api call
   let upload = async () => {
     const uploaddata = new FormData();
@@ -33,7 +37,10 @@ function UploadFile() {
     _.forEach(imgs, (file) => {
       uploaddata.append("qns", file);
     });
+
+    uploaddata.append("ans", ans);
     uploaddata.append("testid", tid);
+
     let res = await api.post("qn/", uploaddata).then((res) => {
       localStorage.setItem("testid", tid);
       alert(JSON.stringify(res.data));
@@ -45,7 +52,7 @@ function UploadFile() {
     const day = d.getDate();
     var mon = d.getMonth();
     mon++;
-    setid("CSE" + day + mon + "0");
+    setid("PEC" + day + mon);
   };
 
   return (
@@ -67,10 +74,8 @@ function UploadFile() {
           <Button variant="contained" endIcon={<Arrow />} component="label">
             Question Upload
             <input
-              hidden
-              accept="image/*"
-              multiple
               type="file"
+              multiple
               className="form-control"
               onChange={(e) => setimgs(e.target.files)}
               required
@@ -83,11 +88,10 @@ function UploadFile() {
             Answers Upload
             <input
               hidden
-              accept="image/*"
               multiple
               type="file"
               className="form-control"
-              onChange={(e) => setimgs(e.target.files)}
+              onChange={(e) => reader.readAsText(e.target.files[0])}
               required
             />
           </Button>

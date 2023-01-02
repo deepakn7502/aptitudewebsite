@@ -20,7 +20,6 @@ function DisplayData() {
     disp();
   }, []);
 
-  
   const displayData = data?.map((data) => {
     return (
       <tr>

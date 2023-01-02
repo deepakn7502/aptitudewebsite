@@ -9,9 +9,13 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: `http://localhost:8000`,
-});
+})
 
-function AdminLogin({}) {
+
+
+
+function AdminLogin() {
+
   
   const [username, setname] = useState("");
   const [password, setpass] = useState("");
@@ -56,7 +60,7 @@ function AdminLogin({}) {
         <h2 class="pan">PANIMALAR ENGINEERING </h2>
         <h2 class="col">COLLEGE</h2>
 
-        <img class="img" src="logo.jpg" alt=" "></img>
+        <img class="img" src={require("../logo.jpg")} alt=" "></img>
 
         <h2 class="log">LOGIN</h2>
         <div class="inputfield">

@@ -8,7 +8,6 @@ import {
 import React, { useEffect, useState } from "react";
 import "./QuestionSection.css";
 import axios from "axios";
-import img from "../qnimages/media/PEC811/1.jpg";
 
 const api = axios.create({
   baseURL: `http://localhost:8000`,

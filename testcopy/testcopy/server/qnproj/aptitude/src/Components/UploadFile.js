@@ -21,7 +21,7 @@ const api = axios.create({
 function UploadFile() {
   const [username, setId] = useState("");
   const [password, setRegno] = useState("");
-  const [tid, setid] = useState("CSE04011");
+  const [tid, setid] = useState("PEC212");
   const [imgs, setimgs] = useState();
   const [ans, setans] = useState();
   const [session, setsession] = React.useState("");
@@ -79,9 +79,8 @@ function UploadFile() {
           <Button variant="contained" endIcon={<Arrow />} component="label">
             Question Upload
             <input
-              hidden
+            type="file"
               multiple
-              type="file"
               className="form-control"
               onChange={(e) => setimgs(e.target.files)}
               required

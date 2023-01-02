@@ -1,14 +1,8 @@
-from django.shortcuts import render
-from django.shortcuts import render,get_object_or_404
-from django.views import View
-from django.http import HttpResponse, HttpResponseNotFound
-from django.urls import is_valid_path
 from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework import generics,viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser, FormParser 
 from .models import *
 from .serializers import *
 from rest_framework import serializers
@@ -82,11 +76,10 @@ class stafflogin(APIView):
 class qn(viewsets.ModelViewSet):
     queryset=question.objects.all()
     serializer_class=questionserializers
-    parser_classes= [MultiPartParser,FormParser]
 
     def ip(self,image):
       dict={}
-      dict["img"]=base64.b64encode(image.read())
+      dict["img"]=base64.b64encode(image.read()).decode()
       #dict["img"]=image
       return dict
 
@@ -95,7 +88,7 @@ class qn(viewsets.ModelViewSet):
       tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
-      #cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
       for i in img:
         no+=1
         image=self.ip(i)
@@ -142,17 +135,16 @@ class validate(APIView):
       for i in range(len(res3)):
          if(ans3[i]==res3[i]):
             mark3+=1
-      #result.objects.create(username=request.data["username"],sec1=mark1,sec2=mark2,sec3=mark3)
-      #cursor.execute("INSERT INTO {} values({},{},{});".format(tid,no,image["img"],ans[no]))
+      #cursor.execute("INSERT INTO {} values({},{},{});".format()
       return Response({"mark1":mark1,"mark2":mark2,"mark3":mark3})
  
-class Assets(View):
+# class Assets(View):
 
-    def get(self, _request, filename):
-        path = os.path.join(os.path.dirname(__file__), 'static', filename)
+#     def get(self, _request, filename):
+#         path = os.path.join(os.path.dirname(__file__), 'static', filename)
 
-        if os.path.isfile(path):
-            with open(path, 'rb') as file:
-                return HttpResponse(file.read(), content_type='application/javascript')
-        else:
-            return HttpResponseNotFound()
+#         if os.path.isfile(path):
+#             with open(path, 'rb') as file:
+#                 return HttpResponse(file.read(), content_type='application/javascript')
+#         else:
+#             return HttpResponseNotFound()

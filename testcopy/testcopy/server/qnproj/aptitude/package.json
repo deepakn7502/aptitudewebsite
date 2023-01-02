@@ -1,9 +1,9 @@
 {
   "name": "aptitude",
-  "homepage": "",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8000",
+  "homepage": "/dist",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",

@@ -16,7 +16,7 @@ function QuestionDisplay() {
 
   useEffect(() => {
     let submit = () => {
-      let res = api.get("qn/" + tid + "/").then((res) => {
+      let res = api.get("qn/",tid,"/").then((res) => {
         setQstns(res.data);
       });
     };

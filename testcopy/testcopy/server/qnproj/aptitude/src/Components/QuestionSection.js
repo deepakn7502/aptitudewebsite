@@ -8,9 +8,9 @@ import {
 import React, { useEffect, useState } from "react";
 import "./QuestionSection.css";
 
-function QuestionSection({ question, answers}) {
-
+function QuestionSection({ question, answers }) {
   var [index, setIndex] = useState(0);
+  const data = question.qn; 
 
   const handleSelect = (e) => {
     const selected = e.target.value;
@@ -25,7 +25,6 @@ function QuestionSection({ question, answers}) {
       answers[index] = selected;
     }
   };
-
 
   useEffect(() => {
     if (sessionStorage.getItem("section") === "section1") {
@@ -42,10 +41,9 @@ function QuestionSection({ question, answers}) {
       <div className="question" key={question.qnno}>
         <p>{question.qnno}</p>
         <img
-          src={`${question.qn}`}
+          src={`data:image/jpeg;base64,${data}`}
           height="100px"
           width="300px"
-          
         />
       </div>
       <FormControl>

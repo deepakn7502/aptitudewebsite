@@ -13,6 +13,7 @@ import AdminDashboard from "./Components/AdminDashboard";
 import StudentDashboard from "./Components/StudentDashboard";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
+import Navbar from "./Components/Navbar";
 
 const api = axios.create({
   baseURL: `http://localhost:8000`,
@@ -62,6 +63,7 @@ function App() {
             <Route path="/" element={<AdminDashboard logout={logout} />} />
             <Route path="/upload" element={<UploadFile />} />
             <Route path="/displaydata" element={<DisplayData />} />
+            <Route element={<Navbar logout={logout} />} />
           </Routes>
         </Router>
       );

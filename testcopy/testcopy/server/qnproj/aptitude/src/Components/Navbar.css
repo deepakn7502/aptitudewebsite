@@ -1,0 +1,25 @@
+.navbar {
+  height: 50px;
+  width: 100%;
+  position: sticky;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background-color: #1e2b60;
+  justify-content: right;
+  top: 30px;
+}
+
+.navbar .MuiButton-root {
+  margin: 0 20px;
+  width: fit-content;
+  color: white;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.navbar .MuiButton-root:hover {
+  background-color: white;
+  color: black;
+  transition: 0.5s ease-in-out;
+}

@@ -3,9 +3,14 @@
 .up {
   height: 100vh;
   width: 100vw;
-  background-color: #fc466b;
-  background-image: linear-gradient(62deg, #fc466b 0%, #3f5efb 100%);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url("../Images/bluebg.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 .head {
   display: flex;
@@ -17,12 +22,11 @@
   font-size: 18px;
 }
 .UploadFile {
-  height: 600px;
+  height: 500px;
   width: 400px;
   font-family: "Inter", sans-serif;
   display: flex;
   justify-content: space-around;
-  background-color: aliceblue;
   flex-direction: column;
   align-items: center;
   position: fixed;

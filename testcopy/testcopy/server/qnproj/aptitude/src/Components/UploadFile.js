@@ -10,14 +10,13 @@ import _ from "lodash";
 import "./UploadFile.css";
 import Icon from "@mui/icons-material/DriveFolderUploadSharp";
 import Arrow from "@mui/icons-material/ArrowDropDown";
+import Navbar from "./Navbar";
 
 const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
 
 function UploadFile() {
-  const [username, setId] = useState("");
-  const [password, setRegno] = useState("");
   const [tid, setid] = useState("PEC212");
   const [imgs, setimgs] = useState();
   const [ans, setans] = useState();
@@ -57,6 +56,7 @@ function UploadFile() {
 
   return (
     <div className="up">
+      <Navbar />
       <div className="head">
         <h1>UPLOAD PAGE</h1>
       </div>

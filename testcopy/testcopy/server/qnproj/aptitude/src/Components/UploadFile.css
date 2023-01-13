@@ -1,108 +1,59 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
 
-.up {
+.upload {
   height: 100vh;
   width: 100vw;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-image: url("../Images/bluebg.jpg");
-  height: 100vh;
-  width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
 }
-.head {
-  display: flex;
+.upload .head {
+  position: relative;
+  top: 35px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
   color: white;
   margin-bottom: 30px;
-  font-size: 18px;
+  font-size: 40px;
 }
-.UploadFile {
+.uploadfile {
   height: 500px;
   width: 400px;
-  font-family: "Inter", sans-serif;
+  background-color: white;
   display: flex;
-  justify-content: space-around;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  font-family: "Inter", sans-serif;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   border-radius: 25px;
   border-style: solid;
-  border-color: red;
-}
-.def {
-  background-color: rgb(200, 200, 242);
-}
-.UploadFile .p {
-  margin-top: 20px;
-  margin-left: 40px;
-  display: flex;
-  text-align: left;
-  justify-content: left;
-  align-items: center;
-  height: 40px;
-  width: 100%;
-  font-weight: 800;
-  margin-bottom: 15px;
-}
-.UploadFile .pp {
-  display: flex;
-  justify-content: left;
-  text-align: left;
-  align-items: center;
-  width: 100%;
-  margin-left: 40px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  margin-bottom: 30px;
-}
-.ppp {
-  display: flex;
-  justify-content: left;
-  text-align: left;
-  align-items: center;
-  width: 100%;
-  font-weight: 600;
-  margin-left: 40px;
-  margin-top: 40px;
-  margin-bottom: 10px;
+  border-color: #1e2b60;
 }
 
-.btt .MuiButton-root {
-  margin-top: 20px;
-  border-radius: 40px;
-  margin-bottom: 20px;
+.uploadfile label {
+  width: 100%;
+  font-weight: 700;
+  padding-left: 30px;
 }
-.UploadFile .bt .MuiButton-root {
-  background-color: aliceblue;
-  height: 35px;
-  color: black;
-  width: 130px;
-  font-size: 11px;
-  padding: 20px;
-  padding-top: 23px;
-  padding-bottom: 23px;
-  margin-bottom: 20px;
-  border-radius: 20px;
+
+.uploadfile .MuiFormLabel-root{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  top: 20px;
 }
-.UploadFile .btn .MuiButton-root {
-  color: black;
-  background-color: aliceblue;
-  height: 35px;
-  width: 130px;
-  font-size: 11px;
-  padding: 20px;
-  padding-top: 23px;
-  padding-bottom: 23px;
-  margin-bottom: 1px;
-  border-radius: 20px;
+
+.uploadfile .MuiButton-root {
+  width: auto;
+  height: auto;
+  font-weight: 500;
 }
 .divider {
   margin-top: 15px;

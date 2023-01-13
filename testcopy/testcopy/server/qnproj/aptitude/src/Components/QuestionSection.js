@@ -14,7 +14,7 @@ const api = axios.create({
 });
 function QuestionSection({ question, answers }) {
   var [index, setIndex] = useState(0);
-  const data = question.qn; 
+  const [data, setData] = useState(question.qn);
 
   const handleSelect = (e) => {
     const selected = e.target.value;
@@ -38,6 +38,7 @@ function QuestionSection({ question, answers }) {
     } else if (sessionStorage.getItem("section") === "section3") {
       setIndex(question.qnno - 31);
     }
+    setData(question.qnno);
   }, [question]);
 
   return (

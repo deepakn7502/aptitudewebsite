@@ -61,9 +61,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<AdminDashboard logout={logout} />} />
-            <Route path="/upload" element={<UploadFile />} />
-            <Route path="/displaydata" element={<DisplayData />} />
-            <Route element={<Navbar logout={logout} />} />
+            <Route path="/upload" element={<UploadFile logout={logout}  />} />
+            <Route path="/displaydata" element={<DisplayData logout={logout} />} />
           </Routes>
         </Router>
       );

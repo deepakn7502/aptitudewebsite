@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Sections.css";
 import axios from "axios";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Timer } from "../Functions/Functions";
 
 const api = axios.create({
   baseURL: `http://localhost:8000`,
@@ -24,6 +25,8 @@ function Sections() {
     setUser(JSON.parse(window.localStorage.getItem("student")));
   }, []);
 
+  Timer();
+
   const setSection = (value) => {
     window.sessionStorage.setItem("section", value);
     window.location.pathname = "/questions";
@@ -43,6 +46,10 @@ function Sections() {
       });
   };
 
+  const clearTime = () => {
+    window.sessionStorage.removeItem("min");
+    window.sessionStorage.removeItem("sec");
+  };
   return (
     <div className="summary">
       <div className="heading">
@@ -116,6 +123,7 @@ function Sections() {
           variant="contained"
           onClick={() => {
             validate();
+            clearTime();
           }}
           endIcon={<ArrowForwardIosIcon />}
         >

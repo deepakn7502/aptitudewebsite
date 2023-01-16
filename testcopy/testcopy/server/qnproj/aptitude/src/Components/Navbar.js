@@ -30,7 +30,6 @@ function Navbar({ logout }) {
       >
         Results
       </Button>
-      <Button variant="none">Start test</Button>
       <Button onClick={logout} variant="none" endIcon={<LogoutIcon />}>
         Logout
       </Button>

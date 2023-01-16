@@ -11,7 +11,7 @@ const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
 
-function UploadFile() {
+function UploadFile({ logout }) {
   const [tid, setid] = useState("PEC212");
   const [imgs, setimgs] = useState();
   const [ans, setans] = useState();
@@ -44,7 +44,7 @@ function UploadFile() {
 
   return (
     <div className="upload">
-      <Navbar />
+      <Navbar logout={logout} />
       <div className="head">UPLOAD PAGE</div>
       <div className="uploadfile">
         <label>ENTER THE DATE:</label>
@@ -69,6 +69,8 @@ function UploadFile() {
             onChange={(e) => reader.readAsText(e.target.files[0])}
           />
         </Button>
+
+        
         <Button
           variant="contained"
           color="success"

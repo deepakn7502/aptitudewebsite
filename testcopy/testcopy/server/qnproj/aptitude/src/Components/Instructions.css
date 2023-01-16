@@ -1,10 +1,12 @@
 .instructions {
   height: 100vh;
   width: 100vw;
-  background-color: #ffdee9;
-  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
   display: flex;
   flex-direction: column;
+  background-image: url("../Images/blue_business.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .instructions h1 {
@@ -39,15 +41,26 @@
 }
 
 .instructions .accept {
-  padding-left: 10%;
+  margin-left: 10%;
+  color: black;
+  width: fit-content;
+}
+
+.accept .MuiCheckbox-root {
+  color: #fff;
 }
 
 .accept .MuiButton-root {
   transform: translateX(-30%);
+  color: #fff;
 }
 
 .instructions .start {
   position: fixed;
   right: 10%;
   bottom: 25%;
+}
+
+.start .MuiButton-root{
+  border: 1px solid white;
 }

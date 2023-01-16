@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./Instructions.css";
 import axios from "axios";
 
-
 const api = axios.create({
   baseURL: `http://localhost:8000`,
 });
@@ -15,11 +14,9 @@ function Instructions() {
   const [ischecked, setIsChecked] = useState(false);
 
   const handleStart = () => {
-    if (ischecked) {
-      window.location.pathname = "/sections";
-    } else {
-      alert("Please accetpt the Terms & Conditions");
-    }
+    window.location.pathname = "/sections";
+    window.sessionStorage.setItem("sec", 59);
+    window.sessionStorage.setItem("min", 29);
   };
 
   const [answers1, setAnswers1] = useState([]);
@@ -65,6 +62,7 @@ function Instructions() {
             handleStart();
             handleDeclaration();
           }}
+          disabled={!ischecked}
         >
           Start Test
         </Button>

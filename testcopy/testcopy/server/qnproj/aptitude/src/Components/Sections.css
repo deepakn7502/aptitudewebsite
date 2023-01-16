@@ -5,9 +5,11 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: #090979;
-  background-image: linear-gradient(62deg, #00d4ff 0%, #090979 100%);
   font-family: "Inter", sans-serif;
+  background-image: url("../Images/blue_business.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .summary .heading {
@@ -23,7 +25,6 @@
 .summary h1 {
   font-size: 50px;
   color: white;
-  text-decoration: underline;
 }
 .summary .row {
   width: 100%;
@@ -124,7 +125,7 @@ button:hover {
   transition: ease-in-out;
 }
 
-.end-test{
+.end-test {
   position: fixed;
   bottom: 0%;
   right: 0%;

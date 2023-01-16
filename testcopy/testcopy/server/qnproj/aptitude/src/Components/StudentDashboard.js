@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
 import "./StudentDashboard.css";
 import axios from "axios";
 
@@ -19,29 +20,35 @@ function StudentDashboard({ logout }) {
   };
 
   return (
-    <div>
-      StudentDashboard
-      <TextField
-        type="date"
-        onChange={(event) => {
-          disp(event);
-        }}
-      />
-      <Button
-        onClick={() => {
-          window.sessionStorage.setItem("testid", tid);
-          if (window.sessionStorage.getItem("testid")) {
-            window.location.pathname = "/instructions";
-          } else {
-            alert("Select Test Date");
-          }
-        }}
-      >
-        Start Test
-      </Button>
-      <Button onClick={logout}>Log out</Button>
-      <br />
-      <br />
+    <div className="student">
+      <div className="nav">
+        <Button onClick={logout} endIcon={<LogoutIcon />}>
+          Log out
+        </Button>
+      </div>
+      <div className="block">
+        <div className="container">
+          <TextField
+            type="date"
+            onChange={(event) => {
+              disp(event);
+            }}
+          />
+          <Button
+            onClick={() => {
+              window.sessionStorage.setItem("testid", tid);
+              if (window.sessionStorage.getItem("testid")) {
+                window.location.pathname = "/instructions";
+              } else {
+                alert("Select Test Date");
+              }
+            }}
+            variant="contained"
+          >
+            Start Test
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

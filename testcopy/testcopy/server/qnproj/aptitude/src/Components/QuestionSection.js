@@ -1,5 +1,4 @@
 import {
-  Button,
   FormControl,
   FormControlLabel,
   Radio,
@@ -14,7 +13,7 @@ const api = axios.create({
 });
 function QuestionSection({ question, answers }) {
   var [index, setIndex] = useState(0);
-  const [data, setData] = useState(question.qn);
+  const data = question.qn; 
 
   const handleSelect = (e) => {
     const selected = e.target.value;
@@ -38,7 +37,6 @@ function QuestionSection({ question, answers }) {
     } else if (sessionStorage.getItem("section") === "section3") {
       setIndex(question.qnno - 31);
     }
-    setData(question.qnno);
   }, [question]);
 
   return (
@@ -47,8 +45,8 @@ function QuestionSection({ question, answers }) {
         <p>{question.qnno}</p>
         <img
           src={`data:image/jpeg;base64,${data}`}
-          height="100px"
-          width="300px"
+          height="250px"
+          width="750px"
         />
       </div>
       <FormControl>

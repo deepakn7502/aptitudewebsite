@@ -4,7 +4,7 @@ import "./Register.css";
 import { Button, MenuItem, TextField } from "@mui/material";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000`,
+  baseURL: `http://127.0.0.1:8000/` ,
 });
 
 const sections = [
@@ -101,7 +101,7 @@ function Register() {
   const [name, setname] = useState("");
 
   let register = async (e) => {
-    let res = await api
+    const res = await api
       .post("reg/", {
         username: regno,
         rollno: rno,

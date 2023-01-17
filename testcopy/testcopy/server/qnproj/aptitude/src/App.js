@@ -11,12 +11,15 @@ import UploadFile from "./Components/UploadFile";
 import DisplayData from "./Components/DisplayData";
 import AdminDashboard from "./Components/AdminDashboard";
 import StudentDashboard from "./Components/StudentDashboard";
+import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 import Navbar from "./Components/Navbar";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000`,
+
+  baseURL: `http://127.0.0.1:8000`
+
 });
 
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -63,6 +66,7 @@ function App() {
             <Route path="/" element={<AdminDashboard logout={logout} />} />
             <Route path="/upload" element={<UploadFile logout={logout}  />} />
             <Route path="/displaydata" element={<DisplayData logout={logout} />} />
+            <Route path="/result" element={<Result />}  />
           </Routes>
         </Router>
       );

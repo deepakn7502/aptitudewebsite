@@ -10,7 +10,7 @@ from pathlib import Path
 import os
 from django.db import connection
 import base64
-from django.core.files.uploadedfile import InMemoryUploadedFile
+
 
 cursor=connection.cursor()
 
@@ -22,7 +22,7 @@ class register(viewsets.ModelViewSet):
 class login(APIView):
    def auth(self,username,password):
       try:
-         user=list(stud.objects.filter(username=username,password=password,is_active=0).values('username','rollno','year','sec'))[0]
+         user=list(stud.objects.filter(username=username,password=password,is_active=0).values('username','rollno','year','sec','dept'))[0]
          return user
       except:
          return None
@@ -49,14 +49,6 @@ class login(APIView):
 
 class stafflogin(APIView):
 
-   # def auth(self,username,password):
-   #    try:
-   #       user=list(customuser.objects.filter(username=username,password=password).values_list("username"))
-   #       print(user)
-   #       return user[0][0]
-   #    except:
-   #       return None
-
    def get(self,request):
       return Response(customuser.objects.all().values())
      
@@ -66,7 +58,6 @@ class stafflogin(APIView):
       user = authenticate(request,username=data['username'],password=data['password'])
       
       if user is not None:
-         print("user:",user)
          return  Response(str(user))
       else:
          raise  serializers.ValidationError("Incorrect Credentials")
@@ -88,7 +79,7 @@ class qn(viewsets.ModelViewSet):
       tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
-      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,dept varchar(10));".format(tid))
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),sec varchar(4));".format(tid))
       for i in img:
         no+=1
         image=self.ip(i)
@@ -103,11 +94,12 @@ class qndisp(generics.ListAPIView):
 
 
 class resdisp(APIView):
-    def get(self,request,tid):
-      cursor.execute("SELECT * FROM {} WHERE dept='CSE'".format(tid))
+    def post(self,request):
+      data=request.data
+      cursor.execute("SELECT * FROM {tid} WHERE dept='{dept}' and sec='{sec}'".format(**data))
       res=cursor.fetchall()
       result=[]
-      headers=["username","section1","section2","section3","department"]
+      headers=["Username","Aptitude","Technical","Verbal","Total","Department","Section"]
       for i in res:
          result+=[{headers[j]:i[j] for j in range(len(i))}]
       return  Response(result)
@@ -116,35 +108,32 @@ class resdisp(APIView):
  
 class validate(APIView):
    def post(self,request):
-      res1=request.data["ans1"]
-      res2=request.data["ans2"]
-      res3=request.data["ans3"]
+      data=request.data
+      res1=data["ans1"]
+      res2=data["ans2"]
+      res3=data["ans3"]
+
       ans=list(question.objects.values_list('ans', flat=True))
       ans1=ans[0:15]
       ans2=ans[15:30]
       ans3=ans[30:45]
-      mark1=0
-      mark2=0
-      mark3=0
+
+      data["m1"]=0
+      data["m2"]=0
+      data["m3"]=0
+      
       for i in range(len(res1)):
          if(ans1[i]==res1[i]):
-            mark1+=1
+            data["m1"]+=1
       for i in range(len(res2)):
          if(ans2[i]==res2[i]):
-            mark2+=1
+           data["m2"]+=1
       for i in range(len(res3)):
          if(ans3[i]==res3[i]):
-            mark3+=1
-      #cursor.execute("INSERT INTO {} values({},{},{});".format()
-      return Response({"mark1":mark1,"mark2":mark2,"mark3":mark3})
+            data["m3"]+=1
+      data["total"]=data["m1"]+data["m2"]+data["m3"]
+
+      cursor.execute("INSERT INTO {tid} VALUES ({username},{m1},{m2},{m3},{total},'{dept}','{sec}');".format(**data))
+
+      return Response({"mark1":data["m1"],"mark2":data["m2"],"mark3":data["m3"]})
  
-# class Assets(View):
-
-#     def get(self, _request, filename):
-#         path = os.path.join(os.path.dirname(__file__), 'static', filename)
-
-#         if os.path.isfile(path):
-#             with open(path, 'rb') as file:
-#                 return HttpResponse(file.read(), content_type='application/javascript')
-#         else:
-#             return HttpResponseNotFound()

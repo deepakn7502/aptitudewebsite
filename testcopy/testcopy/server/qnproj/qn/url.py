@@ -20,7 +20,7 @@ urlpatterns = [
     path(r"log/",login.as_view()),
     re_path(r'^qn/(?P<tid>.+)/$',qndisp.as_view()),
     path(r"qn/",img_up,name='img_up'),
-    path(r"rst/<str:tid>/",resdisp.as_view()),
+    path(r"rst/",resdisp.as_view()),
     path(r"validate/",validate.as_view()),
 
 ]

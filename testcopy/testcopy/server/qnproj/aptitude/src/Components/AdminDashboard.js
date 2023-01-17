@@ -6,7 +6,7 @@ import XLSX from "sheetjs-style";
 import Navbar from "./Navbar";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000`,
+  baseURL: `http://127.0.0.1:8000/` ,
 });
 
 function AdminDashboard({ logout }) {

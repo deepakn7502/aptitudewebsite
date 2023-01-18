@@ -3,7 +3,6 @@ import axios from "axios";
 import Question from "./Question";
 
 
-
 function QuestionDisplay({url}) {
 
   const api = axios.create({

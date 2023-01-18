@@ -102,7 +102,7 @@ function Register({ url }) {
   const [name, setname] = useState("");
 
   let register = async (e) => {
-    let res = await api
+    const res = await api
       .post("reg/", {
         username: regno,
         rollno: rno,

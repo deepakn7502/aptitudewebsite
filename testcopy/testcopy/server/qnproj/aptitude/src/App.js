@@ -11,6 +11,7 @@ import UploadFile from "./Components/UploadFile";
 import DisplayData from "./Components/DisplayData";
 import AdminDashboard from "./Components/AdminDashboard";
 import StudentDashboard from "./Components/StudentDashboard";
+import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 import Navbar from "./Components/Navbar";
@@ -50,7 +51,10 @@ function App() {
       return (
         <Router>
           <Routes>
-            <Route path="/" element={<StudentDashboard logout={logout} url={url} />} />
+            <Route
+              path="/"
+              element={<StudentDashboard logout={logout} url={url} />}
+            />
             <Route path="/instructions" element={<Instructions url={url} />} />
             <Route path="/sections" element={<Sections url={url} />} />
             <Route path="/questions" element={<QuestionDisplay url={url} />} />
@@ -62,12 +66,19 @@ function App() {
       return (
         <Router>
           <Routes>
-            <Route path="/" element={<AdminDashboard logout={logout} url={url} />} />
-            <Route path="/upload" element={<UploadFile logout={logout} url={url} />} />
+            <Route
+              path="/"
+              element={<AdminDashboard logout={logout} url={url} />}
+            />
+            <Route
+              path="/upload"
+              element={<UploadFile logout={logout} url={url} />}
+            />
             <Route
               path="/displaydata"
               element={<DisplayData logout={logout} url={url} />}
             />
+            <Route path="/result" element={<Result url={url} />} />
           </Routes>
         </Router>
       );

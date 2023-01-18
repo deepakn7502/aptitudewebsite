@@ -24,7 +24,6 @@ class question(models.Model):
     testid= models.CharField(max_length=20,null=True)
     qnno=models.CharField(max_length=10,null=True)
     qn = models.TextField(null=True,blank=True)
-    #qn=models.ImageField(blank=True,null=True,upload_to=upload_path)
     ans=models.CharField(max_length=2,null=True)
     
 

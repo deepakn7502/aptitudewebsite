@@ -28,10 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# CORS_ORIGIN_WHITELIST = [
-#     'http://localhost:3000',
-#     'http://192.168.1.8:8000',
-# ]
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+    'http://192.168.1.135:8000',
+]
 
 # Application definition
 
@@ -164,4 +165,14 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL= 'qn.customuser'
 
-CORS_ALLOW_ALL_ORIGINS  = True
+CORS_ALLOW_ALL_ORIGINS  = False
+
+CORS_ALLOWED_ORIGINS = [
+    "https://192.168.1.6:8000",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://192.168.1.135:8000",
+]
+
+#SECURE_CROSS_ORIGIN_OPENER_POLICY = False

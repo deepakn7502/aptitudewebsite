@@ -3,8 +3,7 @@ import React from "react";
 import "./Main.css";
 import axios from "axios";
 
-
-function Main({url}) {
+function Main({ url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });

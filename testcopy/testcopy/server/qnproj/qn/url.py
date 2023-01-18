@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 img_up = qn.as_view({
     'get': 'list',
-    'post': 'post'
+    'post': 'post',
 })
 
 reg = register.as_view({
@@ -19,6 +19,7 @@ urlpatterns = [
     path(r"stafflg/",stafflogin.as_view()),
     path(r"log/",login.as_view()),
     re_path(r'^qn/(?P<tid>.+)/$',qndisp.as_view()),
+    re_path(r'^check/',check.as_view()),
     path(r"qn/",img_up,name='img_up'),
     path(r"rst/",resdisp.as_view()),
     path(r"validate/",validate.as_view()),

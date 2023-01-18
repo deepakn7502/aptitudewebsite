@@ -20,6 +20,17 @@ function StudentDashboard({ logout, url }) {
     Settid("PEC" + day + mon);
   };
 
+
+  const log = async (e) => {
+    try {
+      const res = await api.post("check/", { tid : tid  });
+      window.location.pathname = "/instructions";
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+
   return (
     <div className="student">
       <div className="nav">

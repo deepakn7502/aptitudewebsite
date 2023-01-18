@@ -7,7 +7,7 @@ from .models import *
 from .serializers import *
 from rest_framework import serializers
 from pathlib import Path
-import os
+import json
 from django.db import connection
 import base64
 
@@ -33,7 +33,7 @@ class login(APIView):
       if (serializer.is_valid()):
        user = self.auth(data['username'],data['password'])
        if user is not None:
-        stud.objects.filter(username=user).update(is_active=1)
+        stud.objects.filter(username=user["username"]).update(is_active=1)
         return  Response(user)
        else :
           raise serializers.ValidationError({"Incorrect Credentials"})
@@ -41,8 +41,10 @@ class login(APIView):
          return  Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
    def put(self,request):
       data=request.data
+      dt = json.loads(data["user"])
+      print(data)
       try :
-        stud.objects.filter(username=data["user"]).update(is_active=0)
+        stud.objects.filter(username=dt["username"]).update(is_active=0)
         return Response("Success")
       except :
          raise  serializers.ValidationError("Incorrect Credentials")

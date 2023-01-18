@@ -57,7 +57,7 @@ function UploadFile({ logout }) {
         <TextField type="date" onChange={(e) => setTestID(e)} />
         <label>CHOOSE FILES TO BE UPLOADED:</label>
         {/* <FormLabel>Questions</FormLabel> */}
-        <Button variant="contained">
+        <Button variant="contained" component="label">
           Questions
           <input
             hidden
@@ -68,7 +68,7 @@ function UploadFile({ logout }) {
           />
         </Button>
         {/* <FormLabel>Answer</FormLabel> */}
-        <Button variant="contained">
+        <Button variant="contained" component="label">
           Answer
           <input
             hidden

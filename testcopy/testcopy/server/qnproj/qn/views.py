@@ -79,19 +79,40 @@ class qn(viewsets.ModelViewSet):
       tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
+      tests.objects.create(testid=tid)
       cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),sec varchar(4));".format(tid))
       for i in img:
         no+=1
         image=self.ip(i)
         question.objects.create(testid=tid,qnno=no,qn=image["img"],ans=ans[no-1])
       return  Response(tid)
+    def put(self,request):
+      data=request.data
+      try :
+        tests.objects.filter(testid=data["tid"]).update(status=1)
+        return Response("Success")
+      except :
+        Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class check(APIView):
+   def post(self,request):
+      data=request.data
+      chk=tests.objects.filter(testid=data["tid"],status=1).exists()
+      if(chk):
+         return Response("Success")
+      else:
+         Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class qndisp(generics.ListAPIView):
    queryset = question.objects.all()
    serializer_class = questionserializers
    def get_queryset(self):
-        return question.objects.filter(testid=self.kwargs['tid'])
-
+        print(self.kwargs['tid'])
+        try:
+         return question.objects.filter(testid=self.kwargs['tid'],status=1)
+        except :
+         return  Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class resdisp(APIView):
     def post(self,request):

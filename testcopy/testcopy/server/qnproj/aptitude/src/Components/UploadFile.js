@@ -16,6 +16,12 @@ function UploadFile({ logout }) {
   const [imgs, setimgs] = useState();
   const [ans, setans] = useState();
   const reader = new FileReader();
+  
+
+  reader.onload = () => {
+    setans(reader.result);
+  };
+
 
   //file upload api call
   let upload = async () => {
@@ -58,6 +64,7 @@ function UploadFile({ logout }) {
             multiple
             type="file"
             onChange={(e) => setimgs(e.target.files)}
+            required
           />
         </Button>
         {/* <FormLabel>Answer</FormLabel> */}
@@ -67,6 +74,7 @@ function UploadFile({ logout }) {
             hidden
             type="file"
             onChange={(e) => reader.readAsText(e.target.files[0])}
+            required
           />
         </Button>
 
@@ -82,9 +90,7 @@ function UploadFile({ logout }) {
         </div> 
         </div>
     /* <div className="up">
-      <div className="head">
-        <h1>UPLOAD PAGE</h1>
-      </div>
+     
       <div className="UploadFile">
         <div className="p">ENTER THE DATE:</div>
         <TextField

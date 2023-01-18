@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./DisplayData.css";
 import axios from "axios";
+import * as FileSaver from "file-saver";
+import XLSX from "sheetjs-style";
 import { Button } from "@mui/material";
 
 const api = axios.create({
@@ -9,6 +11,10 @@ const api = axios.create({
 
 function DisplayData() {
   const [data, setData] = useState();
+
+  const fileType =
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
+const fileExtension = ".xlsx";
 
   useEffect(() => {
     let disp = async (e) => {
@@ -19,6 +25,21 @@ function DisplayData() {
     };
     disp();
   }, []);
+
+
+  let exportToExcel = async () => {
+    let res = api.get("rst/PEC2211/").then((res) => {
+      console.log(res.data);
+      const ws = XLSX.utils.json_to_sheet(res.data);
+
+      const wb = { Sheets: { PEC2211: ws }, SheetNames: ["PEC2211"] };
+
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], { type: fileType });
+
+      FileSaver.saveAs(data, "sample-result" + fileExtension);
+    });
+  };
 
   const displayData = data?.map((data) => {
     return (

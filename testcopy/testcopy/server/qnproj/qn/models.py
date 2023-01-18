@@ -13,6 +13,7 @@ class stud(models.Model):
     dept=models.CharField(max_length=100,null=True)
     password = models.TextField(null=True,blank=True)
     is_active=models.IntegerField(default=0)
+    test=models.CharField(max_length=100,null=True)
 
 
 def upload_path(instance,filename):
@@ -25,7 +26,11 @@ class question(models.Model):
     qnno=models.CharField(max_length=10,null=True)
     qn = models.TextField(null=True,blank=True)
     ans=models.CharField(max_length=2,null=True)
+
     
+class tests(models.Model):
+     testid= models.CharField(max_length=20,null=True)
+     status=models.IntegerField(default=0)
 
 
 class customuser(AbstractUser):

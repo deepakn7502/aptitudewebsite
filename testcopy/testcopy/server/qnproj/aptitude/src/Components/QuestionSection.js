@@ -9,7 +9,7 @@ import "./QuestionSection.css";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `http://localhost:8000`,
+  baseURL: `http://127.0.0.1:8000/` ,
 });
 function QuestionSection({ question, answers }) {
   var [index, setIndex] = useState(0);

@@ -24,7 +24,7 @@ function Login() {
       setUser(foundUser);
     }
   }, []);
-  console.log(api);
+  
 
   const log = async (e) => {
     try {
@@ -35,7 +35,7 @@ function Login() {
       localStorage.setItem("student", student);
       window.location.pathname = "/";
     } catch (error) {
-      //window.location.pathname = "/login";
+      window.location.pathname = "/login";
       alert(error);
     }
   };

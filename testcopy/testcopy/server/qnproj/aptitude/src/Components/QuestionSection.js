@@ -8,18 +8,11 @@ import React, { useEffect, useState } from "react";
 import "./QuestionSection.css";
 import axios from "axios";
 
-<<<<<<< HEAD
 function QuestionSection({ question, answers, url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });
 
-=======
-const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/` ,
-});
-function QuestionSection({ question, answers }) {
->>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
   var [index, setIndex] = useState(0);
   const data = question.qn;
 

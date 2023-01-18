@@ -8,13 +8,11 @@ function AdminDashboard({ logout, url }) {
     baseURL: `http://${url}:8000`,
   });
 
-<<<<<<< HEAD
+
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
   const fileExtension = ".xlsx";
-=======
-function AdminDashboard({ logout }) {
->>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
+
 
 
 

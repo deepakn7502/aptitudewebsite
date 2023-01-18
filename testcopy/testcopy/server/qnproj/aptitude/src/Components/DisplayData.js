@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./DisplayData.css";
 import axios from "axios";
-<<<<<<< HEAD
 import { Button, TextField } from "@mui/material";
 import Navbar from "./Navbar";
-=======
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
-import { Button } from "@mui/material";
->>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
 
 
 
@@ -34,7 +30,6 @@ const fileExtension = ".xlsx";
     disp();
   }, []);
 
-<<<<<<< HEAD
   // const displayData = data?.map((data) => {
   //   return (
   //     <tr>
@@ -45,7 +40,6 @@ const fileExtension = ".xlsx";
   //     </tr>
   //   );
   // });
-=======
 
   let exportToExcel = async () => {
     let res = api.get("rst/PEC2211/").then((res) => {
@@ -72,7 +66,6 @@ const fileExtension = ".xlsx";
       </tr>
     );
   });
->>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
 
   return (
     <div className="display-data">

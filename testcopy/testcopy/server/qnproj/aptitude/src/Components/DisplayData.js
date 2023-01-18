@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./DisplayData.css";
 import axios from "axios";
+<<<<<<< HEAD
+import { Button, TextField } from "@mui/material";
+import Navbar from "./Navbar";
+=======
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 import { Button } from "@mui/material";
+>>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
 
-const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/` ,
-});
 
-function DisplayData() {
+
+function DisplayData({ logout, url }) {
+
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [data, setData] = useState();
 
   const fileType =
@@ -26,6 +34,18 @@ const fileExtension = ".xlsx";
     disp();
   }, []);
 
+<<<<<<< HEAD
+  // const displayData = data?.map((data) => {
+  //   return (
+  //     <tr>
+  //       <td>{data.username}</td>
+  //       <td>{data.sec1}</td>
+  //       <td>{data.sec2}</td>
+  //       <td>{data.sec3}</td>
+  //     </tr>
+  //   );
+  // });
+=======
 
   let exportToExcel = async () => {
     let res = api.get("rst/PEC2211/").then((res) => {
@@ -52,19 +72,29 @@ const fileExtension = ".xlsx";
       </tr>
     );
   });
+>>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
 
   return (
     <div className="display-data">
-      <table>
-        <tr>
-          <th>Register Number</th>
-          <th>Test ID</th>
-          <th>Section 1</th>
-          <th>Section 2</th>
-          <th>Section 3</th>
-        </tr>
-        {displayData}
-      </table>
+      <Navbar logout={logout} />
+      <div className="input-fields">
+        <TextField type="text" label="Test ID" />
+        <div>
+          <TextField />
+        </div>
+      </div>
+      <div className="table">
+        <table>
+          <tr>
+            <th>Register Number</th>
+            <th>Department</th>
+            <th>Section</th>
+
+            <th colSpan="3">Marks</th>
+          </tr>
+          {/* {displayData} */}
+        </table>
+      </div>
       <br />
 
       <Button>Download Pdf</Button>

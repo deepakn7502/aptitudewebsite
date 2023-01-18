@@ -3,11 +3,18 @@ import "./AdminDashboard.css";
 import axios from "axios";
 import Navbar from "./Navbar";
 
-const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/` ,
-});
+function AdminDashboard({ logout, url }) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
 
+<<<<<<< HEAD
+  const fileType =
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
+  const fileExtension = ".xlsx";
+=======
 function AdminDashboard({ logout }) {
+>>>>>>> c850823708cf120c648d7c8d5276b558932a5c52
 
 
 

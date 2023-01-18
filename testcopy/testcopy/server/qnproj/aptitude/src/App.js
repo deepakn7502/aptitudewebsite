@@ -16,10 +16,10 @@ import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 import Navbar from "./Components/Navbar";
 
+const url = "localhost";
+
 const api = axios.create({
-
-  baseURL: `http://127.0.0.1:8000`
-
+  baseURL: `http://${url}:8000`,
 });
 
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -51,11 +51,14 @@ function App() {
       return (
         <Router>
           <Routes>
-            <Route path="/" element={<StudentDashboard logout={logout} />} />
-            <Route path="/instructions" element={<Instructions />} />
-            <Route path="/sections" element={<Sections />} />
-            <Route path="/questions" element={<QuestionDisplay />} />
-            <Route path="/summary" element={<Summary />} />
+            <Route
+              path="/"
+              element={<StudentDashboard logout={logout} url={url} />}
+            />
+            <Route path="/instructions" element={<Instructions url={url} />} />
+            <Route path="/sections" element={<Sections url={url} />} />
+            <Route path="/questions" element={<QuestionDisplay url={url} />} />
+            <Route path="/summary" element={<Summary url={url} />} />
           </Routes>
         </Router>
       );
@@ -63,10 +66,19 @@ function App() {
       return (
         <Router>
           <Routes>
-            <Route path="/" element={<AdminDashboard logout={logout} />} />
-            <Route path="/upload" element={<UploadFile logout={logout}  />} />
-            <Route path="/displaydata" element={<DisplayData logout={logout} />} />
-            <Route path="/result" element={<Result />}  />
+            <Route
+              path="/"
+              element={<AdminDashboard logout={logout} url={url} />}
+            />
+            <Route
+              path="/upload"
+              element={<UploadFile logout={logout} url={url} />}
+            />
+            <Route
+              path="/displaydata"
+              element={<DisplayData logout={logout} url={url} />}
+            />
+            <Route path="/result" element={<Result url={url} />} />
           </Routes>
         </Router>
       );
@@ -75,10 +87,10 @@ function App() {
     return (
       <Router>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/adminlogin" element={<AdminLogin />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Main url={url} />} />
+          <Route path="/login" element={<Login url={url} />} />
+          <Route path="/adminlogin" element={<AdminLogin url={url} />} />
+          <Route path="/register" element={<Register url={url} />} />
         </Routes>
       </Router>
     );

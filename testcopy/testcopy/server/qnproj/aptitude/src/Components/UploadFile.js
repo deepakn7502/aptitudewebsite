@@ -7,11 +7,13 @@ import "./UploadFile.css";
 import Navbar from "./Navbar";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 
-const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/` ,
-});
 
-function UploadFile({ logout }) {
+
+function UploadFile({ logout, url }) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [tid, setid] = useState("PEC212");
   const [imgs, setimgs] = useState();
   const [ans, setans] = useState();
@@ -42,9 +44,15 @@ function UploadFile({ logout }) {
 
   let setTestID = (e) => {
     var d = new Date(e.target.value);
-    const day = d.getDate();
+    var day = d.getDate();
     var mon = d.getMonth();
     mon++;
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (mon < 10) {
+      mon = "0" + mon;
+    }
     setid("PEC" + day + mon);
   };
 
@@ -56,11 +64,13 @@ function UploadFile({ logout }) {
         <label>ENTER THE DATE:</label>
         <TextField type="date" onChange={(e) => setTestID(e)} />
         <label>CHOOSE FILES TO BE UPLOADED:</label>
+        
         {/* <FormLabel>Questions</FormLabel> */}
         <Button variant="contained" component="label">
           Questions
           <input
             hidden
+            accept="*"
             multiple
             type="file"
             onChange={(e) => setimgs(e.target.files)}
@@ -68,7 +78,7 @@ function UploadFile({ logout }) {
           />
         </Button>
         {/* <FormLabel>Answer</FormLabel> */}
-        <Button variant="contained" component="label">
+        <Button variant="contained">
           Answer
           <input
             hidden
@@ -77,8 +87,6 @@ function UploadFile({ logout }) {
             required
           />
         </Button>
-
-        
         <Button
           variant="contained"
           color="success"

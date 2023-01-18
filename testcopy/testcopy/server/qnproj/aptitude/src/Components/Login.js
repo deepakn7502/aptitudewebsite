@@ -8,11 +8,12 @@ import { Divider, InputAdornment } from "@mui/material";
 import axios from "axios";
 // import { Divider} from "antd";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
 
-function Login() {
+function Login({url}) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [regno, setreg] = useState("");
   const [pass, setpass] = useState("");
   const [user, setUser] = useState();

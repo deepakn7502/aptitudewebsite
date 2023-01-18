@@ -5,14 +5,14 @@ import axios from "axios";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Timer } from "../Functions/Functions";
 
+function Sections({ url }) {
   const api = axios.create({
-    baseURL: `http://127.0.0.1:8000/` ,
+    baseURL: `http://${url}:8000`,
   });
 
-function Sections() {
   // const [questions, setQstns] = useState([]);
 
-  const tid = window.sessionStorage.getItem("testid");
+  const tid = localStorage.getItem("testid");
   const [answers1, setAnswers1] = useState([]);
   const [answers2, setAnswers2] = useState([]);
   const [answers3, setAnswers3] = useState([]);
@@ -35,13 +35,10 @@ function Sections() {
   let validate = () => {
     let res = api
       .post("validate/", {
-        tid:tid,
         username: user.username,
         ans1: answers1,
         ans2: answers2,
         ans3: answers3,
-        dept: user.dept,
-        sec:user.sec
       })
       .then((res) => {
         window.sessionStorage.setItem("marks", JSON.stringify(res.data));

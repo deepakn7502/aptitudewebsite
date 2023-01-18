@@ -7,14 +7,12 @@ import { Button } from "@mui/material";
 import ReactPagination from "react-paginate";
 
 
-const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/`  ,
-});
+function Question({ answers, questions, section, tid, url }) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
 
-
-function Question({ answers, questions, section, tid }) {
   const timer = Timer();
-
 
   const [pageNmbr, setPageNmbr] = useState(0);
   const qstnPerPage = 1;
@@ -23,7 +21,7 @@ function Question({ answers, questions, section, tid }) {
   const dispalyQuestion = questions
     ?.slice(qstnVisited, qstnVisited + qstnPerPage)
     .map((data) => {
-      return <QuestionSection answers={answers} question={data} />;
+      return <QuestionSection answers={answers} question={data} url={url} />;
     });
 
   const changePage = ({ selected }) => {

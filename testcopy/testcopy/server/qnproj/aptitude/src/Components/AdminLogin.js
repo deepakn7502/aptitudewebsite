@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./AdminLogin.css";
 import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -7,20 +7,15 @@ import Button from "@mui/material/Button";
 import { InputAdornment } from "@mui/material";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-})
+function AdminLogin({ url }) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
 
-
-
-
-function AdminLogin() {
-
-  
   const [username, setname] = useState("");
   const [password, setpass] = useState("");
   const [user, setUser] = useState();
-  
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("staff");
     if (loggedInUser) {
@@ -34,25 +29,21 @@ function AdminLogin() {
   //   return <div>{user.name} is loggged in</div>;
   // }
 
-
-
   let log = async (e) => {
     try {
-      const res = await api.post("stafflg/", { username: username, password: password});
+      const res = await api.post("stafflg/", {
+        username: username,
+        password: password,
+      });
       setUser(res.data);
-      console.log(user)
+      console.log(user);
       localStorage.setItem("staff", res.data);
       window.location.pathname = "/";
     } catch (error) {
       window.location.pathname = "/adminlogin";
       alert(error);
-      
     }
-    
   };
-
-  
-
 
   return (
     <div className="login">
@@ -68,7 +59,9 @@ function AdminLogin() {
             label="Username"
             type="text"
             value={username}
-            onChange={(e) => {setname(e.target.value)}}
+            onChange={(e) => {
+              setname(e.target.value);
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -83,7 +76,9 @@ function AdminLogin() {
           <TextField
             label="Password"
             type="password"
-            onChange={(e) => {setpass(e.target.value)}}
+            onChange={(e) => {
+              setpass(e.target.value);
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -93,7 +88,7 @@ function AdminLogin() {
             }}
           />
         </div>
-        
+
         <div class="button">
           <Button variant="contained" onClick={log}>
             LOGIN
@@ -102,9 +97,6 @@ function AdminLogin() {
       </div>
     </div>
   );
-
-  
-
 }
 
 export default AdminLogin;

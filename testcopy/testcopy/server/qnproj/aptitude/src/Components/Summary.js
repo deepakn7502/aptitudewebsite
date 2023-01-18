@@ -5,11 +5,13 @@ import { Tab } from "@mui/material";
 import axios from "axios";
 // import Button from "@mui/material/Button";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
 
-function Summary() {
+function Summary({url}) {
+
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [results, setResults] = useState();
 
   useEffect(() => {

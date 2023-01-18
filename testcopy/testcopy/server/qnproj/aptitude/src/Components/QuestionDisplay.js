@@ -3,11 +3,13 @@ import axios from "axios";
 import Question from "./Question";
 
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
 
-function QuestionDisplay() {
+function QuestionDisplay({url}) {
+
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [questions, setQstns] = useState([]);
 
   const tid = sessionStorage.getItem("testid");
@@ -48,6 +50,7 @@ function QuestionDisplay() {
           tid={tid}
           section={section}
           answers={answers1}
+          url={url}
         />
       </div>
     );
@@ -59,6 +62,7 @@ function QuestionDisplay() {
           tid={tid}
           section={section}
           answers={answers2}
+          url={url}
         />
       </div>
     );
@@ -70,6 +74,7 @@ function QuestionDisplay() {
           tid={tid}
           section={section}
           answers={answers3}
+          url={url}
         />
       </div>
     );

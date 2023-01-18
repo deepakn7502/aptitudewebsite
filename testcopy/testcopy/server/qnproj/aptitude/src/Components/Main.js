@@ -3,11 +3,11 @@ import React from "react";
 import "./Main.css";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
 
-function Main() {
+function Main({url}) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
   return (
     <div className="main">
       <div className="cont">

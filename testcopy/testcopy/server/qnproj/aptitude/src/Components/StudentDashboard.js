@@ -4,11 +4,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import "./StudentDashboard.css";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
 
-function StudentDashboard({ logout }) {
+function StudentDashboard({ logout, url }) {
+  
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
   const [tid, Settid] = useState("");
 
   let disp = (e) => {

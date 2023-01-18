@@ -8,12 +8,13 @@ import React, { useEffect, useState } from "react";
 import "./QuestionSection.css";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
-function QuestionSection({ question, answers }) {
+function QuestionSection({ question, answers, url }) {
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   var [index, setIndex] = useState(0);
-  const data = question.qn; 
+  const data = question.qn;
 
   const handleSelect = (e) => {
     const selected = e.target.value;

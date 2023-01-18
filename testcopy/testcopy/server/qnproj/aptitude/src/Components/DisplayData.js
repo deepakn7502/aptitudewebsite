@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./DisplayData.css";
 import axios from "axios";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import Navbar from "./Navbar";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
 
-function DisplayData() {
+function DisplayData({ logout, url }) {
+
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -20,30 +23,38 @@ function DisplayData() {
     disp();
   }, []);
 
-  const displayData = data?.map((data) => {
-    return (
-      <tr>
-        <td>{data.username}</td>
-        <td>testid</td>
-        <td>{data.sec1}</td>
-        <td>{data.sec2}</td>
-        <td>{data.sec3}</td>
-      </tr>
-    );
-  });
+  // const displayData = data?.map((data) => {
+  //   return (
+  //     <tr>
+  //       <td>{data.username}</td>
+  //       <td>{data.sec1}</td>
+  //       <td>{data.sec2}</td>
+  //       <td>{data.sec3}</td>
+  //     </tr>
+  //   );
+  // });
 
   return (
     <div className="display-data">
-      <table>
-        <tr>
-          <th>Register Number</th>
-          <th>Test ID</th>
-          <th>Section 1</th>
-          <th>Section 2</th>
-          <th>Section 3</th>
-        </tr>
-        {displayData}
-      </table>
+      <Navbar logout={logout} />
+      <div className="input-fields">
+        <TextField type="text" label="Test ID" />
+        <div>
+          <TextField />
+        </div>
+      </div>
+      <div className="table">
+        <table>
+          <tr>
+            <th>Register Number</th>
+            <th>Department</th>
+            <th>Section</th>
+
+            <th colSpan="3">Marks</th>
+          </tr>
+          {/* {displayData} */}
+        </table>
+      </div>
       <br />
 
       <Button>Download Pdf</Button>

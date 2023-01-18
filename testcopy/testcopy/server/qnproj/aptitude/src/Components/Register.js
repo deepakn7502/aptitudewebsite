@@ -3,10 +3,6 @@ import axios from "axios";
 import "./Register.css";
 import { Button, MenuItem, TextField } from "@mui/material";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000`,
-});
-
 const sections = [
   {
     value: "CSE",
@@ -90,7 +86,12 @@ const sec = [
   },
 ];
 
-function Register() {
+function Register({ url }) {
+  
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
+
   const [departments, setDepartment] = useState("");
   const [section, setSection] = useState("");
   const [year, setYear] = useState("");

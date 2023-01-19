@@ -40,6 +40,7 @@ let logout = () => {
       >
         Home
       </Button>
+      
       <Button
         variant="none"
         onClick={() => {

@@ -14,7 +14,6 @@ import StudentDashboard from "./Components/StudentDashboard";
 import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
-import Navbar from "./Components/Navbar";
 
 const url = "localhost";
 

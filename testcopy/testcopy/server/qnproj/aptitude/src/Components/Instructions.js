@@ -16,8 +16,8 @@ function Instructions({url}) {
 
   const handleStart = () => {
     window.location.pathname = "/sections";
-    window.sessionStorage.setItem("sec", 0);
-    window.sessionStorage.setItem("min", 30);
+    window.sessionStorage.setItem("sec", 59);
+    window.sessionStorage.setItem("min", 29);
   };
 
   const [answers1, setAnswers1] = useState([]);

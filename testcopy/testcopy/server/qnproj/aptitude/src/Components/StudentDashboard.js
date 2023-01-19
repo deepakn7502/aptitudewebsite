@@ -11,23 +11,32 @@ function StudentDashboard({ logout, url }) {
     baseURL: `http://${url}:8000`,
   });
   const [tid, Settid] = useState("");
+  const [user,setUser]=useState();
 
   let disp = (e) => {
     var d = new Date(e.target.value);
-    const day = d.getDate();
+    var day = d.getDate();
     var mon = d.getMonth();
     mon++;
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (mon < 10) {
+      mon = "0" + mon;
+    }
     Settid("PEC" + day + mon);
   };
 
 
-  const log = async (e) => {
-    try {
-      const res = await api.post("check/", { tid : tid  });
-      window.location.pathname = "/instructions";
-    } catch (error) {
-      alert(error);
-    }
+  const check = async (e) => {
+    setUser(JSON.parse(window.localStorage.getItem("student")));
+    
+      const res = await api.post("check/", { tid : tid , username : user.username  }).then(() => {
+        window.sessionStorage.setItem("testid", tid);
+        window.location.pathname = "/instructions";  
+    }).catch (error => {
+      console.log("Select Valid Date");
+     }) 
   };
 
 
@@ -47,14 +56,7 @@ function StudentDashboard({ logout, url }) {
             }}
           />
           <Button
-            onClick={() => {
-              window.sessionStorage.setItem("testid", tid);
-              if (window.sessionStorage.getItem("testid")) {
-                window.location.pathname = "/instructions";
-              } else {
-                alert("Select Test Date");
-              }
-            }}
+            onClick={check}
             variant="contained"
           >
             Start Test

@@ -68,7 +68,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<AdminDashboard logout={logout} url={url} />}
+              element={<AdminDashboard  url={url} />}
             />
             <Route
               path="/upload"

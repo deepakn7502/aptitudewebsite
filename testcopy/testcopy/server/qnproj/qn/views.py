@@ -42,7 +42,6 @@ class login(APIView):
    def put(self,request):
       data=request.data
       dt = json.loads(data["user"])
-      print(data)
       try :
         stud.objects.filter(username=dt["username"]).update(is_active=0)
         return Response("Success")
@@ -82,7 +81,7 @@ class qn(viewsets.ModelViewSet):
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
       tests.objects.create(testid=tid)
-      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),sec varchar(4));".format(tid))
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),year varchar(5),sec varchar(4));".format(tid))
       for i in img:
         no+=1
         image=self.ip(i)
@@ -94,16 +93,22 @@ class qn(viewsets.ModelViewSet):
         tests.objects.filter(testid=data["tid"]).update(status=1)
         return Response("Success")
       except :
-        Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+         raise Exception("Invalid TestId")
     
 class check(APIView):
    def post(self,request):
       data=request.data
+      print(data)
       chk=tests.objects.filter(testid=data["tid"],status=1).exists()
+      tst=list(stud.objects.filter(username=data["username"]).values('test'))[0]["test"]
+      print(tst)
       if(chk):
+         if (str(tst) != "None"):
+           if data["tid"] in tst.split(","):
+            raise Exception("Aldready writen")
          return Response("Success")
       else:
-         Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+          raise Exception("Select valid date")
 
 
 class qndisp(generics.ListAPIView):
@@ -156,7 +161,13 @@ class validate(APIView):
             data["m3"]+=1
       data["total"]=data["m1"]+data["m2"]+data["m3"]
 
-      cursor.execute("INSERT INTO {tid} VALUES ({username},{m1},{m2},{m3},{total},'{dept}','{sec}');".format(**data))
+      cursor.execute("INSERT INTO {tid} VALUES ({username},{m1},{m2},{m3},{total},'{dept}','{year}','{sec}');".format(**data))
 
+      tst=list(stud.objects.filter(username=data["username"]).values('test'))[0]["test"]
+      if(tst): 
+         res= tst + "," + data["tid"]
+      else:
+         res=data["tid"]
+      stud.objects.filter(username=data["username"]).update(test=res)
       return Response({"mark1":data["m1"],"mark2":data["m2"],"mark3":data["m3"]})
  

@@ -41,7 +41,7 @@ function AdminLogin({ url }) {
       window.location.pathname = "/";
     } catch (error) {
       window.location.pathname = "/adminlogin";
-      alert(error);
+      alert("Invalid login");
     }
   };
 

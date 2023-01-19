@@ -4,21 +4,31 @@ import { Button } from "@mui/material";
 import "./Navbar.css";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/` ,
-});
 
 
 
-function Navbar({ logout }) {
+
+function Navbar({ url }) {
+
+  const api = axios.create({
+    baseURL: `http://${url}:8000`,
+  });
 
  let host = () =>{
-  let tid = prompt("Please enter your name:","PEC51");
+  let tid = prompt("Please enter the TestId:","PEC");
   let res = api.put("qn/", {  tid: tid }).then(() => {
     alert("The test is Hosted");
-  });
+  })
+  .catch(err => {
+    alert("Invalid")
+  })
+  ;
  }
 
+let logout = () => {
+  window.localStorage.clear();
+  window.location.pathname = "/";
+}
 
   return (
     <div className="navbar">

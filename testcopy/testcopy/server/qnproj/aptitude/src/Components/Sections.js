@@ -12,7 +12,7 @@ function Sections({ url }) {
 
   // const [questions, setQstns] = useState([]);
 
-  const tid = localStorage.getItem("testid");
+  const tid = window.sessionStorage.getItem("testid");
   const [answers1, setAnswers1] = useState([]);
   const [answers2, setAnswers2] = useState([]);
   const [answers3, setAnswers3] = useState([]);
@@ -36,6 +36,10 @@ function Sections({ url }) {
     let res = api
       .post("validate/", {
         username: user.username,
+        dept : user.dept ,
+        year: user.year,
+        sec : user.sec,
+        tid : tid,
         ans1: answers1,
         ans2: answers2,
         ans3: answers3,

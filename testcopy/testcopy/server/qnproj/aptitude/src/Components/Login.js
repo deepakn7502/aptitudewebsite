@@ -37,7 +37,7 @@ function Login({url}) {
       window.location.pathname = "/";
     } catch (error) {
       window.location.pathname = "/login";
-      alert(error);
+      alert("Invalid Login");
     }
   };
 

@@ -3,7 +3,7 @@ import "./AdminDashboard.css";
 import axios from "axios";
 import Navbar from "./Navbar";
 
-function AdminDashboard({ logout, url }) {
+function AdminDashboard({ url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });
@@ -18,7 +18,7 @@ function AdminDashboard({ logout, url }) {
 
   return (
     <div className="main1">
-      <Navbar logout={logout} />
+      <Navbar  url={url} />
       <div className="cont">
         <div className="cont1">
           <h1>PANIMALAR ENGINEERING COLLEGE</h1>

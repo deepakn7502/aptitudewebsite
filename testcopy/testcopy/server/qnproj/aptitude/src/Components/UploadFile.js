@@ -39,7 +39,11 @@ function UploadFile({ logout, url }) {
     let res = await api.post("qn/", uploaddata).then((res) => {
       localStorage.setItem("testid", tid);
       alert(JSON.stringify(res.data));
-    });
+    })
+    .catch(err => {
+      alert("Invalid Format")
+    })
+    ;
   };
 
   let setTestID = (e) => {
@@ -78,7 +82,7 @@ function UploadFile({ logout, url }) {
           />
         </Button>
         {/* <FormLabel>Answer</FormLabel> */}
-        <Button variant="contained">
+        <Button variant="contained" component="label">
           Answer
           <input
             hidden

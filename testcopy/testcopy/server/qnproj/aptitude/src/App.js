@@ -21,6 +21,7 @@ const api = axios.create({
   baseURL: `http://${url}:8000`,
 });
 
+
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 

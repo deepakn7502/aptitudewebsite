@@ -114,9 +114,7 @@
 
 .qstn-buttons a {
   padding: 5px;
-  margin: 5px 25px;
-  border: 1px solid blue;
-  color: blue;
+  margin: 5px auto;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -133,9 +131,8 @@
   border: none;
 }
 
-.active-page a {
-  background-color: blue;
-  color: #fff;
+.pagelink{
+  visibility: hidden;
 }
 
 .nxt-section {

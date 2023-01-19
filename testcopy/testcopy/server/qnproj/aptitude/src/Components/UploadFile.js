@@ -7,8 +7,6 @@ import "./UploadFile.css";
 import Navbar from "./Navbar";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 
-
-
 function UploadFile({ logout, url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
@@ -18,12 +16,10 @@ function UploadFile({ logout, url }) {
   const [imgs, setimgs] = useState();
   const [ans, setans] = useState();
   const reader = new FileReader();
-  
 
   reader.onload = () => {
     setans(reader.result);
   };
-
 
   //file upload api call
   let upload = async () => {
@@ -91,16 +87,18 @@ function UploadFile({ logout, url }) {
             required
           />
         </Button>
-        <Button
-          variant="contained"
-          color="success"
-          endIcon={<DriveFolderUploadIcon />}
-          onClick={upload}
-        >
-          UPLOAD
-        </Button>
-        </div> 
+        <div className="uploadbtn">
+          <Button
+            variant="contained"
+            color="success"
+            endIcon={<DriveFolderUploadIcon />}
+            onClick={upload}
+          >
+            UPLOAD
+          </Button>
         </div>
+      </div>
+    </div>
     /* <div className="up">
      
       <div className="UploadFile">
@@ -163,12 +161,11 @@ function UploadFile({ logout, url }) {
         <div className="btt">
           <Button variant="contained" endIcon={<Icon />} onClick={upload}>
             UPLOAD */
-          /* </Button> */
-   
-      /* </div>
+    /* </Button> */
+
+    /* </div>
     </div> */
   );
-
 }
 
 export default UploadFile;

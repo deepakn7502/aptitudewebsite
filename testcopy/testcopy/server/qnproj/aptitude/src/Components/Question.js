@@ -6,7 +6,6 @@ import QuestionSection from "./QuestionSection";
 import { Button } from "@mui/material";
 import ReactPagination from "react-paginate";
 
-
 function Question({ answers, questions, section, tid, url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
@@ -90,14 +89,22 @@ function Question({ answers, questions, section, tid, url }) {
           <br />
           <div className="pagination">
             <ReactPagination
-              previousLabel={<Button variant="contained">Prev question</Button>}
-              nextLabel={<Button variant="contained">Next question</Button>}
+              previousLabel={
+                <Button variant="contained" color="success">
+                  Previous
+                </Button>
+              }
+              nextLabel={
+                <Button variant="contained" color="success">
+                  Next
+                </Button>
+              }
               pageCount={pagecount}
               onPageChange={changePage}
               containerClassName={"qstn-buttons"}
               previousLinkClassName={"prev-qstn"}
               nextLinkClassName={"next-qstn"}
-              activeClassName={"active-page"}
+              pageLinkClassName={"pagelink"}
             />
           </div>
         </div>

@@ -32,8 +32,18 @@
   margin-top: 5px;
   width: 80%;
   border-radius: 20px;
-  padding-left: 10px;
   max-width: 500px;
+  overflow: hidden;
+}
+
+.option .MuiFormControlLabel-root {
+  width: 100%;
+  margin-left: 1px;
+  background-color: white;
+}
+
+.MuiFormControlLabel-root .MuiRadio-root {
+  color: #1976d2;
 }
 
 .question-section .qstn-buttons {

@@ -37,6 +37,7 @@ function StudentDashboard({ logout, url }) {
       .catch((error) => {
         console.log("Select Valid Date");
       });
+      
     const log = async (e) => {
       try {
         const res = await api.post("check/", { tid: tid });
@@ -45,29 +46,29 @@ function StudentDashboard({ logout, url }) {
         alert(error);
       }
     };
+  };
 
-    return (
-      <div className="student">
-        <div className="nav">
-          <Button onClick={logout} endIcon={<LogoutIcon />}>
-            Log out
+  return (
+    <div className="student">
+      <div className="nav">
+        <Button onClick={logout} endIcon={<LogoutIcon />}>
+          Log out
+        </Button>
+      </div>
+      <div className="block">
+        <div className="container">
+          <TextField
+            type="date"
+            onChange={(event) => {
+              disp(event);
+            }}
+          />
+          <Button onClick={check} variant="contained">
+            Start Test
           </Button>
         </div>
-        <div className="block">
-          <div className="container">
-            <TextField
-              type="date"
-              onChange={(event) => {
-                disp(event);
-              }}
-            />
-            <Button onClick={check} variant="contained">
-              Start Test
-            </Button>
-          </div>
-        </div>
       </div>
-    );
-  };
+    </div>
+  );
 }
 export default StudentDashboard;

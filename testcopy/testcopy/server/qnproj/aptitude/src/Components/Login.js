@@ -93,7 +93,7 @@ function Login({url}) {
           <Divider>OR</Divider>
         </div>
         <div className="">
-          Don't have an account?
+          Don't have an account?{" "}
           <Button
             onClick={() => {
               window.location.pathname = "/register";

@@ -80,28 +80,23 @@ class qn(viewsets.ModelViewSet):
       tid=request.data["testid"]
       img=dict((request.data).lists())["qns"]    
       ans=list(request.data["ans"].split(","))
-      tests.objects.create(testid=tid)
-      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),year varchar(5),sec varchar(4));".format(tid))
+      
+      
       for i in img:
         no+=1
         image=self.ip(i)
         question.objects.create(testid=tid,qnno=no,qn=image["img"],ans=ans[no-1])
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),year varchar(5),sec varchar(4));".format(tid))
       return  Response(tid)
-    def put(self,request):
-      data=request.data
-      try :
-        tests.objects.filter(testid=data["tid"]).update(status=1)
-        return Response("Success")
-      except :
-         raise Exception("Invalid TestId")
+   
     
 class check(APIView):
    def post(self,request):
       data=request.data
       print(data)
-      chk=tests.objects.filter(testid=data["tid"],status=1).exists()
+      chk=question.objects.filter(testid=data["tid"]).exists()
       tst=list(stud.objects.filter(username=data["username"]).values('test'))[0]["test"]
-      print(tst)
+   
       if(chk):
          if (str(tst) != "None"):
            if data["tid"] in tst.split(","):

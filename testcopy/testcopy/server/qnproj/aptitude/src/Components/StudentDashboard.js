@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./StudentDashboard.css";
 import axios from "axios";
+import fortune from "../Images/fortune_500.jpeg"
 
 function StudentDashboard({ logout, url }) {
   const api = axios.create({
@@ -35,40 +36,34 @@ function StudentDashboard({ logout, url }) {
         window.location.pathname = "/instructions";
       })
       .catch((error) => {
-        console.log("Select Valid Date");
+        alert(error.message);
       });
-      
-    const log = async (e) => {
-      try {
-        const res = await api.post("check/", { tid: tid });
-        window.location.pathname = "/instructions";
-      } catch (error) {
-        alert(error);
-      }
-    };
-  };
-
-  return (
-    <div className="student">
-      <div className="nav">
-        <Button onClick={logout} endIcon={<LogoutIcon />}>
-          Log out
-        </Button>
-      </div>
-      <div className="block">
-        <div className="container">
-          <TextField
-            type="date"
-            onChange={(event) => {
-              disp(event);
-            }}
-          />
-          <Button onClick={check} variant="contained">
-            Start Test
+    
+    }
+    return (
+      <div className="student">
+        <div className="nav">
+          <Button onClick={logout} endIcon={<LogoutIcon />}>
+            Log out
           </Button>
         </div>
+<div className="fortune"><img width="auto" height="400px" src={fortune} /></div>
+        <div className="block">
+          <div className="container">
+            <TextField
+              type="date"
+              onChange={(event) => {
+                disp(event);
+              }}
+            />
+            <Button onClick={check} variant="contained">
+              Start Test
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  };
+
+
 export default StudentDashboard;

@@ -15,7 +15,7 @@ import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 
-const url = "localhost";
+const url = window.location.hostname;
 
 const api = axios.create({
   baseURL: `http://${url}:8000`,
@@ -58,7 +58,7 @@ function App() {
             <Route path="/instructions" element={<Instructions url={url} />} />
             <Route path="/sections" element={<Sections url={url} />} />
             <Route path="/questions" element={<QuestionDisplay url={url} />} />
-            <Route path="/summary" element={<Summary url={url} />} />
+            <Route path="/summary" element={<Summary url={url} logout={logout} />} />
           </Routes>
         </Router>
       );
@@ -73,10 +73,6 @@ function App() {
             <Route
               path="/upload"
               element={<UploadFile logout={logout} url={url} />}
-            />
-            <Route
-              path="/displaydata"
-              element={<DisplayData logout={logout} url={url} />}
             />
             <Route path="/result" element={<Result url={url} />} />
           </Routes>

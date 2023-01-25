@@ -43,6 +43,21 @@ function Question({ answers, questions, section, tid, url }) {
     console.log(e.key);
   };
 
+  const saveAns = () => {
+    const answer = JSON.stringify(answers);
+    sessionStorage.setItem(`${section}`, answer);
+    window.location.pathname = "/sections";
+  }
+
+  useEffect(() => {
+   const  min = window.sessionStorage.getItem("min")
+   const  sec = window.sessionStorage.getItem("sec")
+
+    if (min === 0 & sec === 0) {
+      saveAns()
+    }
+  })
+
   return (
     <div className="question">
       <div className="user-container">
@@ -113,9 +128,8 @@ function Question({ answers, questions, section, tid, url }) {
             variant="contained"
             color="secondary"
             onClick={() => {
-              const answer = JSON.stringify(answers);
-              sessionStorage.setItem(`${section}`, answer);
-              window.location.pathname = "/sections";
+              saveAns()
+
             }}
           >
             Next Section

@@ -14,16 +14,7 @@ function Navbar({ url }) {
     baseURL: `http://${url}:8000`,
   });
 
- let host = () =>{
-  let tid = prompt("Please enter the TestId:","PEC");
-  let res = api.put("qn/", {  tid: tid }).then(() => {
-    alert("The test is Hosted");
-  })
-  .catch(err => {
-    alert("Invalid")
-  })
-  ;
- }
+ 
 
 let logout = () => {
   window.localStorage.clear();
@@ -49,19 +40,7 @@ let logout = () => {
       >
         Upload
       </Button>
-      <Button
-        variant="none"
-        onClick={() => {
-          window.location.pathname = "/displaydata";
-        }}
-      >
-        Results
-      </Button>
-
-      <Button onClick={host} variant="none" >
-        HOST
-      </Button>
-
+      
       <Button onClick={logout} variant="none" endIcon={<LogoutIcon />}>
         Logout
       </Button>

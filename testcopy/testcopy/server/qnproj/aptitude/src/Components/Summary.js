@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Summary.css";
 import Divider from "@mui/material/Divider";
-import { Tab } from "@mui/material";
+import { Button, Tab } from "@mui/material";
 import axios from "axios";
 // import Button from "@mui/material/Button";
 
 
-function Summary({url}) {
+function Summary({ url, logout }) {
 
   const api = axios.create({
     baseURL: `http://${url}:8000`,
@@ -17,6 +17,10 @@ function Summary({url}) {
   useEffect(() => {
     setResults(JSON.parse(window.sessionStorage.getItem("marks")));
   }, []);
+
+  const gotohome = () => {
+    window.location.pathname = "/"
+  }
   return (
     <div className="summary">
       <div className="heading">
@@ -87,6 +91,10 @@ function Summary({url}) {
           </div>
         </div>
       </div>
+      <div className="submit_button"><Button onClick={() => {
+        gotohome()
+        logout()
+      }} variant="contained">submit</Button></div>
     </div>
   );
 }

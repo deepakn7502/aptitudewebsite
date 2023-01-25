@@ -15,7 +15,7 @@ import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 
-const url = "localhost";
+const url = window.location.hostname;
 
 const api = axios.create({
   baseURL: `http://${url}:8000`,

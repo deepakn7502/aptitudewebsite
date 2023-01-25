@@ -37,15 +37,8 @@ function StudentDashboard({ logout, url }) {
       .catch((error) => {
         console.log("Select Valid Date");
       });
-    const log = async (e) => {
-      try {
-        const res = await api.post("check/", { tid: tid });
-        window.location.pathname = "/instructions";
-      } catch (error) {
-        alert(error);
-      }
-    };
-
+    
+    }
     return (
       <div className="student">
         <div className="nav">
@@ -69,5 +62,6 @@ function StudentDashboard({ logout, url }) {
       </div>
     );
   };
-}
+
+
 export default StudentDashboard;

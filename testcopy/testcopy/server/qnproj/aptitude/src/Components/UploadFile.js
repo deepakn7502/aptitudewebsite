@@ -36,10 +36,10 @@ function UploadFile({ logout, url }) {
       localStorage.setItem("testid", tid);
       alert(JSON.stringify(res.data));
     })
-    .catch(err => {
-      alert("Invalid Format")
-    })
-    ;
+      .catch(err => {
+        alert("Invalid Format")
+      })
+      ;
   };
 
   let setTestID = (e) => {
@@ -56,6 +56,20 @@ function UploadFile({ logout, url }) {
     setid("PEC" + day + mon);
   };
 
+  const displaytext1 = () => {
+    if (imgs) {
+      return <div><span>{imgs?.length}</span><span>SELECTED</span></div>
+    } else
+      return <div></div>
+  }
+
+  const displaytext2 = () => {
+    if (ans) {
+      return <div><span>ANSWERS UPLOADED</span></div>
+    } else
+      return <div></div>
+  }
+
   return (
     <div className="upload">
       <Navbar logout={logout} />
@@ -64,7 +78,7 @@ function UploadFile({ logout, url }) {
         <label>ENTER THE DATE:</label>
         <TextField type="date" onChange={(e) => setTestID(e)} />
         <label>CHOOSE FILES TO BE UPLOADED:</label>
-        
+
         {/* <FormLabel>Questions</FormLabel> */}
         <Button variant="contained" component="label">
           Questions
@@ -77,7 +91,7 @@ function UploadFile({ logout, url }) {
             required
           />
         </Button>
-        {/* <FormLabel>Answer</FormLabel> */}
+        {displaytext1()}
         <Button variant="contained" component="label">
           Answer
           <input
@@ -87,6 +101,7 @@ function UploadFile({ logout, url }) {
             required
           />
         </Button>
+        {displaytext2()}
         <div className="uploadbtn">
           <Button
             variant="contained"

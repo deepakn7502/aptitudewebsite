@@ -105,5 +105,9 @@
   justify-content: center;
   line-height: 35px;
 }
-.divider {
+.submit_button{
+  position:fixed ;
+  right: 0;
+  bottom: 0;
+  margin: 30px;
 }

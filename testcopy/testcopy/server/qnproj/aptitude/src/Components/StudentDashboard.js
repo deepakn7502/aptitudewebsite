@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./StudentDashboard.css";
 import axios from "axios";
+import fortune from "../Images/fortune_500.jpeg"
 
 function StudentDashboard({ logout, url }) {
   const api = axios.create({
@@ -35,7 +36,7 @@ function StudentDashboard({ logout, url }) {
         window.location.pathname = "/instructions";
       })
       .catch((error) => {
-        console.log("Select Valid Date");
+        alert(error.message);
       });
     
     }
@@ -46,6 +47,7 @@ function StudentDashboard({ logout, url }) {
             Log out
           </Button>
         </div>
+<div className="fortune"><img width="auto" height="400px" src={fortune} /></div>
         <div className="block">
           <div className="container">
             <TextField

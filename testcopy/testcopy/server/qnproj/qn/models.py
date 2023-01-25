@@ -28,9 +28,6 @@ class question(models.Model):
     ans=models.CharField(max_length=2,null=True)
 
     
-class tests(models.Model):
-     testid= models.CharField(max_length=20,null=True)
-     status=models.IntegerField(default=0)
 
 
 class customuser(AbstractUser):

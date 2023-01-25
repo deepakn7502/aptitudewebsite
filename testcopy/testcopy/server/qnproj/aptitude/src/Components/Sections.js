@@ -36,9 +36,9 @@ function Sections({ url }) {
     let res = api
       .post("validate/", {
         username: user.username,
-        dept : user.dept ,
+        dept: user.dept,
         year: user.year,
-        tid : tid,
+        tid: tid,
         sec: user.sec,
         ans1: answers1,
         ans2: answers2,
@@ -82,6 +82,25 @@ function Sections({ url }) {
 
         <div className="card">
           <div className="conehead">
+            <h2>VERBAL</h2>
+          </div>
+          <div className="column three">
+            <div className="session"></div>
+
+            <div className="content">
+              <div className="con"></div>
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              setSection("section2");
+            }}
+          >
+            START
+          </button>
+        </div>
+        <div className="card">
+          <div className="conehead">
             <h2>TECHNICAL</h2>
           </div>
           <div className="column two">
@@ -95,26 +114,6 @@ function Sections({ url }) {
           </div>
           <button
             onClick={() => {
-              setSection("section2");
-            }}
-          >
-            START
-          </button>
-        </div>
-
-        <div className="card">
-          <div className="conehead">
-            <h2>VERBAL</h2>
-          </div>
-          <div className="column three">
-            <div className="session"></div>
-
-            <div className="content">
-              <div className="con"></div>
-            </div>
-          </div>
-          <button
-            onClick={() => {
               setSection("section3");
             }}
           >
@@ -122,6 +121,9 @@ function Sections({ url }) {
           </button>
         </div>
       </div>
+
+
+
       <div className="end-test">
         <Button
           variant="contained"

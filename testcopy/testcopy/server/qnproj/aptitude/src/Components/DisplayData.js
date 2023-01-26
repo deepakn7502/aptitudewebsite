@@ -12,73 +12,70 @@ function DisplayData({ logout, url }) {
   });
 
   const [data, setData] = useState();
+  const [tid, setTestID] = useState("");
+  const [dept, setDept] = useState("");
+  const [year, setYear] = useState("");
+  const [sec, setSec] = useState("");
 
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
   const fileExtension = ".xlsx";
 
-  useEffect(() => {
-    let disp = async (e) => {
-      let res = await api.get("rst/").then((res) => {
+  // useEffect(() => {
+  //   let disp = async (e) => {
+  //     let res = await api.get("rst/").then((res) => {
+  //       setData(res.data);
+  //     });
+  //   };
+  //   disp();
+  // }, []);
+
+
+  let filter = async () => {
+    let res = await api
+      .post("search/", {
+        tid: tid,
+        dept: dept,
+        sec: sec,
+        year: year,
+      })
+      .then((res) => {
         setData(res.data);
+        // console.log(res.data);
       });
-    };
-    disp();
-  }, []);
+  };
 
-  // const displayData = data?.map((data) => {
-  //   return (
-  //     <tr>
-  //       <td>{data.username}</td>
-  //       <td>{data.sec1}</td>
-  //       <td>{data.sec2}</td>
-  //       <td>{data.sec3}</td>
-  //     </tr>
-  //   );
-  // });
-
-<<<<<<< HEAD
-  // let search = async () => {
-  //   let res = await api.post("search/", {
-  //     tid:tid,
-  //     dept:dept,
-  //     sec:sec,
-  //     year:year
-  //   }).then((res) => {
-  //     setData(res.data);
-  //     console.log(res.data);
-  //   });
-  // };
-
-=======
->>>>>>> f235e2f3c7ffaae457d10c91d45a7502aac7de28
-  let exportToExcel = async () => {
-    let res = api.get("rst/PEC2211/").then((res) => {
-      console.log(res.data);
-      const ws = XLSX.utils.json_to_sheet(res.data);
-
-      const wb = { Sheets: { PEC2211: ws }, SheetNames: ["PEC2211"] };
-
-      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-      const data = new Blob([excelBuffer], { type: fileType });
-
-      FileSaver.saveAs(data, "sample-result" + fileExtension);
+  let search = async () => {
+    let res = await api.get("rst/", tid, "/").then((res) => {
+      setData(res.data);
     });
   };
 
-  const [testid, setTestID] = useState("");
-  const [dept, setDept] = useState("");
-  const [year, setYear] = useState("");
-  const [sec, setSec] = useState("");
+let exporttoexcel = () => {
+
+  const ws = XLSX.utils.json_to_sheet(data);
+
+  const wb = { Sheets: { tid: ws }, SheetNames: [tid] };
+
+  const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+  const data = new Blob([excelBuffer], { type: fileType });
+
+  const fname = tid + dept + year + sec;
+  FileSaver.saveAs(data, fname + fileExtension);
+}
+
 
   const displayData = data?.map((data) => {
     return (
       <tr>
         <td>{data.username}</td>
-        <td>testid</td>
+        <td>{data.rollno}</td>
+        <td>{data.name}</td>
+        {/* <td>{tid}</td> */}
         <td>{data.sec1}</td>
         <td>{data.sec2}</td>
         <td>{data.sec3}</td>
+        <td>{data.total}</td>
       </tr>
     );
   });
@@ -88,8 +85,14 @@ function DisplayData({ logout, url }) {
       <Navbar logout={logout} />
       <div className="input-fields">
         <div className="input">
-          <TextField type="text" label="Test ID" />
-          <Button>Search</Button>
+          <TextField
+            type="text"
+            label="Test ID"
+            onChange={(e) => {
+              setTestID(e.target.value);
+            }}
+          />
+          <Button onClick={search}>Search</Button>
         </div>
         <div className="input">
           <TextField
@@ -113,7 +116,7 @@ function DisplayData({ logout, url }) {
               setSec(e.target.value);
             }}
           />
-          <Button>Filter</Button>
+          <Button onClick={filter}>Filter</Button>
         </div>
       </div>
       <div className="table">
@@ -130,7 +133,7 @@ function DisplayData({ logout, url }) {
       </div>
       <br />
 
-      <Button >Download Pdf</Button>
+      <Button onClick={exporttoexcel}>Download Pdf</Button>
     </div>
   );
 }

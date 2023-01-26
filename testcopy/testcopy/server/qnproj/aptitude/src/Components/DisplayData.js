@@ -37,6 +37,7 @@ function DisplayData({ logout, url }) {
   //   );
   // });
 
+<<<<<<< HEAD
   // let search = async () => {
   //   let res = await api.post("search/", {
   //     tid:tid,
@@ -49,6 +50,8 @@ function DisplayData({ logout, url }) {
   //   });
   // };
 
+=======
+>>>>>>> f235e2f3c7ffaae457d10c91d45a7502aac7de28
   let exportToExcel = async () => {
     let res = api.get("rst/PEC2211/").then((res) => {
       console.log(res.data);
@@ -62,6 +65,11 @@ function DisplayData({ logout, url }) {
       FileSaver.saveAs(data, "sample-result" + fileExtension);
     });
   };
+
+  const [testid, setTestID] = useState("");
+  const [dept, setDept] = useState("");
+  const [year, setYear] = useState("");
+  const [sec, setSec] = useState("");
 
   const displayData = data?.map((data) => {
     return (
@@ -79,9 +87,33 @@ function DisplayData({ logout, url }) {
     <div className="display-data">
       <Navbar logout={logout} />
       <div className="input-fields">
-        <TextField type="text" label="Test ID" />
-        <div>
-          <TextField />
+        <div className="input">
+          <TextField type="text" label="Test ID" />
+          <Button>Search</Button>
+        </div>
+        <div className="input">
+          <TextField
+            type="text"
+            label="Department"
+            onChange={(e) => {
+              setDept(e.target.value);
+            }}
+          />
+          <TextField
+            type="text"
+            label="Year"
+            onChange={(e) => {
+              setYear(e.target.value);
+            }}
+          />
+          <TextField
+            type="text"
+            label="Section"
+            onChange={(e) => {
+              setSec(e.target.value);
+            }}
+          />
+          <Button>Filter</Button>
         </div>
       </div>
       <div className="table">

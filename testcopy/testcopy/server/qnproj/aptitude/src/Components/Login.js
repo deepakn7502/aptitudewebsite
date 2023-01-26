@@ -25,7 +25,7 @@ function Login({url}) {
       setUser(foundUser);
     }
   }, []);
-  
+
 
   const log = async (e) => {
     try {

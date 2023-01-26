@@ -119,13 +119,13 @@ class qndisp(generics.ListAPIView):
 class resdisp(APIView):
     def post(self,request):
       data=request.data
-      cursor.execute("SELECT * FROM {tid} WHERE dept='{dept}' and sec='{sec}'".format(**data))
-      res=cursor.fetchall()
-      result=[]
-      headers=["Username","Aptitude","Technical","Verbal","Total","Department","Section"]
-      for i in res:
-         result+=[{headers[j]:i[j] for j in range(len(i))}]
-      return  Response(result)
+      cursor.execute("SELECT * FROM {tid} ".format(**data))
+      # res=cursor.fetchall()
+      # result=[]
+      # headers=["Username","Aptitude","Technical","Verbal","Total","Department","Section"]
+      # for i in res:
+      #    result+=[{headers[j]:i[j] for j in range(len(i))}]
+      return  Response(cursor.fetchall())
 
  
  

@@ -46,8 +46,9 @@ function DisplayData({ logout, url }) {
   };
 
   let search = async () => {
-    let res = await api.get("rst/", tid, "/").then((res) => {
+    let res = await api.post("rst/",{ tid : tid}).then((res) => {
       setData(res.data);
+      // console.log(res.data);
     });
   };
 
@@ -65,20 +66,7 @@ let exporttoexcel = () => {
 }
 
 
-  const displayData = data?.map((data) => {
-    return (
-      <tr>
-        <td>{data.username}</td>
-        <td>{data.rollno}</td>
-        <td>{data.name}</td>
-        {/* <td>{tid}</td> */}
-        <td>{data.sec1}</td>
-        <td>{data.sec2}</td>
-        <td>{data.sec3}</td>
-        <td>{data.total}</td>
-      </tr>
-    );
-  });
+  // const displayData = {}
 
   return (
     <div className="display-data">
@@ -121,14 +109,37 @@ let exporttoexcel = () => {
       </div>
       <div className="table">
         <table>
+        <thead>
           <tr>
             <th>Register Number</th>
+            <th>Roll No</th>
+            <th>Name</th>
             <th>Department</th>
             <th>Section</th>
 
             <th colSpan="3">Marks</th>
+            <th>Total</th>
           </tr>
-          {/* {displayData} */}
+          </thead>
+          <tbody>
+          {
+             data?.map((data) => {
+              return (
+                <tr key={data.username}>
+                  <td>{data.username}</td>
+                  <td>{data.rollno}</td>
+                  <td>{data.name}</td>
+                  {/* <td>{tid}</td> */}
+                  <td>{data.sec1}</td>
+                  <td>{data.sec2}</td>
+                  <td>{data.sec3}</td>
+                  <td>{data.total}</td>
+                </tr>
+              )
+              })
+          }
+          </tbody>
+          
         </table>
       </div>
       <br />

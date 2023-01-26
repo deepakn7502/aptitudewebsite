@@ -145,7 +145,7 @@ function Result({ url }) {
           onChange={(e) => {
             setYear(e.target.value);
           }}
-          helperText="Please select your year of study"
+          helperText="DEPARTMENT"
         >
           {years.map((option) => (
             <MenuItem key={option.value} value={option.value}>

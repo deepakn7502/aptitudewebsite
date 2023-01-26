@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./DisplayData.css";
 import axios from "axios";
-import { Button, TextField } from "@mui/material";
+import { Button,MenuItem, TextField } from "@mui/material";
 import Navbar from "./Navbar";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
@@ -9,6 +9,92 @@ import {
   DownloadTableExcel,
   useDownloadExcel,
 } from "react-export-table-to-excel";
+
+const departments = [
+  {
+    value: "CSE",
+    label: "CSE",
+  },
+  {
+    value: "ECE",
+    label: "ECE",
+  },
+  {
+    value: "EEE",
+    label: "EEE",
+  },
+  {
+    value: "IT",
+    label: "IT",
+  },
+  {
+    value: "ME",
+    label: "ME",
+  },
+  {
+    value: "AIDS",
+    label: "AIDS",
+  },
+  {
+    value: "EI",
+    label: "EI",
+  },
+  {
+    value: "CSBS",
+    label: "CSBS",
+  },
+  {
+    value: "CCE",
+    label: "CCE",
+  },
+  {
+    value: "CIVIL",
+    label: "CIVIL",
+  },
+];
+const years = [
+  {
+    value: "I",
+    label: "I",
+  },
+  {
+    value: "II",
+    label: "II",
+  },
+  {
+    value: "III",
+    label: "III",
+  },
+  {
+    value: "IV",
+    label: "IV",
+  },
+];
+const section = [
+  {
+    value: "A",
+    label: "A",
+  },
+  {
+    value: "B",
+    label: "B",
+  },
+  {
+    value: "C",
+    label: "C",
+  },
+  {
+    value: "D",
+    label: "D",
+  },
+  {
+    value: "E",
+    label: "E",
+  },
+];
+
+
+
 
 function DisplayData({ logout, url }) {
   const api = axios.create({
@@ -51,24 +137,17 @@ function DisplayData({ logout, url }) {
   let search = async () => {
     let res = await api.post("rst/", { tid: tid }).then((res) => {
       setData(res.data);
-<<<<<<< HEAD
-      console.log("Done");
+ 
     });
   };
 
-let exporttoexcel = () => {
-  // console.log("Data:",data)
-  const ws = XLSX.utils.json_to_sheet(data);
-=======
-      console.log(res.data);
-    });
-  };
+
+  
 
   // let exporttoexcel = () => {
   //   const ws = XLSX.utils.json_to_sheet(data);
 
   //   const wb = { Sheets: { tid: ws }, SheetNames: [tid] };
->>>>>>> 4c0a8e684964213c0d261f8d25c60a8de95e911e
 
   //   const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
   //   const exportdata = new Blob([excelBuffer], { type: fileType });
@@ -100,27 +179,51 @@ let exporttoexcel = () => {
           <Button onClick={search}>Search</Button>
         </div>
         <div className="input">
-          <TextField
-            type="text"
-            label="Department"
-            onChange={(e) => {
-              setDept(e.target.value);
-            }}
-          />
-          <TextField
-            type="text"
-            label="Year"
-            onChange={(e) => {
-              setYear(e.target.value);
-            }}
-          />
-          <TextField
-            type="text"
-            label="Section"
-            onChange={(e) => {
-              setSec(e.target.value);
-            }}
-          />
+        <TextField
+          select
+          label="Department"
+          value={dept}
+          onChange={(e) => {
+            setDept(e.target.value);
+          }}
+          helperText="DEPARTMENT"
+          >
+          {departments.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+         <TextField
+          select
+          label="Year"
+          value={year}
+          onChange={(e) => {
+            setYear(e.target.value);
+          }}
+          helperText="YEAR"
+        >
+          {years.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          select
+          label="Section"
+          value={sec}
+          onChange={(e) => {
+            setSec(e.target.value);
+          }}
+          helperText="SECTION"
+        >
+          {section.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
           <Button onClick={filter}>Filter</Button>
         </div>
       </div>
@@ -161,20 +264,17 @@ let exporttoexcel = () => {
       </div>
       <br />
 
-<<<<<<< HEAD
-      <Button onClick={exporttoexcel}>Download</Button>
-=======
-      <Button onClick={onDownload}>Download Pdf</Button>
-      {/* <DownloadTableExcel
-        filename="users table"
-        sheet="users"
+      {/* <Button onClick={exporttoexcel}>Download</Button> */}
+     
+      <DownloadTableExcel
+        filename={tid+"-"+dept+"-"+year+"-"+sec}
+        sheet={tid}
         currentTableRef={tableRef.current}
       >
-        <Button>Download Pdf</Button>
-      </DownloadTableExcel> */}
->>>>>>> 4c0a8e684964213c0d261f8d25c60a8de95e911e
+        <Button>Download EXCEL</Button>
+      </DownloadTableExcel>
     </div>
   );
-}
 
+    };
 export default DisplayData;

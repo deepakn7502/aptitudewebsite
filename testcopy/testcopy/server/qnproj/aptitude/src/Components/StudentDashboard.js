@@ -38,7 +38,7 @@ function StudentDashboard({ logout, url }) {
         window.location.pathname = "/instructions";
       })
       .catch((error) => {
-        alert(error.response);
+        alert(error);
       });
     
     }

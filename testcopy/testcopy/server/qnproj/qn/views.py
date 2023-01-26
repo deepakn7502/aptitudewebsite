@@ -103,7 +103,7 @@ class check(APIView):
             raise Exception("Aldready writen")
          return Response("Success")
       else:
-          raise Exception({"message":"Select valid date"})
+          raise Exception("Select valid date")
 
 
 class qndisp(generics.ListAPIView):
@@ -178,7 +178,12 @@ class search(APIView):
          str+=" AND sec='{}'".format(data["sec"])
       str += ";"
       cursor.execute(str)
-      return Response(cursor.fetchall())
+      res=cursor.fetchall()
+      result=[]
+      headers=["username","rollno","name","department","year","section","aptitude","technical","verbal","total"]
+      for i in res:
+         result+=[{headers[j]:i[j] for j in range(len(i))}]
+      return Response(result)
 
 '''
 {

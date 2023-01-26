@@ -17,11 +17,9 @@ import QuestionDisplay from "./Components/QuestionDisplay";
 
 const url = window.location.hostname;
 
-
 const api = axios.create({
   baseURL: `http://${url}:8000`,
 });
-
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -47,6 +45,27 @@ function App() {
       window.location.pathname = "/";
     });
   };
+
+  //code to disable inspect
+
+  useEffect(() => {
+    document.addEventListener(
+      "keydown",
+      (e) => e.preventDefault(),
+      detectKeydown,
+      true
+    );
+
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
+  }, []);
+
+  const detectKeydown = (e) => {
+    console.log("Clicked", e.key);
+
+    if (e.key === "Enter") {
+      return false;
+    }
+  };
   if (user) {
     if (user === "student") {
       return (
@@ -59,7 +78,10 @@ function App() {
             <Route path="/instructions" element={<Instructions url={url} />} />
             <Route path="/sections" element={<Sections url={url} />} />
             <Route path="/questions" element={<QuestionDisplay url={url} />} />
-            <Route path="/summary" element={<Summary url={url} logout={logout} />} />
+            <Route
+              path="/summary"
+              element={<Summary url={url} logout={logout} />}
+            />
           </Routes>
         </Router>
       );
@@ -67,13 +89,14 @@ function App() {
       return (
         <Router>
           <Routes>
-            <Route
-              path="/"
-              element={<AdminDashboard  url={url} />}
-            />
+            <Route path="/" element={<AdminDashboard url={url} />} />
             <Route
               path="/upload"
               element={<UploadFile logout={logout} url={url} />}
+            />
+            <Route
+              path="/displaydata"
+              element={<DisplayData logout={logout} url={url} />}
             />
             <Route path="/result" element={<Result url={url} />} />
           </Routes>

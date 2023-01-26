@@ -12,7 +12,6 @@
 .login-container {
   
   height: 600px;
-  background-color: rgb(4, 4, 111,0.8);
   width: 90%;
   max-width: 410px;
   display: flex;

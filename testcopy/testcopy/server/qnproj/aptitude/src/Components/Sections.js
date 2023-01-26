@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./Sections.css";
 import axios from "axios";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Timer } from "../Functions/Functions";
 
 function Sections({ url }) {
   const api = axios.create({
@@ -25,7 +24,6 @@ function Sections({ url }) {
     setUser(JSON.parse(window.localStorage.getItem("student")));
   }, []);
 
-  Timer();
 
   const setSection = (value) => {
     window.sessionStorage.setItem("section", value);

@@ -11,6 +11,7 @@ function Navbar({ url }) {
 
   let logout = () => {
     window.localStorage.clear();
+    window.sessionStorage.clear();
     window.location.pathname = "/";
   };
 

@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Summary.css";
 import Divider from "@mui/material/Divider";
-import { Button, Tab } from "@mui/material";
-import axios from "axios";
-// import Button from "@mui/material/Button";
+import { Button } from "@mui/material";
 
-
-function Summary({ url, logout }) {
-
-  const api = axios.create({
-    baseURL: `http://${url}:8000`,
-  });
-
+function Summary({ logout }) {
   const [results, setResults] = useState();
 
   useEffect(() => {
@@ -19,8 +11,8 @@ function Summary({ url, logout }) {
   }, []);
 
   const gotohome = () => {
-    window.location.pathname = "/"
-  }
+    window.location.pathname = "/";
+  };
   return (
     <div className="summary">
       <div className="heading">
@@ -91,10 +83,17 @@ function Summary({ url, logout }) {
           </div>
         </div>
       </div>
-      <div className="submit_button"><Button onClick={() => {
-        gotohome()
-        logout()
-      }} variant="contained">submit</Button></div>
+      <div className="submit_button">
+        <Button
+          onClick={() => {
+            logout();
+            gotohome();
+          }}
+          variant="contained"
+        >
+          submit
+        </Button>
+      </div>
     </div>
   );
 }

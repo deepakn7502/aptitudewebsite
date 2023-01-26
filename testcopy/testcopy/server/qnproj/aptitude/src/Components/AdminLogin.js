@@ -40,8 +40,17 @@ function AdminLogin({ url }) {
       localStorage.setItem("staff", res.data);
       window.location.pathname = "/";
     } catch (error) {
-      window.location.pathname = "/adminlogin";
       alert("Invalid login");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", detectKeydown, true);
+  }, []);
+
+  const detectKeydown = (e) => {  
+    if (e.key === "Enter") {
+      log();
     }
   };
 

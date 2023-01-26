@@ -38,6 +38,7 @@ function Sections({ url }) {
         username: user.username,
         dept: user.dept,
         year: user.year,
+        
         tid: tid,
         sec: user.sec,
         ans1: answers1,

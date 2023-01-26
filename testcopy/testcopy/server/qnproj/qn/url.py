@@ -23,7 +23,7 @@ urlpatterns = [
     path(r"qn/",img_up,name='img_up'),
     path(r"rst/",resdisp.as_view()),
     path(r"validate/",validate.as_view()),
-
+    path(r"search/",search.as_view()),
 ]
 
 

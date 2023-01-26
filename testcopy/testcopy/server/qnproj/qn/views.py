@@ -22,7 +22,7 @@ class register(viewsets.ModelViewSet):
 class login(APIView):
    def auth(self,username,password):
       try:
-         user=list(stud.objects.filter(username=username,password=password,is_active=0).values('username','rollno','year','sec','dept'))[0]
+         user=list(stud.objects.filter(username=username,password=password,is_active=0).values('username','','','rollno','year','sec','dept'))[0]
          return user
       except:
          return None
@@ -166,3 +166,24 @@ class validate(APIView):
       stud.objects.filter(username=data["username"]).update(test=res)
       return Response({"mark1":data["m1"],"mark2":data["m2"],"mark3":data["m3"]})
  
+class search(APIView):
+   def post(self,request):
+      data=request.data
+      str="SELECT * FROM {}".format(data["tid"])
+      if(data["dept"]):
+         str+=" WHERE dept='{}'".format(data["dept"])
+      if(data["year"]):
+         str+=" AND year='{}'".format(data["year"])
+      if(data["sec"]):
+         str+=" AND sec='{}'".format(data["sec"])
+      str += ";"
+      cursor.execute(str)
+      return Response(cursor.fetchall())
+
+'''
+{
+"tid":"PEC2501",
+"dept":"CSE",
+"sec":"E"
+}
+'''

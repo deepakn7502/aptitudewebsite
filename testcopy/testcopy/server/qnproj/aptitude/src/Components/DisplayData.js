@@ -152,9 +152,12 @@ function DisplayData({ logout, url }) {
   };
 
   // let exporttoexcel = () => {
+
+  // let exporttoexcel = async (e) => {
+
   //   const ws = XLSX.utils.json_to_sheet(data);
 
-  //   const wb = { Sheets: { tid: ws }, SheetNames: [tid] };
+  //   const wb = { Sheets: { "Sheet1": ws }, SheetNames: ["Sheet1"] };
 
   //   const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
   //   const exportdata = new Blob([excelBuffer], { type: fileType });
@@ -234,44 +237,55 @@ function DisplayData({ logout, url }) {
           <Button onClick={filter}>Filter</Button>
         </div>
       </div>
-      <div className="table">
-        <table ref={tableRef}>
-          <tr>
-            <th rowSpan="2">Register Number</th>
-            <th rowSpan="2">Roll No</th>
-            <th rowSpan="2">Name</th>
-            <th rowSpan="2">Department</th>
-            <th rowSpan="2">Year</th>
-            <th rowSpan="2">Section</th>
-            <th colSpan="3">Marks</th>
-            <th rowSpan="2">Total</th>
-          </tr>
-          <tr>
-            <th>Aptitude</th>
-            <th>Verbal</th>
-            <th>Technical</th>
-          </tr>
-          {data?.map((data) => {
-            return (
-              <tr key={data.username}>
-                <td>{data.username}</td>
-                <td>{data.rollno}</td>
-                <td>{data.name}</td>
-                <td>{data.department}</td>
-                <td>{data.year}</td>
-                <td>{data.section}</td>
-                <td>{data.aptitude}</td>
-                <td>{data.verbal}</td>
-                <td>{data.technical}</td>
-                <td>{data.total}</td>
-              </tr>
-            );
-          })}
+      <div className="table" ref={tableRef}>
+        <table>
+          <thead>
+            <tr>PANIMALAR ENGINNERRING COLLEGE</tr>
+            <h2>PLACEMENT DEPARTMENT</h2>
+            <h3>Test </h3>
+            <h4>TESTID:{tid}</h4>
+            <h5>CLASS:{year + "-" + dept + "-" + sec}</h5>
+
+            <tr>
+              <th rowSpan="2">Register Number</th>
+              <th rowSpan="2">Roll No</th>
+              <th rowSpan="2">Name</th>
+              <th rowSpan="2">Department</th>
+              <th rowSpan="2">Year</th>
+              <th rowSpan="2">Section</th>
+              <th colSpan="3">Marks</th>
+              <th rowSpan="2">Total</th>
+            </tr>
+            <tr>
+              <th>Aptitude</th>
+              <th>Verbal</th>
+              <th>Technical</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((data) => {
+              return (
+                <tr key={data.username}>
+                  <td>{data.username}</td>
+                  <td>{data.rollno}</td>
+                  <td>{data.name}</td>
+                  <td>{data.department}</td>
+                  <td>{data.year}</td>
+                  <td>{data.section}</td>
+                  <td>{data.aptitude}</td>
+                  <td>{data.verbal}</td>
+                  <td>{data.technical}</td>
+                  <td>{data.total}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
       <br />
-
       {/* <Button onClick={exporttoexcel}>Download</Button> */}
+
+      {/* <Button onClick={exporttoexcel}>Download EXCEL</Button> */}
 
       <DownloadTableExcel
         filename={tid + "-" + dept + "-" + year + "-" + sec}

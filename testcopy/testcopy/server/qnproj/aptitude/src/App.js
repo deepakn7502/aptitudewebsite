@@ -14,6 +14,7 @@ import StudentDashboard from "./Components/StudentDashboard";
 import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
+import Practice from "./Components/Practics";
 
 const url = window.location.hostname;
 
@@ -97,6 +98,10 @@ function App() {
             <Route
               path="/displaydata"
               element={<DisplayData logout={logout} url={url} />}
+            />
+            <Route
+              path="/practice"
+              element={<Practice logout={logout} url={url} />}
             />
             <Route path="/result" element={<Result url={url} />} />
           </Routes>

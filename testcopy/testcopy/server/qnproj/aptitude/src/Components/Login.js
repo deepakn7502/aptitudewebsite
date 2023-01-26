@@ -8,8 +8,7 @@ import { Divider, InputAdornment } from "@mui/material";
 import axios from "axios";
 // import { Divider} from "antd";
 
-
-function Login({url}) {
+function Login({ url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });
@@ -25,7 +24,6 @@ function Login({url}) {
       setUser(foundUser);
     }
   }, []);
-  
 
   const log = async (e) => {
     try {
@@ -36,8 +34,19 @@ function Login({url}) {
       localStorage.setItem("student", student);
       window.location.pathname = "/";
     } catch (error) {
-      window.location.pathname = "/login";
       alert("Invalid Login");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", detectKeydown, true);
+  }, []);
+
+  const detectKeydown = (e) => {
+    console.log("Clicked", e.key);
+
+    if (e.key === "Enter") {
+      log();
     }
   };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./DisplayData.css";
 import axios from "axios";
-import { Button,MenuItem, TextField } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
 import Navbar from "./Navbar";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
@@ -93,9 +93,6 @@ const section = [
   },
 ];
 
-
-
-
 function DisplayData({ logout, url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
@@ -137,17 +134,14 @@ function DisplayData({ logout, url }) {
   let search = async () => {
     let res = await api.post("rst/", { tid: tid }).then((res) => {
       setData(res.data);
- 
     });
   };
 
+  // let exporttoexcel = async (e) => {
 
-  
-
-  // let exporttoexcel = () => {
   //   const ws = XLSX.utils.json_to_sheet(data);
-
-  //   const wb = { Sheets: { tid: ws }, SheetNames: [tid] };
+    
+  //   const wb = { Sheets: { "Sheet1": ws }, SheetNames: ["Sheet1"] };
 
   //   const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
   //   const exportdata = new Blob([excelBuffer], { type: fileType });
@@ -179,56 +173,63 @@ function DisplayData({ logout, url }) {
           <Button onClick={search}>Search</Button>
         </div>
         <div className="input">
-        <TextField
-          select
-          label="Department"
-          value={dept}
-          onChange={(e) => {
-            setDept(e.target.value);
-          }}
-          helperText="DEPARTMENT"
+          <TextField
+            select
+            label="Department"
+            value={dept}
+            onChange={(e) => {
+              setDept(e.target.value);
+            }}
+            helperText="DEPARTMENT"
           >
-          {departments.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-         <TextField
-          select
-          label="Year"
-          value={year}
-          onChange={(e) => {
-            setYear(e.target.value);
-          }}
-          helperText="YEAR"
-        >
-          {years.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          select
-          label="Section"
-          value={sec}
-          onChange={(e) => {
-            setSec(e.target.value);
-          }}
-          helperText="SECTION"
-        >
-          {section.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+            {departments.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            select
+            label="Year"
+            value={year}
+            onChange={(e) => {
+              setYear(e.target.value);
+            }}
+            helperText="YEAR"
+          >
+            {years.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            select
+            label="Section"
+            value={sec}
+            onChange={(e) => {
+              setSec(e.target.value);
+            }}
+            helperText="SECTION"
+          >
+            {section.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <Button onClick={filter}>Filter</Button>
         </div>
       </div>
-      <div className="table">
-        <table ref={tableRef}>
+      <div className="table" ref={tableRef}>
+        <table >
+        <thead>
+           <h1>PANIMALAR ENGINNERRING COLLEGE</h1>
+           <h2>PLACEMENT DEPARTMENT</h2>
+           <h3>Test </h3>
+           <h4>TESTID:{tid}</h4>
+           <h5>CLASS:{year+'-'+dept+'-'+sec}</h5>
+           
           <tr>
             <th rowSpan="2">Register Number</th>
             <th rowSpan="2">Roll No</th>
@@ -244,6 +245,8 @@ function DisplayData({ logout, url }) {
             <th>Verbal</th>
             <th>Technical</th>
           </tr>
+          </thead>
+          <tbody>
           {data?.map((data) => {
             return (
               <tr key={data.username}>
@@ -260,13 +263,14 @@ function DisplayData({ logout, url }) {
               </tr>
             );
           })}
+          </tbody>
         </table>
       </div>
       <br />
 
-      {/* <Button onClick={exporttoexcel}>Download</Button> */}
-     
-      <DownloadTableExcel
+      {/* <Button onClick={exporttoexcel}>Download EXCEL</Button> */}
+
+       <DownloadTableExcel
         filename={tid+"-"+dept+"-"+year+"-"+sec}
         sheet={tid}
         currentTableRef={tableRef.current}
@@ -275,6 +279,5 @@ function DisplayData({ logout, url }) {
       </DownloadTableExcel>
     </div>
   );
-
-    };
+}
 export default DisplayData;

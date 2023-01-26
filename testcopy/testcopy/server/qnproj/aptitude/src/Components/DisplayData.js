@@ -3,7 +3,9 @@ import "./DisplayData.css";
 import axios from "axios";
 import { Button, MenuItem, TextField } from "@mui/material";
 import Navbar from "./Navbar";
-import * as FileSaver from "file-saver";
+// import * as FileSaver from "file-saver";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import XLSX from "sheetjs-style";
 import {
   DownloadTableExcel,
@@ -140,7 +142,7 @@ function DisplayData({ logout, url }) {
   // let exporttoexcel = async (e) => {
 
   //   const ws = XLSX.utils.json_to_sheet(data);
-    
+
   //   const wb = { Sheets: { "Sheet1": ws }, SheetNames: ["Sheet1"] };
 
   //   const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
@@ -149,6 +151,61 @@ function DisplayData({ logout, url }) {
   //   const fname = tid + dept + year + sec;
   //   FileSaver.saveAs(exportdata, fname + fileExtension);
   // };
+
+  let exportpdf = () => {
+    const unit = "pt";
+    const size = "A4"; // Use A1, A2, A3 or A4
+    const orientation = "portrait"; // portrait or landscape
+
+    const marginLeft = 40;
+    const doc = new jsPDF(orientation, unit, size);
+
+    doc.setFontSize(15);
+
+    const h1 =
+      "                           PANIMALAR ENGINERRING COLLEGE    ";
+    const h2 = "                                        APTITUDE TEST     ";
+    const h3 = "TESTID:" + tid;
+    const h4 = "CLASS:" + year + "-" + dept + "-" + sec;
+    const title=h1+"\n"+h2+"\n"+h3+"\n"+h4;
+    const headers = [
+      [
+        "username",
+        "rollno",
+        "name",
+        "department",
+        "year",
+        "section",
+        "aptitude",
+        "technical",
+        "verbal",
+        "total",
+      ],
+    ];
+
+    const exportdata = data.map((dt) => [
+      dt.username,
+      dt.rollno,
+      dt.name,
+      dt.department,
+      dt.year,
+      dt.section,
+      dt.aptitude,
+      dt.verbal,
+      dt.technical,
+      dt.total,
+    ]);
+
+    let content = {
+      startY: 100,
+      head: headers,
+      body: exportdata,
+    };
+
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(content);
+    doc.save(tid + ".pdf");
+  };
 
   const tableRef = useRef(null);
 
@@ -222,61 +279,61 @@ function DisplayData({ logout, url }) {
         </div>
       </div>
       <div className="table" ref={tableRef}>
-        <table >
-        <thead>
-           <h1>PANIMALAR ENGINNERRING COLLEGE</h1>
-           <h2>PLACEMENT DEPARTMENT</h2>
-           <h3>Test </h3>
-           <h4>TESTID:{tid}</h4>
-           <h5>CLASS:{year+'-'+dept+'-'+sec}</h5>
-           
-          <tr>
-            <th rowSpan="2">Register Number</th>
-            <th rowSpan="2">Roll No</th>
-            <th rowSpan="2">Name</th>
-            <th rowSpan="2">Department</th>
-            <th rowSpan="2">Year</th>
-            <th rowSpan="2">Section</th>
-            <th colSpan="3">Marks</th>
-            <th rowSpan="2">Total</th>
-          </tr>
-          <tr>
-            <th>Aptitude</th>
-            <th>Verbal</th>
-            <th>Technical</th>
-          </tr>
+        <table>
+          <thead>
+            <h1>PANIMALAR ENGINERRING COLLEGE</h1>
+            <h2>PLACEMENT DEPARTMENT</h2>
+            <h3>Test </h3>
+            <h4>TESTID:{tid}</h4>
+            <h5>CLASS:{year + "-" + dept + "-" + sec}</h5>
+
+            <tr>
+              <th rowSpan="2">Register Number</th>
+              <th rowSpan="2">Roll No</th>
+              <th rowSpan="2">Name</th>
+              <th rowSpan="2">Department</th>
+              <th rowSpan="2">Year</th>
+              <th rowSpan="2">Section</th>
+              <th colSpan="3">Marks</th>
+              <th rowSpan="2">Total</th>
+            </tr>
+            <tr>
+              <th>Aptitude</th>
+              <th>Verbal</th>
+              <th>Technical</th>
+            </tr>
           </thead>
           <tbody>
-          {data?.map((data) => {
-            return (
-              <tr key={data.username}>
-                <td>{data.username}</td>
-                <td>{data.rollno}</td>
-                <td>{data.name}</td>
-                <td>{data.department}</td>
-                <td>{data.year}</td>
-                <td>{data.section}</td>
-                <td>{data.aptitude}</td>
-                <td>{data.verbal}</td>
-                <td>{data.technical}</td>
-                <td>{data.total}</td>
-              </tr>
-            );
-          })}
+            {data?.map((data) => {
+              return (
+                <tr key={data.username}>
+                  <td>{data.username}</td>
+                  <td>{data.rollno}</td>
+                  <td>{data.name}</td>
+                  <td>{data.department}</td>
+                  <td>{data.year}</td>
+                  <td>{data.section}</td>
+                  <td>{data.aptitude}</td>
+                  <td>{data.verbal}</td>
+                  <td>{data.technical}</td>
+                  <td>{data.total}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
       <br />
 
-      {/* <Button onClick={exporttoexcel}>Download EXCEL</Button> */}
-
-       <DownloadTableExcel
-        filename={tid+"-"+dept+"-"+year+"-"+sec}
+      <DownloadTableExcel
+        filename={tid + "-" + dept + "-" + year + "-" + sec}
         sheet={tid}
         currentTableRef={tableRef.current}
       >
         <Button>Download EXCEL</Button>
       </DownloadTableExcel>
+
+      <Button onClick={exportpdf}>Download PDF</Button>
     </div>
   );
 }

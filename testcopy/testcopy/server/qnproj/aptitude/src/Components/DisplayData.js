@@ -6,10 +6,7 @@ import Navbar from "./Navbar";
 import * as FileSaver from "file-saver";
 import XLSX from "sheetjs-style";
 
-
-
 function DisplayData({ logout, url }) {
-
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });
@@ -17,14 +14,13 @@ function DisplayData({ logout, url }) {
   const [data, setData] = useState();
 
   const fileType =
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
-const fileExtension = ".xlsx";
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
+  const fileExtension = ".xlsx";
 
   useEffect(() => {
     let disp = async (e) => {
       let res = await api.get("rst/").then((res) => {
         setData(res.data);
-        console.log(res.data);
       });
     };
     disp();
@@ -41,6 +37,17 @@ const fileExtension = ".xlsx";
   //   );
   // });
 
+  // let search = async () => {
+  //   let res = await api.post("search/", {
+  //     tid:tid,
+  //     dept:dept,
+  //     sec:sec,
+  //     year:year
+  //   }).then((res) => {
+  //     setData(res.data);
+  //     console.log(res.data);
+  //   });
+  // };
 
   let exportToExcel = async () => {
     let res = api.get("rst/PEC2211/").then((res) => {
@@ -91,7 +98,7 @@ const fileExtension = ".xlsx";
       </div>
       <br />
 
-      <Button>Download Pdf</Button>
+      <Button >Download Pdf</Button>
     </div>
   );
 }

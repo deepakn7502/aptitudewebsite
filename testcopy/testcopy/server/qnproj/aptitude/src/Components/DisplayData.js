@@ -14,6 +14,10 @@ import {
 
 const departments = [
   {
+    value: "",
+    label: "None",
+  },
+  {
     value: "CSE",
     label: "CSE",
   },
@@ -54,7 +58,12 @@ const departments = [
     label: "CIVIL",
   },
 ];
+
 const years = [
+  {
+    value: "",
+    label: "None",
+  },
   {
     value: "I",
     label: "I",
@@ -72,7 +81,12 @@ const years = [
     label: "IV",
   },
 ];
+
 const section = [
+  {
+    value: "",
+    label: "None",
+  },
   {
     value: "A",
     label: "A",
@@ -139,10 +153,12 @@ function DisplayData({ logout, url }) {
     });
   };
 
+  // let exporttoexcel = () => {
+
   // let exporttoexcel = async (e) => {
 
   //   const ws = XLSX.utils.json_to_sheet(data);
-
+    
   //   const wb = { Sheets: { "Sheet1": ws }, SheetNames: ["Sheet1"] };
 
   //   const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
@@ -279,29 +295,29 @@ function DisplayData({ logout, url }) {
         </div>
       </div>
       <div className="table" ref={tableRef}>
-        <table>
-          <thead>
-            <h1>PANIMALAR ENGINERRING COLLEGE</h1>
-            <h2>PLACEMENT DEPARTMENT</h2>
-            <h3>Test </h3>
-            <h4>TESTID:{tid}</h4>
-            <h5>CLASS:{year + "-" + dept + "-" + sec}</h5>
-
-            <tr>
-              <th rowSpan="2">Register Number</th>
-              <th rowSpan="2">Roll No</th>
-              <th rowSpan="2">Name</th>
-              <th rowSpan="2">Department</th>
-              <th rowSpan="2">Year</th>
-              <th rowSpan="2">Section</th>
-              <th colSpan="3">Marks</th>
-              <th rowSpan="2">Total</th>
-            </tr>
-            <tr>
-              <th>Aptitude</th>
-              <th>Verbal</th>
-              <th>Technical</th>
-            </tr>
+        <table >
+        <thead>
+           <h1>PANIMALAR ENGINNERRING COLLEGE</h1>
+           <h2>PLACEMENT DEPARTMENT</h2>
+           <h3>Test </h3>
+           <h4>TESTID:{tid}</h4>
+           <h5>CLASS:{year+'-'+dept+'-'+sec}</h5>
+           
+          <tr>
+            <th rowSpan="2">Register Number</th>
+            <th rowSpan="2">Roll No</th>
+            <th rowSpan="2">Name</th>
+            <th rowSpan="2">Department</th>
+            <th rowSpan="2">Year</th>
+            <th rowSpan="2">Section</th>
+            <th colSpan="3">Marks</th>
+            <th rowSpan="2">Total</th>
+          </tr>
+          <tr>
+            <th>Aptitude</th>
+            <th>Verbal</th>
+            <th>Technical</th>
+          </tr>
           </thead>
           <tbody>
             {data?.map((data) => {
@@ -324,6 +340,8 @@ function DisplayData({ logout, url }) {
         </table>
       </div>
       <br />
+
+      {/* <Button onClick={exporttoexcel}>Download EXCEL</Button> */}
 
       <DownloadTableExcel
         filename={tid + "-" + dept + "-" + year + "-" + sec}

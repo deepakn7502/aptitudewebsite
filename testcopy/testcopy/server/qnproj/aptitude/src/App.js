@@ -43,6 +43,7 @@ function App() {
     const user = localStorage.getItem("student");
     let res = api.put("log/", { user: user }).then(() => {
       window.localStorage.clear();
+      window.sessionStorage.clear();
       window.location.pathname = "/";
     });
   };

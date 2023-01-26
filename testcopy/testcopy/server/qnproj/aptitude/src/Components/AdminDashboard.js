@@ -13,9 +13,6 @@ function AdminDashboard({ url }) {
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8";
   const fileExtension = ".xlsx";
 
-
-
-
   return (
     <div className="main1">
       <Navbar  url={url} />

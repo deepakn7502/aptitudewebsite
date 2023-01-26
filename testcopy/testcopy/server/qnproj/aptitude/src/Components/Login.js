@@ -43,10 +43,9 @@ function Login({ url }) {
   }, []);
 
   const detectKeydown = (e) => {
-    console.log("Clicked", e.key);
-
+    console.log(e.key)
     if (e.key === "Enter") {
-      log();
+      log()
     }
   };
 

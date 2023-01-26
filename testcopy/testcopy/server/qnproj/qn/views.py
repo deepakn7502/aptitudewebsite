@@ -86,7 +86,7 @@ class qn(viewsets.ModelViewSet):
         no+=1
         image=self.ip(i)
         question.objects.create(testid=tid,qnno=no,qn=image["img"],ans=ans[no-1])
-      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,rollno varchar(20),name varchar(100),sec1 int,sec2 int,sec3 int,total int,dept varchar(10),year varchar(5),sec varchar(4));".format(tid))
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,rollno varchar(20),name varchar(100),dept varchar(10),year varchar(5),sec varchar(4),aptitude int,verbal int,technical int,total int);".format(tid))
       return  Response(tid)
    
     
@@ -120,12 +120,12 @@ class resdisp(APIView):
     def post(self,request):
       data=request.data
       cursor.execute("SELECT * FROM {tid} ".format(**data))
-      # res=cursor.fetchall()
-      # result=[]
-      # headers=["Username","Aptitude","Technical","Verbal","Total","Department","Section"]
-      # for i in res:
-      #    result+=[{headers[j]:i[j] for j in range(len(i))}]
-      return  Response(cursor.fetchall())
+      res=cursor.fetchall()
+      result=[]
+      headers=["username","rollno","name","department","year","section","aptitude","technical","verbal","total"]
+      for i in res:
+         result+=[{headers[j]:i[j] for j in range(len(i))}]
+      return  Response(result)
 
  
  
@@ -156,7 +156,7 @@ class validate(APIView):
             data["m3"]+=1
       data["total"]=data["m1"]+data["m2"]+data["m3"]
 
-      cursor.execute("INSERT INTO {tid} VALUES ({username},'{rollno}','{name}',{m1},{m2},{m3},{total},'{dept}','{year}','{sec}');".format(**data))
+      cursor.execute("INSERT INTO {tid} VALUES ({username},'{rollno}','{name}','{dept}','{year}','{sec}',{m1},{m2},{m3},{total});".format(**data))
 
       tst=list(stud.objects.filter(username=data["username"]).values('test'))[0]["test"]
       if(tst): 

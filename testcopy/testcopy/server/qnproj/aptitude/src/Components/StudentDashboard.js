@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./StudentDashboard.css";
 import axios from "axios";
@@ -11,6 +11,10 @@ function StudentDashboard({ logout, url }) {
   });
   const [tid, Settid] = useState("");
   const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(JSON.parse(window.localStorage.getItem("student")));
+    }, []);
 
   let disp = (e) => {
     var d = new Date(e.target.value);
@@ -27,16 +31,14 @@ function StudentDashboard({ logout, url }) {
   };
 
   const check = async (e) => {
-    setUser(JSON.parse(window.localStorage.getItem("student")));
-
     const res = await api
-      .post("check/", { tid: tid, username: user.username })
+      .post("check/", { tid: tid , username: user.username })
       .then(() => {
         window.sessionStorage.setItem("testid", tid);
         window.location.pathname = "/instructions";
       })
       .catch((error) => {
-        alert(error.message);
+        alert(error.response);
       });
     
     }

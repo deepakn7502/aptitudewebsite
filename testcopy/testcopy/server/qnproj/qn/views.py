@@ -22,7 +22,7 @@ class register(viewsets.ModelViewSet):
 class login(APIView):
    def auth(self,username,password):
       try:
-         user=list(stud.objects.filter(username=username,password=password,is_active=0).values('username','rollno','year','sec','dept'))[0]
+         user=list(stud.objects.filter(username=username,password=password,is_active=0).values('username','rollno','name','rollno','year','sec','dept'))[0]
          return user
       except:
          return None
@@ -86,7 +86,7 @@ class qn(viewsets.ModelViewSet):
         no+=1
         image=self.ip(i)
         question.objects.create(testid=tid,qnno=no,qn=image["img"],ans=ans[no-1])
-      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,sec1 int,sec2 int,sec3 int,total int,dept varchar(10),year varchar(5),sec varchar(4));".format(tid))
+      cursor.execute("CREATE TABLE {} ( username varchar(255) PRIMARY KEY,rollno varchar(20),name varchar(100),sec1 int,sec2 int,sec3 int,total int,dept varchar(10),year varchar(5),sec varchar(4));".format(tid))
       return  Response(tid)
    
     
@@ -103,7 +103,7 @@ class check(APIView):
             raise Exception("Aldready writen")
          return Response("Success")
       else:
-          raise Exception("Select valid date")
+          raise Exception({"message":"Select valid date"})
 
 
 class qndisp(generics.ListAPIView):
@@ -119,13 +119,13 @@ class qndisp(generics.ListAPIView):
 class resdisp(APIView):
     def post(self,request):
       data=request.data
-      cursor.execute("SELECT * FROM {tid} WHERE dept='{dept}' and sec='{sec}'".format(**data))
-      res=cursor.fetchall()
-      result=[]
-      headers=["Username","Aptitude","Technical","Verbal","Total","Department","Section"]
-      for i in res:
-         result+=[{headers[j]:i[j] for j in range(len(i))}]
-      return  Response(result)
+      cursor.execute("SELECT * FROM {tid} ".format(**data))
+      # res=cursor.fetchall()
+      # result=[]
+      # headers=["Username","Aptitude","Technical","Verbal","Total","Department","Section"]
+      # for i in res:
+      #    result+=[{headers[j]:i[j] for j in range(len(i))}]
+      return  Response(cursor.fetchall())
 
  
  
@@ -156,7 +156,7 @@ class validate(APIView):
             data["m3"]+=1
       data["total"]=data["m1"]+data["m2"]+data["m3"]
 
-      cursor.execute("INSERT INTO {tid} VALUES ({username},{m1},{m2},{m3},{total},'{dept}','{year}','{sec}');".format(**data))
+      cursor.execute("INSERT INTO {tid} VALUES ({username},'{rollno}','{name}',{m1},{m2},{m3},{total},'{dept}','{year}','{sec}');".format(**data))
 
       tst=list(stud.objects.filter(username=data["username"]).values('test'))[0]["test"]
       if(tst): 
@@ -166,3 +166,25 @@ class validate(APIView):
       stud.objects.filter(username=data["username"]).update(test=res)
       return Response({"mark1":data["m1"],"mark2":data["m2"],"mark3":data["m3"]})
  
+class search(APIView):
+   def post(self,request):
+      data=request.data
+      str="SELECT * FROM {}".format(data["tid"])
+      if(data["dept"]):
+         str+=" WHERE dept='{}'".format(data["dept"])
+      if(data["year"]):
+         str+=" AND year='{}'".format(data["year"])
+      if(data["sec"]):
+         str+=" AND sec='{}'".format(data["sec"])
+      str += ";"
+      cursor.execute(str)
+      return Response(cursor.fetchall())
+
+'''
+{
+"tid":"PEC2601",
+"dept":"CSE",
+"year":"III",
+"sec":"E"
+}
+'''

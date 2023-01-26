@@ -49,24 +49,27 @@ function App() {
 
   //code to disable inspect
 
-  useEffect(() => {
-    document.addEventListener(
-      "keydown",
-      (e) => e.preventDefault(),
-      detectKeydown,
-      true
-    );
+  // useEffect(() => {
+  //   document.addEventListener(
+  //     "keydown",
+  //     (e) => e.preventDefault(),
+  //     detectKeydown,
+  //     true
+  //   );
 
-    document.addEventListener("contextmenu", (e) => e.preventDefault());
-  }, []);
+  //   document.addEventListener("contextmenu", (e) => e.preventDefault());
+  // }, []);
 
-  const detectKeydown = (e) => {
-    console.log("Clicked", e.key);
+  // const detectKeydown = (e) => {
+  //   console.log("Clicked", e.key);
 
-    if (e.key === "Enter") {
-      return false;
-    }
-  };
+  //   if (e.key === "Enter") {
+  //     return false;
+  //   }
+  // };
+
+// End of Disable code
+
   if (user) {
     if (user === "student") {
       return (

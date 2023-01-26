@@ -11,7 +11,7 @@ function DisplayData({ logout, url }) {
     baseURL: `http://${url}:8000`,
   });
 
-  const [data, setData] = useState();
+  var [data, setData] = useState();
   const [tid, setTestID] = useState("");
   const [dept, setDept] = useState("");
   const [year, setYear] = useState("");
@@ -48,12 +48,12 @@ function DisplayData({ logout, url }) {
   let search = async () => {
     let res = await api.post("rst/",{ tid : tid}).then((res) => {
       setData(res.data);
-      // console.log(res.data);
+      console.log("Done");
     });
   };
 
 let exporttoexcel = () => {
-
+  // console.log("Data:",data)
   const ws = XLSX.utils.json_to_sheet(data);
 
   const wb = { Sheets: { tid: ws }, SheetNames: [tid] };
@@ -144,7 +144,7 @@ let exporttoexcel = () => {
       </div>
       <br />
 
-      <Button onClick={exporttoexcel}>Download Pdf</Button>
+      <Button onClick={exporttoexcel}>Download</Button>
     </div>
   );
 }

@@ -32,7 +32,7 @@ function Navbar({ url }) {
           window.location.pathname = "/upload";
         }}
       >
-        Upload
+        QUESTION Upload
       </Button>
 
       <Button
@@ -41,7 +41,7 @@ function Navbar({ url }) {
           window.location.pathname = "/displaydata";
         }}
       >
-        Download
+        VIEW RESULTS
       </Button>
 
       <Button onClick={logout} variant="none" endIcon={<LogoutIcon />}>

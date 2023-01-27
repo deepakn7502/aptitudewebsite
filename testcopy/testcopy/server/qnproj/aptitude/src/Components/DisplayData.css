@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  
 }
 
 .input-fields .input:nth-child(1) {
@@ -44,12 +45,14 @@
   position: relative;
   top: 50px;
   margin: 0 auto;
+  overflow-y: scroll;
 }
 
 .table table {
   width: 99%;
   height: fit-content;
   margin: 0 auto;
+
 }
 
 table {

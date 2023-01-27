@@ -220,7 +220,7 @@ function DisplayData({ logout, url }) {
 
     doc.text(title, marginLeft, 40);
     doc.autoTable(content);
-    doc.save(tid + ".pdf");
+    doc.save(tid+"-" + dept + "-" + year + "-" +sec+ ".pdf");
   };
 
   const tableRef = useRef(null);
@@ -348,7 +348,7 @@ function DisplayData({ logout, url }) {
         sheet={tid}
         currentTableRef={tableRef.current}
       >
-        <Button>Download EXCEL</Button>
+        <Button V>Download EXCEL</Button>
       </DownloadTableExcel>
 
       <Button onClick={exportpdf}>Download PDF</Button>

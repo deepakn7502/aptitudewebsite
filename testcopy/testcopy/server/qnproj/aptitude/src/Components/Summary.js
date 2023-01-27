@@ -3,7 +3,7 @@ import "./Summary.css";
 import Divider from "@mui/material/Divider";
 import { Button } from "@mui/material";
 
-function Summary({ logout }) {
+function Summary({ logout, setStart }) {
   const [results, setResults] = useState();
 
   useEffect(() => {
@@ -12,6 +12,7 @@ function Summary({ logout }) {
 
   const gotohome = () => {
     window.location.pathname = "/";
+    setStart(false);
   };
   return (
     <div className="summary">

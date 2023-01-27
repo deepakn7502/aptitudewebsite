@@ -3,10 +3,8 @@ import "./DisplayData.css";
 import axios from "axios";
 import { Button, MenuItem, TextField } from "@mui/material";
 import Navbar from "./Navbar";
-// import * as FileSaver from "file-saver";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import XLSX from "sheetjs-style";
 import {
   DownloadTableExcel,
   useDownloadExcel,
@@ -158,7 +156,7 @@ function DisplayData({ logout, url }) {
   // let exporttoexcel = async (e) => {
 
   //   const ws = XLSX.utils.json_to_sheet(data);
-    
+
   //   const wb = { Sheets: { "Sheet1": ws }, SheetNames: ["Sheet1"] };
 
   //   const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
@@ -178,12 +176,11 @@ function DisplayData({ logout, url }) {
 
     doc.setFontSize(15);
 
-    const h1 =
-      "                           PANIMALAR ENGINERRING COLLEGE    ";
-    const h2 = "                                        APTITUDE TEST     ";
+    const h1 = "PANIMALAR ENGINERRING COLLEGE";
+    const h2 = "APTITUDE TEST";
     const h3 = "TESTID:" + tid;
     const h4 = "CLASS:" + year + "-" + dept + "-" + sec;
-    const title=h1+"\n"+h2+"\n"+h3+"\n"+h4;
+    const title = h1 + "\n" + h2 + "\n" + h3 + "\n" + h4;
     const headers = [
       [
         "username",
@@ -220,7 +217,7 @@ function DisplayData({ logout, url }) {
 
     doc.text(title, marginLeft, 40);
     doc.autoTable(content);
-    doc.save(tid+"-" + dept + "-" + year + "-" +sec+ ".pdf");
+    doc.save(tid + "-" + dept + "-" + year + "-" + sec + ".pdf");
   };
 
   const tableRef = useRef(null);
@@ -253,7 +250,6 @@ function DisplayData({ logout, url }) {
             onChange={(e) => {
               setDept(e.target.value);
             }}
-            helperText="DEPARTMENT"
           >
             {departments.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -268,7 +264,6 @@ function DisplayData({ logout, url }) {
             onChange={(e) => {
               setYear(e.target.value);
             }}
-            helperText="YEAR"
           >
             {years.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -283,7 +278,6 @@ function DisplayData({ logout, url }) {
             onChange={(e) => {
               setSec(e.target.value);
             }}
-            helperText="SECTION"
           >
             {section.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -295,29 +289,29 @@ function DisplayData({ logout, url }) {
         </div>
       </div>
       <div className="table" ref={tableRef}>
-        <table >
-        <thead>
-           <h1>PANIMALAR ENGINNERRING COLLEGE</h1>
-           <h2>PLACEMENT DEPARTMENT</h2>
-           <h3>Test </h3>
-           <h4>TESTID:{tid}</h4>
-           <h5>CLASS:{year+'-'+dept+'-'+sec}</h5>
-           
-          <tr>
-            <th rowSpan="2">Register Number</th>
-            <th rowSpan="2">Roll No</th>
-            <th rowSpan="2">Name</th>
-            <th rowSpan="2">Department</th>
-            <th rowSpan="2">Year</th>
-            <th rowSpan="2">Section</th>
-            <th colSpan="3">Marks</th>
-            <th rowSpan="2">Total</th>
-          </tr>
-          <tr>
-            <th>Aptitude</th>
-            <th>Verbal</th>
-            <th>Technical</th>
-          </tr>
+        <table>
+          <thead>
+            <h1>PANIMALAR ENGINNERRING COLLEGE</h1>
+            <h2>PLACEMENT DEPARTMENT</h2>
+            <h3>Test </h3>
+            <h4>TESTID:{tid}</h4>
+            <h5>CLASS:{year + " " + dept + " " + sec}</h5>
+
+            <tr>
+              <th rowSpan="2">Register Number</th>
+              <th rowSpan="2">Roll No</th>
+              <th rowSpan="2">Name</th>
+              <th rowSpan="2">Department</th>
+              <th rowSpan="2">Year</th>
+              <th rowSpan="2">Section</th>
+              <th colSpan="3">Marks</th>
+              <th rowSpan="2">Total</th>
+            </tr>
+            <tr>
+              <th>Aptitude</th>
+              <th>Verbal</th>
+              <th>Technical</th>
+            </tr>
           </thead>
           <tbody>
             {data?.map((data) => {
@@ -341,15 +335,7 @@ function DisplayData({ logout, url }) {
       </div>
       <br />
 
-      {/* <Button onClick={exporttoexcel}>Download EXCEL</Button> */}
-
-      <DownloadTableExcel
-        filename={tid + "-" + dept + "-" + year + "-" + sec}
-        sheet={tid}
-        currentTableRef={tableRef.current}
-      >
-        <Button V>Download EXCEL</Button>
-      </DownloadTableExcel>
+      <Button onClick={onDownload}>Download EXCEL</Button>
 
       <Button onClick={exportpdf}>Download PDF</Button>
     </div>

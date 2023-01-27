@@ -27,6 +27,7 @@ function Login({ url }) {
 
   const log = async (e) => {
     try {
+      console.log(regno, pass);
       const res = await api.post("log/", { username: regno, password: pass });
       setUser(res.data);
       const student = JSON.stringify(res.data);
@@ -34,18 +35,7 @@ function Login({ url }) {
       localStorage.setItem("student", student);
       window.location.pathname = "/";
     } catch (error) {
-      alert("Invalid Login");
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", detectKeydown, true);
-  }, []);
-
-  const detectKeydown = (e) => {
-    console.log(e.key)
-    if (e.key === "Enter") {
-      log()
+      alert(error.message);
     }
   };
 

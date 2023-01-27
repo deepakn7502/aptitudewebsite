@@ -15,6 +15,7 @@ import Result from "./Components/Result";
 import axios from "axios";
 import QuestionDisplay from "./Components/QuestionDisplay";
 import Practice from "./Components/Practics";
+import { Timer } from "./Functions/Functions";
 
 const url = window.location.hostname;
 
@@ -50,27 +51,26 @@ function App() {
 
   //code to disable inspect
 
-  // useEffect(() => {
-  //   document.addEventListener(
-  //     "keydown",
-  //     (e) => e.preventDefault(),
-  //     detectKeydown,
-  //     true
-  //   );
+  const [start, setStart] = useState(false);
 
-  //   document.addEventListener("contextmenu", (e) => e.preventDefault());
-  // }, []);
+  useEffect(() => {
+    console.log(start);
+    if (start) {
+      document.addEventListener(
+        "keydown",
+        (e) => e.preventDefault(),
+        detectKeydown,
+        true
+      );
 
-  // const detectKeydown = (e) => {
-  //   console.log("Clicked", e.key);
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+      Timer();
+    }
+  }, []);
 
-  //   if (e.key === "Enter") {
-  //     return false;
-  //   }
-  // };
+  const detectKeydown = (e) => {};
 
-// End of Disable code
-
+  // End of Disable code
   if (user) {
     if (user === "student") {
       return (
@@ -80,12 +80,17 @@ function App() {
               path="/"
               element={<StudentDashboard logout={logout} url={url} />}
             />
-            <Route path="/instructions" element={<Instructions url={url} />} />
+            <Route
+              path="/instructions"
+              element={<Instructions setStart={setStart} url={url} />}
+            />
             <Route path="/sections" element={<Sections url={url} />} />
             <Route path="/questions" element={<QuestionDisplay url={url} />} />
             <Route
               path="/summary"
-              element={<Summary url={url} logout={logout} />}
+              element={
+                <Summary url={url} setStart={setStart} logout={logout} />
+              }
             />
           </Routes>
         </Router>
@@ -103,11 +108,6 @@ function App() {
               path="/displaydata"
               element={<DisplayData logout={logout} url={url} />}
             />
-            <Route
-              path="/practice"
-              element={<Practice logout={logout} url={url} />}
-            />
-            <Route path="/result" element={<Result url={url} />} />
           </Routes>
         </Router>
       );

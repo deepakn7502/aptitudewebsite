@@ -3,26 +3,26 @@ import React, { useState } from "react";
 import "./Instructions.css";
 import axios from "axios";
 
-
-function Instructions({url}) {
+function Instructions({ url, setStart }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });
 
-  const int1 = 
- "Fill up your personal details carefully. All questions are compulsory."
- const int2=" Try to submit the paper in 30-35 minutes."
- const  int3=" You are allowed to submit only once, make sure that you have correctly attempted all the questions before submission."
- const int4=" Make sure you clicked on submit button to successfully complete the test." 
- const int5=" Form will be active for two hours only."
- const int6=" For session-I 10.45AM to 11.25AM and for session-II 11.25AM to 12.05 PM."
-//  const int7="For Queries Contact Mr. DEEPAK N, Mr.ARUN KUMAR J, Mr. BHARATHWAJ M, Mr. DANIEL GEORGE S."
+  const int1 =
+    "Fill up your personal details carefully. All questions are compulsory.";
+  const int2 = " Try to submit the paper in 30-35 minutes.";
+  const int3 =
+    " You are allowed to submit only once, make sure that you have correctly attempted all the questions before submission.";
+  const int4 =
+    " Make sure you clicked on submit button to successfully complete the test.";
+  const int5 = " Form will be active for two hours only.";
+  const int6 =
+    " For session-I 10.45AM to 11.25AM and for session-II 11.25AM to 12.05 PM.";
+  //  const int7="For Queries Contact Mr. DEEPAK N, Mr.ARUN KUMAR J, Mr. BHARATHWAJ M, Mr. DANIEL GEORGE S."
   const [ischecked, setIsChecked] = useState(false);
 
   const handleStart = () => {
     window.location.pathname = "/sections";
-    window.sessionStorage.setItem("sec", 59);
-    window.sessionStorage.setItem("min", 29);
   };
 
   const [answers1, setAnswers1] = useState([]);
@@ -44,6 +44,7 @@ function Instructions({url}) {
         window.sessionStorage.setItem("section3", section3);
       }
     }
+    setStart(true);
   };
 
   return (

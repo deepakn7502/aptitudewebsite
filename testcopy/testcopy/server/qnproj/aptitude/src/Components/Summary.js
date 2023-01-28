@@ -25,18 +25,16 @@ function Summary({ logout, setStart }) {
             <div className="circle one">{results?.mark1}</div>
           </div>
 
-          <Divider className="divider1">SESSION-I</Divider>
+          <Divider className="divider1">APTITUDE</Divider>
 
           <div class="content">
             <div className="con">
               <p>
                 <b>
-                  Total no. of questions
+                  Total no. of questions:
                   <br />
-                  No. of correct answers
-                  <br />
-                  No. of incorrect answers
-                </b>
+                  No. of Attended:
+                  </b>
               </p>
             </div>
           </div>
@@ -46,17 +44,16 @@ function Summary({ logout, setStart }) {
           <div class="sessiono">
             <div className="circle two">{results?.mark2}</div>
           </div>
-          <Divider className="divider2">SESSION-II</Divider>
+          <Divider className="divider2">VERBAL</Divider>
 
           <div className="content">
             <div className="con">
               <p>
                 <b>
-                  Total no. of questions
+                  Total no. of questions:
                   <br />
-                  No. of correct answers
-                  <br />
-                  No. of incorrect answers
+                  No. of Attended:
+                  
                 </b>
               </p>
             </div>
@@ -67,17 +64,16 @@ function Summary({ logout, setStart }) {
           <div class="sessiono">
             <div className="circle three">{results?.mark3}</div>
           </div>
-          <Divider className="divider3">SESSION-III</Divider>
+          <Divider className="divider3">TECHNICAL</Divider>
 
           <div className="content">
             <div className="con">
               <p>
                 <b>
-                  Total no. of questions
+                  Total no. of questions:
                   <br />
-                  No. of correct answers
-                  <br />
-                  No. of incorrect answers
+                  No. of Attended:
+                  
                 </b>
               </p>
             </div>

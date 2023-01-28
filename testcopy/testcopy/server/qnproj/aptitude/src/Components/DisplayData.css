@@ -1,7 +1,7 @@
 .display-data {
   height: 100vh;
   width: 100vw;
-  background-image: url("../Images/bluebg.jpg");
+  background-image: url("../Images/iStock-1181462219-1-1-1024x576.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -11,12 +11,13 @@
 .display-data .input-fields {
   height: 70px;
   width: 100%;
-  background-color: #1e2b60;
+  /* background-color: #364eaf; */
   margin-top: 32px;
   border-top: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  
 }
 
 .input-fields .input:nth-child(1) {
@@ -46,16 +47,18 @@
 .display-data .table {
   width: 80%;
   background-color: #fff;
-  height: 450px;
+  height: 400px;
   position: relative;
   top: 50px;
   margin: 0 auto;
+  overflow-y: scroll;
 }
 
 .table table {
   width: 99%;
   height: fit-content;
   margin: 0 auto;
+
 }
 
 table {
@@ -69,4 +72,35 @@ td {
   border-collapse: collapse;
   padding: 5px;
   text-align: center;
+}
+
+.dexcel{
+  position: fixed;
+  text-align: center;
+  left: 0%;
+  bottom: 0%;
+  margin: 20px;
+  
+}
+.dexcel .MuiButton-root {
+  width: 175px;
+}
+.dpdf .MuiButton-root {
+  width: 175px;
+}
+.dpdf{
+  position: fixed;
+  text-align: center;
+  right: 0%;
+  bottom: 0%;
+  margin: 20px;
+}
+table thead{
+  width: 100%;
+  background-color: aqua;
+  text-align: center;
+}
+
+thead h1{
+  width: 100%;
 }

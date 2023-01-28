@@ -166,6 +166,11 @@ function DisplayData({ logout, url }) {
   //   FileSaver.saveAs(exportdata, fname + fileExtension);
   // };
 
+  const h1 = "         PANIMALAR ENGINERRING COLLEGE";
+  const h2 = "APTITUDE TEST";
+  const h3 = "TESTID:" + tid;
+  const h4 = "CLASS:" + year + "-" + dept + "-" + sec;
+
   let exportpdf = () => {
     const unit = "pt";
     const size = "A4"; // Use A1, A2, A3 or A4
@@ -176,23 +181,19 @@ function DisplayData({ logout, url }) {
 
     doc.setFontSize(15);
 
-    const h1 = "PANIMALAR ENGINERRING COLLEGE";
-    const h2 = "APTITUDE TEST";
-    const h3 = "TESTID:" + tid;
-    const h4 = "CLASS:" + year + "-" + dept + "-" + sec;
     const title = h1 + "\n" + h2 + "\n" + h3 + "\n" + h4;
     const headers = [
       [
-        "username",
-        "rollno",
-        "name",
-        "department",
-        "year",
-        "section",
-        "aptitude",
-        "technical",
-        "verbal",
-        "total",
+        "REGISTER NO",
+        "ROLL NO",
+        "NMAE",
+        "DEPARTMENT",
+        "YEAR",
+        "SECTION",
+        "APTITUDE",
+        "TECHNICAL",
+        "VERBAL",
+        "TOTAL",
       ],
     ];
 
@@ -217,7 +218,7 @@ function DisplayData({ logout, url }) {
 
     doc.text(title, marginLeft, 40);
     doc.autoTable(content);
-    doc.save(tid + ".pdf");
+    doc.save(tid + "-" + dept + "-" + year + "-" + sec + ".pdf");
   };
 
   const tableRef = useRef(null);
@@ -231,6 +232,7 @@ function DisplayData({ logout, url }) {
   return (
     <div className="display-data">
       <Navbar logout={logout} />
+      <br />
       <div className="input-fields">
         <div className="input">
           <TextField
@@ -240,7 +242,9 @@ function DisplayData({ logout, url }) {
               setTestID(e.target.value);
             }}
           />
-          <Button onClick={search}>Search</Button>
+          <Button onClick={search} variant="contained" color="success">
+            Search
+          </Button>
         </div>
         <div className="input">
           <TextField
@@ -285,17 +289,24 @@ function DisplayData({ logout, url }) {
               </MenuItem>
             ))}
           </TextField>
-          <Button onClick={filter}>Filter</Button>
+          <Button onClick={filter} variant="contained" color="success">
+            Filter
+          </Button>
         </div>
       </div>
       <div className="table" ref={tableRef}>
         <table>
           <thead>
-            <h1>PANIMALAR ENGINNERRING COLLEGE</h1>
-            <h2>PLACEMENT DEPARTMENT</h2>
-            <h3>Test </h3>
-            <h4>TESTID:{tid}</h4>
-            <h5>CLASS:{year + " " + dept + " " + sec}</h5>
+            <tr>
+              <h1>{h1}</h1>
+            </tr>
+            <tr>
+              <h2>PLACEMENT DEPARTMENT</h2>
+            </tr>
+            <h3>TESTID:{tid}</h3>
+            <tr colSpan="5">
+              <h4>CLASS:{year + " " + dept + " " + sec}</h4>
+            </tr>
 
             <tr>
               <th rowSpan="2">Register Number</th>
@@ -335,19 +346,21 @@ function DisplayData({ logout, url }) {
       </div>
       <br />
 
-      {/* <Button onClick={exporttoexcel}>Download EXCEL</Button> */}
+      <div className="dexcel">
+        {" "}
+        <Button onClick={onDownload} variant="contained">
+          Download EXCEL
+        </Button>
+        <div className="pdfbt"> </div>
+      </div>
 
-      <Button onClick={onDownload}>Download EXCEL</Button>
-
-      {/* <DownloadTableExcel
-        filename={tid + "-" + dept + "-" + year + "-" + sec}
-        sheet={tid}
-        currentTableRef={tableRef.current}
-      >
-        <Button>Download EXCEL</Button>
-      </DownloadTableExcel> */}
-
-      <Button onClick={exportpdf}>Download PDF</Button>
+      <br />
+      <div className="dpdf">
+        <Button onClick={exportpdf} variant="contained">
+          {" "}
+          Download PDF{" "}
+        </Button>
+      </div>
     </div>
   );
 }

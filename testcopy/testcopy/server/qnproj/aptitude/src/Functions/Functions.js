@@ -15,11 +15,11 @@ export function Timer() {
         setSeconds(seconds - 1);
       }
 
-      if (minutes === 0) {
+      if (minutes === 0 && seconds === 0) {
         setMinutes(0);
         setSeconds(0);
       }
-    }, 1000);
+    }, 1);
     return () => clearInterval(time);
   });
   return { minutes, seconds };

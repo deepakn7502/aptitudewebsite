@@ -49,14 +49,14 @@ function Question({ answers, questions, section, tid, url }) {
     window.location.pathname = "/sections";
   }
 
-  useEffect(() => {
-   const  min = window.sessionStorage.getItem("min")
-   const  sec = window.sessionStorage.getItem("sec")
+  // useEffect(() => {
+  //  const  min = window.sessionStorage.getItem("min")
+  //  const  sec = window.sessionStorage.getItem("sec")
 
-    if (min === 0 & sec === 0) {
-      saveAns()
-    }
-  })
+  //   if (min === 0 & sec === 0) {
+  //     saveAns()
+  //   }
+  // })
 
   return (
     <div className="question">

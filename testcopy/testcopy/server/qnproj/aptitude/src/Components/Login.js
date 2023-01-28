@@ -39,6 +39,10 @@ function Login({ url }) {
     }
   };
 
+  const setStart = () => {
+    window.sessionStorage.setItem("start", false);
+  };
+
   return (
     <div className="login">
       <div className="login-container">
@@ -83,7 +87,13 @@ function Login({ url }) {
         </div>
 
         <div class="button">
-          <Button variant="contained" onClick={log}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              log();
+              setStart();
+            }}
+          >
             SIGN IN
           </Button>
         </div>

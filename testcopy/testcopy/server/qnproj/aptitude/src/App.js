@@ -29,6 +29,11 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 function App() {
   const [user, setUser] = useState("");
 
+  const timer = Timer();
+  useEffect(() => {
+    console.log(timer.minutes, timer.seconds);
+  }, [timer]);
+
   useEffect(() => {
     const student = localStorage.getItem("student");
     if (student) {
@@ -53,22 +58,26 @@ function App() {
 
   const [start, setStart] = useState(false);
 
-  useEffect(() => {
-    console.log(start);
-    if (start) {
-      document.addEventListener(
-        "keydown",
-        (e) => e.preventDefault(),
-        detectKeydown,
-        true
-      );
+  // useEffect(() => {
+  //   console.log(start);
+  //   if (start === true) {
+  //     document.addEventListener(
+  //       "keydown",
+  //       (e) => e.preventDefault(),
+  //       detectKeydown,
+  //       true
+  //     );
 
-      document.addEventListener("contextmenu", (e) => e.preventDefault());
-      Timer();
-    }
-  }, []);
+  //     document.addEventListener("contextmenu", (e) => e.preventDefault());
+  //     Timer();
+  //   }
+  // }, [start]);
 
-  const detectKeydown = (e) => {};
+  // useEffect(() => {
+  //   navigation.addListener("beforeRemove", (e) => e.preventDefault());
+  // }, []);
+
+  // const detectKeydown = (e) => {};
 
   // End of Disable code
   if (user) {
@@ -82,7 +91,9 @@ function App() {
             />
             <Route
               path="/instructions"
-              element={<Instructions setStart={setStart} url={url} />}
+              element={
+                <Instructions setStart={setStart} start={start} url={url} />
+              }
             />
             <Route path="/sections" element={<Sections url={url} />} />
             <Route path="/questions" element={<QuestionDisplay url={url} />} />

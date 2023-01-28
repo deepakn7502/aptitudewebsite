@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Instructions.css";
 import axios from "axios";
 
-function Instructions({ url, setStart }) {
+function Instructions({ url }) {
   const api = axios.create({
     baseURL: `http://${url}:8000`,
   });
@@ -23,8 +23,13 @@ function Instructions({ url, setStart }) {
 
   const handleStart = () => {
     window.location.pathname = "/sections";
+    window.sessionStorage.setItem("sec", 59);
+    window.sessionStorage.setItem("min", 29);
   };
 
+  const setStart = () => {
+    window.sessionStorage.setItem("start", true);
+  };
   const [answers1, setAnswers1] = useState([]);
   const [answers2, setAnswers2] = useState([]);
   const [answers3, setAnswers3] = useState([]);
@@ -44,7 +49,6 @@ function Instructions({ url, setStart }) {
         window.sessionStorage.setItem("section3", section3);
       }
     }
-    setStart(true);
   };
 
   return (
@@ -74,6 +78,7 @@ function Instructions({ url, setStart }) {
           onClick={() => {
             handleStart();
             handleDeclaration();
+            setStart();
           }}
           disabled={!ischecked}
         >
